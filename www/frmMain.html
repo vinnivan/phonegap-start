@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmMain' data-role='view' data-title='Form1' data-show='frmMain.viewModel.initialize' data-model='frmMain.viewModel' >
+<script>
+	var frmMain = frmMain || {};
+		frmMain.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmMain' );
+		
+		frmMain.User = new cdt.prompt("User", // Name
+				"User", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // Button Resource3 ID
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				false, // ValidIfNotEmpty
+				"", // Validation
+				"var.User", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmMain.RWC_PromptControl1.addPrompt(frmMain.User);
+
+		frmMain.RWC_PromptControl1LP0 = new cdt.prompt( "Parts", // name 
+			"", // Caption
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			null, // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmMain.RWC_PromptControl1.addPrompt(frmMain.RWC_PromptControl1LP0);
+		frmMain.RWC_PromptControl1LP0.setDataSource(frmMain.RWC_DataSet1);
+
+
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <ul id='changeLocation-historyList' data-role='listview' data-template='historyTemplate' style='margin-bottom: 20px; margin-left: 0px; height: 200px; overflow: auto;'></ul>
+	        <div data-bind='visible: promptControl.isCurrentPromptText' >
+	            <div class='promptControlLeft' >
+	                <div><label for='frmMain-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                <div><input style='width: 100%;'  id='frmMain-textInput' type='text' data-bind='value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	            </div>
+	            <div class='promptControlRight'>
+	                <div><img src='images/barcode.png' style='width:32px; height:32px;' /></div>
+	                <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	            </div>
+	        </div>
+	        <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	            <div class='promptControlLeft' >
+	                <div><label for='frmMain-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                <div><input style='width: 100%;'  id='frmMain-passwordInput' type='password' data-bind='value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	            </div>
+	            <div class='promptControlRight'>
+	                <div style='height:46px'></div>
+	                <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

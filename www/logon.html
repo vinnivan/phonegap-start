@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='main' data-role='view' data-title='Form1' data-show='logon.viewModel.initialize' data-model='logon.viewModel' >
+<script>
+	var logon = logon || {};
+		logon.RWC_DataSet2 = new kendo.data.DataSource({ data: [{}] });
+		logon.RWC_DataSet1 = new kendo.data.DataSource({ data: [{}] });
+		logon.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'logon' );
+		logon.RWC_PromptControl1_User_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			// Line#  1 : MessageBox ( Test , Hello World! , mbOk ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		logon.User = new cdt.prompt("User", // Name
+				"User", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				false, // ValidIfNotEmpty
+				"User", // Variable
+				logon.RWC_PromptControl1_User_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		logon.RWC_PromptControl1.addPrompt(logon.User);
+
+		logon.RWC_PromptControl1_Password_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		logon.Password = new cdt.prompt("Password", // Name
+				"Password", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				false, // ValidIfNotEmpty
+				"Password", // Variable
+				logon.RWC_PromptControl1_Password_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Password
+				);
+
+		logon.RWC_PromptControl1.addPrompt(logon.Password);
+
+		logon.RWC_PromptControl1_Parts_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			logon.viewModel.logIn(cdt.VariableManager.getLocalVariable("User"));
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		logon.RWC_PromptControl1LP0 = new cdt.prompt( "Parts", // name 
+			"", // Caption
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			logon.RWC_PromptControl1_Parts_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		logon.RWC_PromptControl1.addPrompt(logon.RWC_PromptControl1LP0);
+
+
+		logon.RWC_PromptControl1LP0_template = "<li data-uid='#= data.uid #'><a>";
+		logon.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 63%;text-align:left;'>Test</span>";
+		logon.RWC_PromptControl1LP0_template += "<br/>";
+		logon.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 63%;text-align:left;'>#= data.STATUS #</span>";
+		logon.RWC_PromptControl1LP0_template += "<br /></a></li>";
+		logon.RWC_PromptControl1LP0.setLayout( kendo.template(logon.RWC_PromptControl1LP0_template, { useWithBlock: false } ) );
+
+		logon.RWC_PromptControl1LP0.setDataSource(logon.RWC_DataSet1);
+		logon.viewModel = new cdt.viewModel( "logon",logon.RWC_PromptControl1,"main");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='logon-listControl' data-role='listview' ></ul>
+	            </div>
+	            <ul id='logon-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px; height: 200px; overflow: auto;'></ul>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='logon-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='logon-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='logon-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='logon-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+	
+
+	        <div data-bind='visible: isLoggedIn'>
+	            <img data-bind='attr: { src: customerLogo }' class='overviewLogo' />
+	            <div id='overview'>
+	                <div data-role='header'>
+	                    <div data-role='navbar'>Overview</div>
+	                </div>
+	                <span style='font:x-large;margin-right:5px;'>User:</span><span style='font:large' data-bind='text: currentUser'></span>
+	                <div style='width:50px;margin-left:auto;margin-right:auto;margin-top:20px;'>
+	                    <a  data-role='button' data-click='logon.viewModel.logOut'>Logout</a>
+	                </div>
+	            </div>
+	            <img data-bind='attr: { src: radleyLogo }' class='overviewLogo' />
+	        </div>
+	
+
+	        <div data-role='popover' id='popupMenu' data-popup='{'height': 280, 'width': 280}'>
+	            <div data-role='view' data-title='Options'>
+	                <div data-role='header'>
+	                    <div data-role='navbar'>
+	                        <span data-role='view-title'></span>
+	                        <a data-role='button' data-align='right' data-click='closeParentPopover'>Close</a>
+	                    </div>
+	                </div>
+	                    <ul data-role='listview' data-click='cdt.Application.onPopupItemClick'>
+	                    <li data-icon='refresh'><a data-role='listview-link' id='resetPopup'>Reset</a></li>
+	                    <li  data-icon='reply'><a data-role='listview-link' id='previousPopup' >Previous</a></li>
+	                    <li  data-icon='action'><a data-role='listview-link' id='abortPopup' >Abort</a></li>
+	                    <li></li>
+	                    <li data-icon='settings'><a data-role='listview-link' data-rel='modalview' href='#configurationModalView' id='configurationOpenButton'>Configuration</a></li>
+	                </ul>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>
