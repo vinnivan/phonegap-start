@@ -27,6 +27,8 @@ var showScanner = function () {
 var showView = undefined;
 
 var menuItemSelected = function (e) {
+
+    alert("Menu Item Selected:" + e.dataItem.view);
     // Get History Cleared
     showView = e.dataItem.view;
     kendo.history.navigate("#:back");
@@ -39,10 +41,11 @@ $(window).bind("hashchange", function (e) {
     if (cdt.Application.getCurrentViewModel() == null)
         return;
 
-
-    alert("ViewChanged:" + url);
-
     var main = $("#" + cdt.Application.getCurrentViewModel().viewId);
+
+    alert("ViewChanged:" + url + "\r\nMain:" + main );
+
+
 
     if (url == "#main") {
         alert("Show main");
@@ -50,7 +53,7 @@ $(window).bind("hashchange", function (e) {
         mm.show(0);
         mm.css("left", -300);
         mm.animate({ left: '+=300' }, 200);
-    } else if (url == cdt.Application.getStartView()) {
+    } else if (url == cdt.Application.getStartView() || url == "") {
 
         if (showView == undefined) {
 
