@@ -1,0 +1,176 @@
+﻿    .km-root .km-android .km-view
+    {
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+    }
+
+    .km-android .km-navbar .km-view-title /* After Q2 2012 SP1 */
+    {
+        visibility: visible;
+    }
+
+    .overviewLogo
+    {
+        display:block;
+        margin-left:auto;
+        width:60%;
+        margin-right:auto;
+        padding:30px;
+    }
+
+    .promptControlLeft
+    {
+        position: absolute;
+        left: 0;
+        width: 80%;
+        margin-left: 10px;
+        padding: 0px;
+    }
+
+    .promptControlLeft div
+    {
+        line-height: 40px;
+        margin: 0;
+    }
+
+    .promptControlRight
+    {
+        position: absolute;
+        left: 90%;
+        width: auto;
+        padding-left: 0px;
+        color: #000000;
+        padding: 0px;
+    }
+
+    .promptControlRight div
+    {
+        line-height: 38px;
+        margin: 0,4px,0,0;
+    }
+
+
+    #messageBoxDialog
+    {
+        width: 480px;
+        height: 300px;
+    }
+
+    #messageBoxDialog #messageBoxText
+    {
+        height: 160px;
+        margin: 10px 20px 10px 20px;
+    }
+
+    #messageBoxDialog #messageBoxButtons
+    {
+        margin-top: 20px;
+        width: 150px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #messageBoxDialog #messageBoxButtons a
+    {
+        width: 40px;
+    }
+
+
+    .item-title
+    {
+        float: none;
+        font-size: 1em;
+        line-height: 1.4em;
+        margin: .3em 1em 0 .6em;
+        width: 70%;
+    }
+
+    .item-info
+    {
+        float: none;
+        font-size: .7em;
+        line-height: 1em;
+        margin: 0 0 0 2em;
+        width: 95%;
+    }
+
+    .item-photo
+    {
+        width: 32px;
+        height: 32px;
+        float: left;
+        margin: 6px 4px 0 0;
+    }
+
+    #mainMenu .item-title
+    {
+        float: none;
+        font-size: 1em;
+        line-height: 1.4em;
+        margin: .3em 1em 0 .6em;
+    }
+
+    #mainMenu .item-info
+    {
+        float: none;
+        font-size: .7em;
+        line-height: 1em;
+        margin: -8px 0 0 0 40px;
+        color: #bababa;
+    }
+
+
+    #mainMenu .item-title, #mainMenu .item-info
+    {
+        color: #fff;
+    }
+
+
+    #mainMenu
+    {
+        margin: 0;
+    }
+
+
+    #mainMenu .head
+    {
+        color: white;
+    }
+
+
+
+    @media all and (max-width: 400px)
+    {
+        #messageBoxDialog
+        {
+            width: 350px;
+            height: 300px;
+        }
+
+        #messageBoxDialog #messageBoxText
+        {
+            height: 180px;
+        }
+
+        #messageBoxDialog #messageBoxButtons
+        {
+            margin-top: 10px;
+        }
+
+        #messageBoxDialog #messageBoxText a
+        {
+            width: 100px;
+        }
+    }
+
+    #overview
+    {
+        -webkit-box-shadow: 5px 5px 10px -2px #808080;
+        box-shadow: 5px 5px 10px -2px #808080;
+        border: 1px solid #fff;
+        padding: 10px;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 7px;
+    }
