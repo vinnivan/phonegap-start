@@ -2,26 +2,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head></head>
 <body>
-<div id='main' data-role='view' data-title='Form1' data-show='logon.viewModel.initialize' data-model='logon.viewModel' >
+<div id='main' data-role='view' data-title='Login' data-show='logon.viewModel.initialize' data-model='logon.viewModel' >
 <script>
 	var logon = logon || {};
-		logon.RWC_DataSet2 = new kendo.data.DataSource({ data: [{}] });
-		logon.RWC_DataSet1 = new kendo.data.DataSource({ data: [{}] });
 		logon.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'logon' );
-		logon.RWC_PromptControl1_User_ValidEvent = function(_value, _completeAction) {
+		logon.RWC_WAREHOUSE_DATASET = new kendo.data.DataSource({ data: [{}] });
+		logon.RWC_SITE_DATASET = new kendo.data.DataSource({ data: [{}] });
+		logon.RWC_PromptControl1_USER_NAME_ValidEvent = function(_value, _completeAction) {
 			
 			var shouldContinue = true;
 			
 		try{
 			
-			// Line#  1 : MessageBox ( Test , Hello World! , mbOk ) 
+			// Line#  1 : Gvr.LOGGED_IN = N
+			// Line#  2 : SendValidation ( v_UserId ) 
+			// Line#  3 : If Mvr.v_UserId.STATUS <> (Alpha) Y And Mvr.v_UserId.ENABLE = (Numeric) 0
+			// Line#  4 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  5 : CancelDefault( )
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : Else If Mvr.v_UserId.ENABLE = (Numeric) 1
+			// Line#  8 : Var.USERNAME = Mvr.v_UserId.NAME
+			// Line#  9 : Var.COMPANY_ID = Mvr.v_UserId.COMPANY_ID
+			// Line#  10 : Var.USERID = Mvr.v_UserId.USERID
+			// Line#  11 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
 		};
 			
-		logon.User = new cdt.prompt("User", // Name
-				"User", // Caption
+		logon.USER_NAME = new cdt.prompt("USER_NAME", // Name
+				"Username" , // Caption Resource ID
 				"", // Default
 				true, // ResetEnabled
 				true, // PreviousEnabled
@@ -44,28 +54,42 @@
 				"", // Skip Default
 				true, // ToUpper
 				"", // Validation
-				false, // ValidIfNotEmpty
-				"User", // Variable
-				logon.RWC_PromptControl1_User_ValidEvent, // OnValid Delegate
+				true, // ValidIfNotEmpty
+				"USERID", // Variable
+				logon.RWC_PromptControl1_USER_NAME_ValidEvent, // OnValid Delegate
 				cdt.PromptControlType.Text
 				);
 
-		logon.RWC_PromptControl1.addPrompt(logon.User);
+		logon.RWC_PromptControl1.addPrompt(logon.USER_NAME);
 
-		logon.RWC_PromptControl1_Password_ValidEvent = function(_value, _completeAction) {
+		logon.RWC_PromptControl1_PASSWORD_ValidEvent = function(_value, _completeAction) {
 			
 			var shouldContinue = true;
 			
 		try{
 			
-			
+			// Line#  1 : Gvr.PASSWORD = Var.PASSWORD
+			// Line#  2 : Gvr.USERID = Var.USERID
+			// Line#  3 : Gvr.COMPANY_ID = Var.COMPANY_ID
+			// Line#  4 : Var.PRINT_NAME = @Welcome {Var.USERNAME}
+			// Line#  5 : Var.PRINT_DISP = BuildTemplateString ( Var.PRINT_NAME ) 
+			// Line#  6 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Site ) 
+			// Line#  7 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , Site ) 
+			// Line#  8 : If Var.ROWCNT < (Numeric) 1
+			// Line#  9 : StatusWindow ( @Info , @Error no site records found. , 2 ) 
+			// Line#  10 : CloseForm( )
+			// Line#  11 : CancelDefault( )
+			// Line#  12 : ExitEvent( )
+			// Line#  13 : End If
+			// Line#  14 : StatusWindow ( @Welcome , Var.PRINT_DISP , 2 ) 
+			logon.viewModel.logIn(cdt.VariableManager.getLocalVariable("USERID"));
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
 		};
 			
-		logon.Password = new cdt.prompt("Password", // Name
-				"Password", // Caption
+		logon.PASSWORD = new cdt.prompt("PASSWORD", // Name
+				"Password" , // Caption Resource ID
 				"", // Default
 				true, // ResetEnabled
 				true, // PreviousEnabled
@@ -86,30 +110,39 @@
 				false, // Skip
 				false, // UseHistory
 				"", // Skip Default
-				true, // ToUpper
+				false, // ToUpper
 				"", // Validation
-				false, // ValidIfNotEmpty
-				"Password", // Variable
-				logon.RWC_PromptControl1_Password_ValidEvent, // OnValid Delegate
+				true, // ValidIfNotEmpty
+				"PASSWORD", // Variable
+				logon.RWC_PromptControl1_PASSWORD_ValidEvent, // OnValid Delegate
 				cdt.PromptControlType.Password
 				);
 
-		logon.RWC_PromptControl1.addPrompt(logon.Password);
+		logon.RWC_PromptControl1.addPrompt(logon.PASSWORD);
 
-		logon.RWC_PromptControl1_Parts_Select = function(_value, _completeAction) {
+		logon.RWC_PromptControl1_Site_Select = function(_value, _completeAction) {
 			
 			var shouldContinue = true;
 			
 		try{
 			
-			logon.viewModel.logIn(cdt.VariableManager.getLocalVariable("User"));
+			// Line#  1 : Var.SITE = Dsv.RWC_SITE_DATASET.SITEID
+			// Line#  2 : Gvr.SITE = Var.SITE
+			// Line#  3 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Warehouse ) 
+			// Line#  4 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , Warehouse ) 
+			// Line#  5 : If Var.ROWCNT < (Numeric) 1
+			// Line#  6 : StatusWindow ( @Info , @No warehouse records found. , 2 ) 
+			// Line#  7 : ReturnToPrompt ( RWC_PromptControl1 , Site , False , False ) 
+			// Line#  8 : CancelDefault( )
+			// Line#  9 : ExitEvent( )
+			// Line#  10 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
 		};
 			
-		logon.RWC_PromptControl1LP0 = new cdt.prompt( "Parts", // name 
-			"", // Caption
+		logon.RWC_PromptControl1LP0 = new cdt.prompt( "Site", // name 
+			"Site", // Caption Resource ID
 			null, // default text 
 			true, // ResetEnabled
 			true, // PreviousEnabled
@@ -135,20 +168,84 @@
 			null,  // validation
 			false, // validIfEmpty
 			null, // variable
-			logon.RWC_PromptControl1_Parts_Select , // SelectEvent Delegate
+			logon.RWC_PromptControl1_Site_Select , // SelectEvent Delegate
 			cdt.PromptControlType.List
 			);
 		logon.RWC_PromptControl1.addPrompt(logon.RWC_PromptControl1LP0);
 
 
 		logon.RWC_PromptControl1LP0_template = "<li data-uid='#= data.uid #'><a>";
-		logon.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 63%;text-align:left;'>Test</span>";
+		logon.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 30%;text-align:right;'>Site:</span>";
+		logon.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 30%;width: 24%;text-align:left;'>#= data.SITEID #</span>";
 		logon.RWC_PromptControl1LP0_template += "<br/>";
-		logon.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 63%;text-align:left;'>#= data.STATUS #</span>";
+		logon.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 30%;text-align:right;'>Name:</span>";
+		logon.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 30%;width: 48%;text-align:left;'>#= data.NAME #</span>";
 		logon.RWC_PromptControl1LP0_template += "<br /></a></li>";
 		logon.RWC_PromptControl1LP0.setLayout( kendo.template(logon.RWC_PromptControl1LP0_template, { useWithBlock: false } ) );
 
-		logon.RWC_PromptControl1LP0.setDataSource(logon.RWC_DataSet1);
+		logon.RWC_PromptControl1LP0.setDataSource(logon.RWC_SITE_DATASET);
+		logon.RWC_PromptControl1_Warehouse_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			// Line#  1 : Var.WAREHOUSE = Dsv.RWC_WAREHOUSE_DATASET.INVENTLOCATIONID
+			// Line#  2 : Gvr.WAREHOUSE = Var.WAREHOUSE
+			// Line#  3 : Var.LOGGED_IN = Y
+			// Line#  4 : CancelDefault( )
+			// Line#  5 : CloseForm( )
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		logon.RWC_PromptControl1LP1 = new cdt.prompt( "Warehouse", // name 
+			"Warehouse", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			logon.RWC_PromptControl1_Warehouse_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		logon.RWC_PromptControl1.addPrompt(logon.RWC_PromptControl1LP1);
+
+
+		logon.RWC_PromptControl1LP1_template = "<li data-uid='#= data.uid #'><a>";
+		logon.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 33%;text-align:right;'>Warehouse:</span>";
+		logon.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 33%;width: 39%;text-align:left;'>#= data.INVENTLOCATIONID #</span>";
+		logon.RWC_PromptControl1LP1_template += "<br/>";
+		logon.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 3%;width: 30%;text-align:right;'>Name:</span>";
+		logon.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 33%;width: 61%;text-align:left;'>#= data.NAME #</span>";
+		logon.RWC_PromptControl1LP1_template += "<br/>";
+		logon.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 3%;width: 30%;text-align:right;'>Type:</span>";
+		logon.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 33%;width: 45%;text-align:left;'>#= data.INVENTLOCATIONTYPENAME #</span>";
+		logon.RWC_PromptControl1LP1_template += "<br /></a></li>";
+		logon.RWC_PromptControl1LP1.setLayout( kendo.template(logon.RWC_PromptControl1LP1_template, { useWithBlock: false } ) );
+
+		logon.RWC_PromptControl1LP1.setDataSource(logon.RWC_WAREHOUSE_DATASET);
 		logon.viewModel = new cdt.viewModel( "logon",logon.RWC_PromptControl1,"main");
 </script>
 	        <header data-role='header'>

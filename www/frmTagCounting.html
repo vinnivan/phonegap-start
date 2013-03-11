@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmTagCounting' data-role='view' data-title='Tag Counting' data-show='frmTagCounting.viewModel.initialize' data-model='frmTagCounting.viewModel' >
+<script>
+	var frmTagCounting = frmTagCounting || {};
+		frmTagCounting.RWC_DataSet1 = new kendo.data.DataSource({ data: [{}] });
+		frmTagCounting.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmTagCounting' );
+		frmTagCounting.RWC_CONFIG_DATASET = new kendo.data.DataSource({ data: [{}] });
+		frmTagCounting.RWC_SIZE_DATASET = new kendo.data.DataSource({ data: [{}] });
+		frmTagCounting.RWC_COLOR_DATASET = new kendo.data.DataSource({ data: [{}] });
+		frmTagCounting.RWC_PromptControl1_Site_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("Item");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmTagCounting.Site = new cdt.prompt("Site", // Name
+				"Site" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_site", // Validation
+				false, // ValidIfNotEmpty
+				"SITE", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTagCounting.RWC_PromptControl1.addPrompt(frmTagCounting.Site);
+
+		frmTagCounting.RWC_PromptControl1_Warehouse_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("Item");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmTagCounting.Warehouse = new cdt.prompt("Warehouse", // Name
+				"Warehouse" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				false, // ValidIfNotEmpty
+				"WAREHOUSE", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTagCounting.RWC_PromptControl1.addPrompt(frmTagCounting.Warehouse);
+
+		frmTagCounting.RWC_PromptControl1_Item_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SERIAL_NO","");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","BATCH_NUMBER","");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","PALLET_ID","");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","LOCATION","");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","QTY","");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","STATUS","");
+			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","DIMENSION_ID","");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","COLOR","");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SIZE","");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","CONFIGURATION","");
+			CurrentLine= 16;NetManager.Instance.SendValidation("v_Dimension_Group",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","LOCATION_ACTIVE","");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","PALLET_ID_ACTIVE","");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SIZE_ACTIVE","");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","QTY_OF_SIZE","");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","COLOR_ACTIVE","");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","QTY_OF_COLOR","");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","CONFIGURATION_ACTIVE","");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","QTY_OF_CONFIGURATION","");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","BATCH_NO_ACTIVE","");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SERIAL_NO_ACTIVE","");
+			if("".ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			RWC_PromptControl1.ShowPrompt("From_Location");
+			return;
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("SIZE_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_SIZE").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 33;RWC_PromptControl1.ReceiveDataSetFromQueue("Size");
+			RWC_PromptControl1.ShowPrompt("Size");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 40;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
+			RWC_PromptControl1.ShowPrompt("Color");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 47;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
+			RWC_PromptControl1.ShowPrompt("Config");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","BATCH_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Batch_Number");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","BATCH_NUMBER","");
+			
+			}
+			if("".ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SERIAL_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Serial_No");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SERIAL_NO","");
+			
+			}
+			CurrentLine= 66;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","STATUS","");
+			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			RWC_PromptControl1.SetHistoryText("Item",ResourceMgr.GetCDTString("On Hand"),"",true);
+			RWC_PromptControl1.SetHistoryText("Item",ResourceMgr.GetCDTString("ITEM ID"),cdt.VariableManager.getLocalVariable("ITEM_ID"),false);
+			RWC_PromptControl1.ShowPrompt("QTY");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmTagCounting.RWC_PromptControl1_Item_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("Item");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmTagCounting.RWC_PromptControl1_Item_PreviousClick = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+		try{
+			
+			
+			e.Cancel = true;
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmTagCounting.Item = new cdt.prompt("Item", // Name
+				"Item Number" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_Item", // Validation
+				false, // ValidIfNotEmpty
+				"ITEM_ID", // Variable
+				frmTagCounting.RWC_PromptControl1_Item_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTagCounting.RWC_PromptControl1.addPrompt(frmTagCounting.Item);
+
+		frmTagCounting.RWC_PromptControl1_From_Location_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			if(cdt.VariableManager.getLocalVariable("PALLET_ID_ACTIVE").ToUpper().CompareTo("YES".ToUpper()) == 0)
+			{
+			
+			RWC_PromptControl1.ShowPrompt("Pallet");
+			return;
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("SIZE_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_SIZE").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 7;RWC_PromptControl1.ReceiveDataSetFromQueue("Size");
+			RWC_PromptControl1.ShowPrompt("Size");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 14;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
+			RWC_PromptControl1.ShowPrompt("Color");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 21;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
+			RWC_PromptControl1.ShowPrompt("Config");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","BATCH_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Batch_Number");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","BATCH_NUMBER","");
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SERIAL_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Serial_No");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SERIAL_NO","");
+			
+			}
+			CurrentLine= 40;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","STATUS","");
+			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			RWC_PromptControl1.SetHistoryText("From_Location",ResourceMgr.GetCDTString("On Hand"),"",true);
+			RWC_PromptControl1.SetHistoryText("From_Location",ResourceMgr.GetCDTString("Location"),cdt.VariableManager.getLocalVariable("LOCATION"),false);
+			RWC_PromptControl1.ShowPrompt("QTY");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmTagCounting.RWC_PromptControl1_From_Location_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("Item");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmTagCounting.From_Location = new cdt.prompt("From_Location", // Name
+				"From Location" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_Location", // Validation
+				false, // ValidIfNotEmpty
+				"LOCATION", // Variable
+				frmTagCounting.RWC_PromptControl1_From_Location_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTagCounting.RWC_PromptControl1.addPrompt(frmTagCounting.From_Location);
+
+		frmTagCounting.RWC_PromptControl1_Pallet_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			if(cdt.VariableManager.getLocalVariable("SIZE_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_SIZE").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 3;RWC_PromptControl1.ReceiveDataSetFromQueue("Size");
+			RWC_PromptControl1.ShowPrompt("Size");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 10;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
+			RWC_PromptControl1.ShowPrompt("Color");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 17;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
+			RWC_PromptControl1.ShowPrompt("Config");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","BATCH_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Batch_Number");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","BATCH_NUMBER","");
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SERIAL_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Serial_No");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SERIAL_NO","");
+			
+			}
+			CurrentLine= 36;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","STATUS","");
+			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			RWC_PromptControl1.SetHistoryText("Pallet",ResourceMgr.GetCDTString("On Hand"),"",true);
+			RWC_PromptControl1.SetHistoryText("Pallet",ResourceMgr.GetCDTString("Pallet Id"),cdt.VariableManager.getLocalVariable("PALLET_ID"),false);
+			RWC_PromptControl1.ShowPrompt("QTY");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmTagCounting.RWC_PromptControl1_Pallet_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("Item");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmTagCounting.Pallet = new cdt.prompt("Pallet", // Name
+				"Pallet Id" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_Pallet", // Validation
+				false, // ValidIfNotEmpty
+				"PALLET_ID", // Variable
+				frmTagCounting.RWC_PromptControl1_Pallet_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTagCounting.RWC_PromptControl1.addPrompt(frmTagCounting.Pallet);
+
+		frmTagCounting.RWC_PromptControl1_Size_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SIZE","");
+			RWC_PromptControl1.SetHistoryText("Size",ResourceMgr.GetCDTString("Size"),cdt.VariableManager.getLocalVariable("Size"),true);
+			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 5;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
+			RWC_PromptControl1.ShowPrompt("Color");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 12;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
+			RWC_PromptControl1.ShowPrompt("Config");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","BATCH_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Batch_Number");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","BATCH_NUMBER","");
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SERIAL_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Serial_No");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SERIAL_NO","");
+			
+			}
+			CurrentLine= 31;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","STATUS","");
+			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			RWC_PromptControl1.SetHistoryText("Size",ResourceMgr.GetCDTString("On Hand"),"",true);
+			RWC_PromptControl1.SetHistoryText("Size",ResourceMgr.GetCDTString("Size"),cdt.VariableManager.getLocalVariable("Size"),false);
+			RWC_PromptControl1.ShowPrompt("QTY");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmTagCounting.RWC_PromptControl1_Size_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("Item");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmTagCounting.RWC_PromptControl1LP0 = new cdt.prompt( "Size", // name 
+			"Size", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			frmTagCounting.RWC_PromptControl1_Size_ResetClick , // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmTagCounting.RWC_PromptControl1_Size_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmTagCounting.RWC_PromptControl1.addPrompt(frmTagCounting.RWC_PromptControl1LP0);
+
+
+		frmTagCounting.RWC_PromptControl1LP0_template = "<li data-uid='#= data.uid #'><a>";
+		frmTagCounting.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Size:</span>";
+		frmTagCounting.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 42%;text-align:left;'>#= data.INVENTSIZEID #</span>";
+		frmTagCounting.RWC_PromptControl1LP0_template += "<br/>";
+		frmTagCounting.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Name:</span>";
+		frmTagCounting.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 48%;text-align:left;'>#= data.NAME #</span>";
+		frmTagCounting.RWC_PromptControl1LP0_template += "<br/>";
+		frmTagCounting.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Description:</span>";
+		frmTagCounting.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 55%;text-align:left;'>#= data.DESCRIPTION #</span>";
+		frmTagCounting.RWC_PromptControl1LP0_template += "<br /></a></li>";
+		frmTagCounting.RWC_PromptControl1LP0.setLayout( kendo.template(frmTagCounting.RWC_PromptControl1LP0_template, { useWithBlock: false } ) );
+
+		frmTagCounting.RWC_PromptControl1LP0.setDataSource(frmTagCounting.RWC_SIZE_DATASET);
+		frmTagCounting.RWC_PromptControl1_Color_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","COLOR","");
+			RWC_PromptControl1.SetHistoryText("Color",ResourceMgr.GetCDTString("Color"),cdt.VariableManager.getLocalVariable("COLOR"),true);
+			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 5;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
+			RWC_PromptControl1.ShowPrompt("Config");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","BATCH_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Batch_Number");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","BATCH_NUMBER","");
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SERIAL_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Serial_No");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SERIAL_NO","");
+			
+			}
+			CurrentLine= 24;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","STATUS","");
+			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			RWC_PromptControl1.SetHistoryText("Color",ResourceMgr.GetCDTString("On Hand"),"",true);
+			RWC_PromptControl1.SetHistoryText("Color",ResourceMgr.GetCDTString("Color"),cdt.VariableManager.getLocalVariable("COLOR"),false);
+			RWC_PromptControl1.ShowPrompt("QTY");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmTagCounting.RWC_PromptControl1_Color_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("Item");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmTagCounting.RWC_PromptControl1LP1 = new cdt.prompt( "Color", // name 
+			"Color", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			frmTagCounting.RWC_PromptControl1_Color_ResetClick , // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmTagCounting.RWC_PromptControl1_Color_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmTagCounting.RWC_PromptControl1.addPrompt(frmTagCounting.RWC_PromptControl1LP1);
+
+
+		frmTagCounting.RWC_PromptControl1LP1_template = "<li data-uid='#= data.uid #'><a>";
+		frmTagCounting.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Color:</span>";
+		frmTagCounting.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 42%;text-align:left;'>#= data.INVENTCOLORID #</span>";
+		frmTagCounting.RWC_PromptControl1LP1_template += "<br/>";
+		frmTagCounting.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Name:</span>";
+		frmTagCounting.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 48%;text-align:left;'>#= data.NAME #</span>";
+		frmTagCounting.RWC_PromptControl1LP1_template += "<br/>";
+		frmTagCounting.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Description:</span>";
+		frmTagCounting.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 55%;text-align:left;'>#= data.DESCRIPTION #</span>";
+		frmTagCounting.RWC_PromptControl1LP1_template += "<br /></a></li>";
+		frmTagCounting.RWC_PromptControl1LP1.setLayout( kendo.template(frmTagCounting.RWC_PromptControl1LP1_template, { useWithBlock: false } ) );
+
+		frmTagCounting.RWC_PromptControl1LP1.setDataSource(frmTagCounting.RWC_COLOR_DATASET);
+		frmTagCounting.RWC_PromptControl1_Config_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","CONFIGURATION","");
+			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","BATCH_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Batch_Number");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","BATCH_NUMBER","");
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SERIAL_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Serial_No");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SERIAL_NO","");
+			
+			}
+			CurrentLine= 16;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","STATUS","");
+			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			RWC_PromptControl1.SetHistoryText("Config",ResourceMgr.GetCDTString("On Hand"),"",true);
+			RWC_PromptControl1.SetHistoryText("Config",ResourceMgr.GetCDTString("Config"),cdt.VariableManager.getLocalVariable("CONFIGURATION"),false);
+			RWC_PromptControl1.ShowPrompt("QTY");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmTagCounting.RWC_PromptControl1_Config_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("Item");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmTagCounting.RWC_PromptControl1LP2 = new cdt.prompt( "Config", // name 
+			"Configuration", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			frmTagCounting.RWC_PromptControl1_Config_ResetClick , // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmTagCounting.RWC_PromptControl1_Config_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmTagCounting.RWC_PromptControl1.addPrompt(frmTagCounting.RWC_PromptControl1LP2);
+
+
+		frmTagCounting.RWC_PromptControl1LP2_template = "<li data-uid='#= data.uid #'><a>";
+		frmTagCounting.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 0%;width: 45%;text-align:right;'>Configuration:</span>";
+		frmTagCounting.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 45%;width: 42%;text-align:left;'>#= data.CONFIGID #</span>";
+		frmTagCounting.RWC_PromptControl1LP2_template += "<br/>";
+		frmTagCounting.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 15%;width: 30%;text-align:right;'>Name:</span>";
+		frmTagCounting.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 45%;width: 48%;text-align:left;'>#= data.NAME #</span>";
+		frmTagCounting.RWC_PromptControl1LP2_template += "<br /></a></li>";
+		frmTagCounting.RWC_PromptControl1LP2.setLayout( kendo.template(frmTagCounting.RWC_PromptControl1LP2_template, { useWithBlock: false } ) );
+
+		frmTagCounting.RWC_PromptControl1LP2.setDataSource(frmTagCounting.RWC_CONFIG_DATASET);
+		frmTagCounting.RWC_PromptControl1_Batch_Number_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SERIAL_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Serial_No");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SERIAL_NO","");
+			
+			}
+			CurrentLine= 8;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","STATUS","");
+			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			RWC_PromptControl1.SetHistoryText("Batch_Number",ResourceMgr.GetCDTString("On Hand"),"",true);
+			RWC_PromptControl1.SetHistoryText("Batch_Number",ResourceMgr.GetCDTString("Batch Number"),cdt.VariableManager.getLocalVariable("BATCH_NUMBER"),false);
+			RWC_PromptControl1.ShowPrompt("QTY");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmTagCounting.RWC_PromptControl1_Batch_Number_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("Item");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmTagCounting.Batch_Number = new cdt.prompt("Batch_Number", // Name
+				"Batch Number" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_Batch_Number", // Validation
+				false, // ValidIfNotEmpty
+				"BATCH_NUMBER", // Variable
+				frmTagCounting.RWC_PromptControl1_Batch_Number_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTagCounting.RWC_PromptControl1.addPrompt(frmTagCounting.Batch_Number);
+
+		frmTagCounting.RWC_PromptControl1_Serial_No_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			CurrentLine= 1;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","STATUS","");
+			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			RWC_PromptControl1.SetHistoryText("Serial_No",ResourceMgr.GetCDTString("On Hand"),"",true);
+			RWC_PromptControl1.SetHistoryText("Serial_No",ResourceMgr.GetCDTString("Serial"),cdt.VariableManager.getLocalVariable("SERIAL_NO"),false);
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmTagCounting.RWC_PromptControl1_Serial_No_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("Item");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmTagCounting.Serial_No = new cdt.prompt("Serial_No", // Name
+				"Serial Number" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_Serial_Number", // Validation
+				false, // ValidIfNotEmpty
+				"SERIAL_NO", // Variable
+				frmTagCounting.RWC_PromptControl1_Serial_No_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTagCounting.RWC_PromptControl1.addPrompt(frmTagCounting.Serial_No);
+
+		frmTagCounting.RWC_PromptControl1_QTY_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(VariableManager.Instance.GetVariableFloat("Var.frmTagCounting","COUNTED") > 1)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Counted quantiy must be 1 or 0."),2);
+			cancel = true;
+			return;
+			
+			}
+			
+			}
+			CurrentLine= 9;RWC_PromptControl1.ReceiveDataSetFromQueue("Journal_List");
+			VariableManager.Instance.SetVariableInteger("Var.frmTagCounting","ROWCNT",RWC_PromptControl1.GetRowCount("Journal_List"));
+			if(VariableManager.Instance.GetVariableFloat("Var.frmTagCounting","ROWCNT") < 1)
+			{
+			
+			RWC_PromptControl1.ShowPrompt("Create_Journal");
+			cancel = true;
+			return;
+			
+			}
+			RWC_PromptControl1.ShowPrompt("Journal_List");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmTagCounting.RWC_PromptControl1_QTY_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("Item");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmTagCounting.QTY = new cdt.prompt("QTY", // Name
+				"Counted" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"QTY", // Variable
+				frmTagCounting.RWC_PromptControl1_QTY_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTagCounting.RWC_PromptControl1.addPrompt(frmTagCounting.QTY);
+
+		frmTagCounting.RWC_PromptControl1_Journal_List_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","JOURNAL_ID","");
+			if(VariableManager.Instance.GetVariableFloat("Dsv.RWC_DataSet1","NUMOFLINES") > 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","LINE_NUM","");
+			
+			}
+			RWC_PromptControl1.ShowPrompt("Tag");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmTagCounting.RWC_PromptControl1_Journal_List_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("Item");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmTagCounting.RWC_PromptControl1LP3 = new cdt.prompt( "Journal_List", // name 
+			"Tag Counting Journal", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			frmTagCounting.RWC_PromptControl1_Journal_List_ResetClick , // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmTagCounting.RWC_PromptControl1_Journal_List_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmTagCounting.RWC_PromptControl1.addPrompt(frmTagCounting.RWC_PromptControl1LP3);
+
+
+		frmTagCounting.RWC_PromptControl1LP3_template = "<li data-uid='#= data.uid #'><a>";
+		frmTagCounting.RWC_PromptControl1LP3_template += "<span style='position:absolute;margin:0;left: 3%;width: 36%;text-align:right;'>Journal Id:</span>";
+		frmTagCounting.RWC_PromptControl1LP3_template += "<span style='position:absolute;margin:0;left: 39%;width: 45%;text-align:left;'>#= data.JOURNALID #</span>";
+		frmTagCounting.RWC_PromptControl1LP3_template += "<br/>";
+		frmTagCounting.RWC_PromptControl1LP3_template += "<span style='position:absolute;margin:0;left: 9%;width: 30%;text-align:right;'>Name:</span>";
+		frmTagCounting.RWC_PromptControl1LP3_template += "<span style='position:absolute;margin:0;left: 39%;width: 48%;text-align:left;'>#= data.JOURNALNAMEID #</span>";
+		frmTagCounting.RWC_PromptControl1LP3_template += "<br/>";
+		frmTagCounting.RWC_PromptControl1LP3_template += "<span style='position:absolute;margin:0;left: 0%;width: 39%;text-align:right;'>No Of Lines:</span>";
+		frmTagCounting.RWC_PromptControl1LP3_template += "<span style='position:absolute;margin:0;left: 39%;width: 42%;text-align:left;'>#= data.NUMOFLINES #</span>";
+		frmTagCounting.RWC_PromptControl1LP3_template += "<br /></a></li>";
+		frmTagCounting.RWC_PromptControl1LP3.setLayout( kendo.template(frmTagCounting.RWC_PromptControl1LP3_template, { useWithBlock: false } ) );
+
+		frmTagCounting.RWC_PromptControl1LP3.setDataSource(frmTagCounting.RWC_DataSet1);
+		frmTagCounting.RWC_PromptControl1_Create_Journal_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			if(cdt.VariableManager.getLocalVariable("CONFIRM").CompareTo("Y") == 0)
+			{
+			
+			CurrentLine= 2;NetManager.Instance.SendValidation("tv_CreateTagJournal",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","CONFIRM","");
+			if("".ToUpper().CompareTo("Y".ToUpper()) != 0)
+			{
+			
+			cancel = true;
+			return;
+			
+			}
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","JCREATED","Y");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","JOURNAL_ID","");
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","PRINT_NAME",ResourceMgr.GetCDTString("Journal: {Var.JOURNAL_ID} created!"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),cdt.VariableManager.getLocalVariable("PRINT_DISP"),2);
+			RWC_PromptControl1.SetHistoryText("Create_Journal","",true);
+			RWC_PromptControl1.ShowPrompt("Tag");
+			cancel = true;
+			return;
+			}
+			else if(cdt.VariableManager.getLocalVariable("CONFIRM").ToUpper().CompareTo("N".ToUpper()) == 0)
+			{
+			
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			RWC_PromptControl1.ShowPrompt("Item");
+			UpdateData( false );
+			
+			}
+			else
+			{
+			
+			ClientApplication.Instance.ShowStatusBox("Error","Answer must be Y or N.",2);
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmTagCounting.RWC_PromptControl1_Create_Journal_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("Item");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmTagCounting.Create_Journal = new cdt.prompt("Create_Journal", // Name
+				"Create Journal" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"CONFIRM", // Variable
+				frmTagCounting.RWC_PromptControl1_Create_Journal_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTagCounting.RWC_PromptControl1.addPrompt(frmTagCounting.Create_Journal);
+
+		frmTagCounting.RWC_PromptControl1_Tag_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","TAG_STATUS","1");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmTagCounting.RWC_PromptControl1_Tag_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("Item");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmTagCounting.RWC_PromptControl1_Tag_PreviousClick = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+		try{
+			
+			
+			if(cdt.VariableManager.getLocalVariable("JCREATED").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			e.Cancel = true;
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmTagCounting.Tag = new cdt.prompt("Tag", // Name
+				"Tag Id" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_TagId", // Validation
+				false, // ValidIfNotEmpty
+				"TAG_ID", // Variable
+				frmTagCounting.RWC_PromptControl1_Tag_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTagCounting.RWC_PromptControl1.addPrompt(frmTagCounting.Tag);
+
+		frmTagCounting.RWC_PromptControl1_Confirm_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			if(cdt.VariableManager.getLocalVariable("CONFIRM").CompareTo("Y") == 0)
+			{
+			
+			CurrentLine= 2;NetManager.Instance.SendValidation("tv_AddLine_TagCounting_Journal",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","CONFIRM","");
+			if("".ToUpper().CompareTo("Y".ToUpper()) != 0)
+			{
+			
+			cancel = true;
+			return;
+			
+			}
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Success"),ResourceMgr.GetCDTString("Transaction Sent!"),2);
+			RWC_PromptControl1.ShowPrompt("Post_Journal");
+			}
+			else if(cdt.VariableManager.getLocalVariable("CONFIRM").ToUpper().CompareTo("N".ToUpper()) == 0)
+			{
+			
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			RWC_PromptControl1.ShowPrompt("Item");
+			UpdateData( false );
+			
+			}
+			else
+			{
+			
+			ClientApplication.Instance.ShowStatusBox("Error","Answer must be Y or N.",2);
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmTagCounting.RWC_PromptControl1_Confirm_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("Item");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmTagCounting.Confirm = new cdt.prompt("Confirm", // Name
+				"Confirm?" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"CONFIRM", // Variable
+				frmTagCounting.RWC_PromptControl1_Confirm_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTagCounting.RWC_PromptControl1.addPrompt(frmTagCounting.Confirm);
+
+		frmTagCounting.RWC_PromptControl1_Post_Journal_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			if(cdt.VariableManager.getLocalVariable("CONFIRM").CompareTo("Y") == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","CONFIRM","");
+			CurrentLine= 3;NetManager.Instance.SendTransaction("t_Post_TagCounting_Journal",GetVariableNameSpace());
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Success"),ResourceMgr.GetCDTString("Transaction Sent!"),2);
+			RWC_PromptControl1.ReturnToPrompt("Item",true,true);
+			}
+			else if(cdt.VariableManager.getLocalVariable("CONFIRM").ToUpper().CompareTo("N".ToUpper()) == 0)
+			{
+			
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			RWC_PromptControl1.ShowPrompt("Item");
+			UpdateData( false );
+			
+			}
+			else
+			{
+			
+			ClientApplication.Instance.ShowStatusBox("Error","Answer must be Y or N.",2);
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmTagCounting.RWC_PromptControl1_Post_Journal_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmTagCounting","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("Item");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmTagCounting.RWC_PromptControl1_Post_Journal_PreviousClick = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+		try{
+			
+			
+			e.Cancel = true;
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmTagCounting.Post_Journal = new cdt.prompt("Post_Journal", // Name
+				"Post Journal" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"CONFIRM", // Variable
+				frmTagCounting.RWC_PromptControl1_Post_Journal_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTagCounting.RWC_PromptControl1.addPrompt(frmTagCounting.Post_Journal);
+
+		frmTagCounting.viewModel = new cdt.viewModel( "frmTagCounting",frmTagCounting.RWC_PromptControl1,"frmTagCounting");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmTagCounting-listControl' data-role='listview' ></ul>
+	            </div>
+	            <ul id='frmTagCounting-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px; height: 200px; overflow: auto;'></ul>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmTagCounting-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmTagCounting-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmTagCounting-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmTagCounting-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

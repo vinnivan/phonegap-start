@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmInvTransfer' data-role='view' data-title='Inventory Transfer' data-show='frmInvTransfer.viewModel.initialize' data-model='frmInvTransfer.viewModel' >
+<script>
+	var frmInvTransfer = frmInvTransfer || {};
+		frmInvTransfer.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmInvTransfer' );
+		frmInvTransfer.RWC_CONFIG_DATASET = new kendo.data.DataSource({ data: [{}] });
+		frmInvTransfer.RWC_SIZE_DATASET = new kendo.data.DataSource({ data: [{}] });
+		frmInvTransfer.RWC_COLOR_DATASET = new kendo.data.DataSource({ data: [{}] });
+		frmInvTransfer.RWC_PromptControl1_From_Site_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_From_Site_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("PART");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmInvTransfer.From_Site = new cdt.prompt("From_Site", // Name
+				"From Site" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_site", // Validation
+				false, // ValidIfNotEmpty
+				"SITE", // Variable
+				frmInvTransfer.RWC_PromptControl1_From_Site_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInvTransfer.RWC_PromptControl1.addPrompt(frmInvTransfer.From_Site);
+
+		frmInvTransfer.RWC_PromptControl1_From_Warehouse_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_From_Warehouse_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("PART");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmInvTransfer.From_Warehouse = new cdt.prompt("From_Warehouse", // Name
+				"From Warehouse" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_Warehouse", // Validation
+				false, // ValidIfNotEmpty
+				"WAREHOUSE", // Variable
+				frmInvTransfer.RWC_PromptControl1_From_Warehouse_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInvTransfer.RWC_PromptControl1.addPrompt(frmInvTransfer.From_Warehouse);
+
+		frmInvTransfer.RWC_PromptControl1_PART_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_NO","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_NUMBER","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","LOCATION","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","QTY","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getLocalVariable("FROM_SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","COLOR","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SIZE","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","CONFIGURATION","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","STATUS","");
+			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			RWC_PromptControl1.SetHistoryText("ITEM",ResourceMgr.GetCDTString("ITEM ID"),cdt.VariableManager.getLocalVariable("ITEM_ID"),true);
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","PRODUCT","");
+			CurrentLine= 18;NetManager.Instance.SendValidation("v_Dimension_Group",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","LOCATION_ACTIVE","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","PALLET_ID_ACTIVE","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SIZE_ACTIVE","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","QTY_OF_SIZE","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","COLOR_ACTIVE","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","QTY_OF_COLOR","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","CONFIGURATION_ACTIVE","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","QTY_OF_CONFIGURATION","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_NO_ACTIVE","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_NO_ACTIVE","");
+			if(cdt.VariableManager.getLocalVariable("LOCATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			RWC_PromptControl1.ShowPrompt("From_Location");
+			return;
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("SIZE_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_SIZE").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 35;RWC_PromptControl1.ReceiveDataSetFromQueue("Size");
+			RWC_PromptControl1.ShowPrompt("Size");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 42;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
+			RWC_PromptControl1.ShowPrompt("Color");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 49;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
+			RWC_PromptControl1.ShowPrompt("Config");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Batch_Number");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_NUMBER","");
+			
+			}
+			if("".ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Serial_No");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_NO","");
+			
+			}
+			RWC_PromptControl1.ShowPrompt("QTY");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_PART_OnClick = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+		try{
+			
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","QTY","");
+			RWC_PromptControl1.ReturnToPrompt("From_Site",false,true);
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_PART_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("PART");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_PART_PreviousClick = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+		try{
+			
+			
+			e.Cancel = true;
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmInvTransfer.PART = new cdt.prompt("PART", // Name
+				"Item Number" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"Change Site & Warehouse", // Button Resource ID
+				frmInvTransfer.PART_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_Item", // Validation
+				false, // ValidIfNotEmpty
+				"ITEM_ID", // Variable
+				frmInvTransfer.RWC_PromptControl1_PART_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInvTransfer.RWC_PromptControl1.addPrompt(frmInvTransfer.PART);
+
+		frmInvTransfer.RWC_PromptControl1_From_Location_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_LOCATION",cdt.VariableManager.getLocalVariable("LOCATION"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","LOCATION","");
+			if(cdt.VariableManager.getLocalVariable("PALLET_ID_ACTIVE").ToUpper().CompareTo("YES".ToUpper()) == 0)
+			{
+			
+			RWC_PromptControl1.ShowPrompt("FROM_PALLET");
+			return;
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("SIZE_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_SIZE").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 9;RWC_PromptControl1.ReceiveDataSetFromQueue("Size");
+			RWC_PromptControl1.ShowPrompt("Size");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 16;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
+			RWC_PromptControl1.ShowPrompt("Color");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 23;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
+			RWC_PromptControl1.ShowPrompt("Config");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Batch_Number");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_NUMBER","");
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Serial_No");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_NO","");
+			
+			}
+			RWC_PromptControl1.ShowPrompt("QTY");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_From_Location_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("PART");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmInvTransfer.From_Location = new cdt.prompt("From_Location", // Name
+				"From Location" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_Location", // Validation
+				false, // ValidIfNotEmpty
+				"LOCATION", // Variable
+				frmInvTransfer.RWC_PromptControl1_From_Location_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInvTransfer.RWC_PromptControl1.addPrompt(frmInvTransfer.From_Location);
+
+		frmInvTransfer.RWC_PromptControl1_FROM_PALLET_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_PALLET_ID",cdt.VariableManager.getLocalVariable("PALLET_ID"));
+			if(cdt.VariableManager.getLocalVariable("SIZE_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_SIZE").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 4;RWC_PromptControl1.ReceiveDataSetFromQueue("Size");
+			RWC_PromptControl1.ShowPrompt("Size");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 11;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
+			RWC_PromptControl1.ShowPrompt("Color");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 18;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
+			RWC_PromptControl1.ShowPrompt("Config");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Batch_Number");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_NUMBER","");
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Serial_No");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_NO","");
+			
+			}
+			RWC_PromptControl1.ShowPrompt("QTY");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_FROM_PALLET_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("PART");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmInvTransfer.FROM_PALLET = new cdt.prompt("FROM_PALLET", // Name
+				"From Pallet Id" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_Pallet", // Validation
+				false, // ValidIfNotEmpty
+				"PALLET_ID", // Variable
+				frmInvTransfer.RWC_PromptControl1_FROM_PALLET_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInvTransfer.RWC_PromptControl1.addPrompt(frmInvTransfer.FROM_PALLET);
+
+		frmInvTransfer.RWC_PromptControl1_Size_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SIZE","");
+			RWC_PromptControl1.SetHistoryText("Size",ResourceMgr.GetCDTString("Size"),cdt.VariableManager.getLocalVariable("SIZE"),true);
+			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 5;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
+			RWC_PromptControl1.ShowPrompt("Color");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 12;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
+			RWC_PromptControl1.ShowPrompt("Config");
+			return;
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Batch_Number");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_NUMBER","");
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Serial_No");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_NO","");
+			
+			}
+			RWC_PromptControl1.ShowPrompt("QTY");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_Size_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("PART");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmInvTransfer.RWC_PromptControl1LP0 = new cdt.prompt( "Size", // name 
+			"Size", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			frmInvTransfer.RWC_PromptControl1_Size_ResetClick , // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmInvTransfer.RWC_PromptControl1_Size_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmInvTransfer.RWC_PromptControl1.addPrompt(frmInvTransfer.RWC_PromptControl1LP0);
+
+
+		frmInvTransfer.RWC_PromptControl1LP0_template = "<li data-uid='#= data.uid #'><a>";
+		frmInvTransfer.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Size Id:</span>";
+		frmInvTransfer.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 42%;text-align:left;'>#= data.INVENTSIZEID #</span>";
+		frmInvTransfer.RWC_PromptControl1LP0_template += "<br/>";
+		frmInvTransfer.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Name:</span>";
+		frmInvTransfer.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 48%;text-align:left;'>#= data.NAME #</span>";
+		frmInvTransfer.RWC_PromptControl1LP0_template += "<br/>";
+		frmInvTransfer.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Description:</span>";
+		frmInvTransfer.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 55%;text-align:left;'>#= data.DESCRIPTION #</span>";
+		frmInvTransfer.RWC_PromptControl1LP0_template += "<br /></a></li>";
+		frmInvTransfer.RWC_PromptControl1LP0.setLayout( kendo.template(frmInvTransfer.RWC_PromptControl1LP0_template, { useWithBlock: false } ) );
+
+		frmInvTransfer.RWC_PromptControl1LP0.setDataSource(frmInvTransfer.RWC_SIZE_DATASET);
+		frmInvTransfer.RWC_PromptControl1_Color_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","COLOR","");
+			RWC_PromptControl1.SetHistoryText("Color",ResourceMgr.GetCDTString("Color"),cdt.VariableManager.getLocalVariable("COLOR"),true);
+			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
+			{
+			
+			CurrentLine= 5;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
+			RWC_PromptControl1.ShowPrompt("Config");
+			return;
+			}
+			else if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","CONFIGURATION","");
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","CONFIGURATION","");
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Batch_Number");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_NUMBER","");
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Serial_No");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_NO","");
+			
+			}
+			RWC_PromptControl1.ShowPrompt("QTY");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_Color_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("PART");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmInvTransfer.RWC_PromptControl1LP1 = new cdt.prompt( "Color", // name 
+			"Color", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			frmInvTransfer.RWC_PromptControl1_Color_ResetClick , // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmInvTransfer.RWC_PromptControl1_Color_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmInvTransfer.RWC_PromptControl1.addPrompt(frmInvTransfer.RWC_PromptControl1LP1);
+
+
+		frmInvTransfer.RWC_PromptControl1LP1_template = "<li data-uid='#= data.uid #'><a>";
+		frmInvTransfer.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Color Id:</span>";
+		frmInvTransfer.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 42%;text-align:left;'>#= data.INVENTCOLORID #</span>";
+		frmInvTransfer.RWC_PromptControl1LP1_template += "<br/>";
+		frmInvTransfer.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Name:</span>";
+		frmInvTransfer.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 48%;text-align:left;'>#= data.NAME #</span>";
+		frmInvTransfer.RWC_PromptControl1LP1_template += "<br/>";
+		frmInvTransfer.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Description:</span>";
+		frmInvTransfer.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 55%;text-align:left;'>#= data.DESCRIPTION #</span>";
+		frmInvTransfer.RWC_PromptControl1LP1_template += "<br /></a></li>";
+		frmInvTransfer.RWC_PromptControl1LP1.setLayout( kendo.template(frmInvTransfer.RWC_PromptControl1LP1_template, { useWithBlock: false } ) );
+
+		frmInvTransfer.RWC_PromptControl1LP1.setDataSource(frmInvTransfer.RWC_COLOR_DATASET);
+		frmInvTransfer.RWC_PromptControl1_Config_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","CONFIGURATION","");
+			RWC_PromptControl1.SetHistoryText("Config",ResourceMgr.GetCDTString("Configuration"),cdt.VariableManager.getLocalVariable("CONFIGURATION"),true);
+			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Batch_Number");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_NUMBER","");
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Serial_No");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_NO","");
+			
+			}
+			RWC_PromptControl1.ShowPrompt("QTY");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_Config_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("PART");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmInvTransfer.RWC_PromptControl1LP2 = new cdt.prompt( "Config", // name 
+			"Configuration", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			frmInvTransfer.RWC_PromptControl1_Config_ResetClick , // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmInvTransfer.RWC_PromptControl1_Config_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmInvTransfer.RWC_PromptControl1.addPrompt(frmInvTransfer.RWC_PromptControl1LP2);
+
+
+		frmInvTransfer.RWC_PromptControl1LP2_template = "<li data-uid='#= data.uid #'><a>";
+		frmInvTransfer.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 0%;width: 45%;text-align:right;'>Configuration:</span>";
+		frmInvTransfer.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 45%;width: 42%;text-align:left;'>#= data.CONFIGID #</span>";
+		frmInvTransfer.RWC_PromptControl1LP2_template += "<br/>";
+		frmInvTransfer.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 15%;width: 30%;text-align:right;'>Name:</span>";
+		frmInvTransfer.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 45%;width: 48%;text-align:left;'>#= data.NAME #</span>";
+		frmInvTransfer.RWC_PromptControl1LP2_template += "<br /></a></li>";
+		frmInvTransfer.RWC_PromptControl1LP2.setLayout( kendo.template(frmInvTransfer.RWC_PromptControl1LP2_template, { useWithBlock: false } ) );
+
+		frmInvTransfer.RWC_PromptControl1LP2.setDataSource(frmInvTransfer.RWC_CONFIG_DATASET);
+		frmInvTransfer.RWC_PromptControl1_Batch_Number_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_EXIST","True");
+			RWC_PromptControl1.ShowPrompt("Serial_No");
+			return;
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_NO","");
+			
+			}
+			RWC_PromptControl1.ShowPrompt("QTY");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_Batch_Number_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("PART");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmInvTransfer.Batch_Number = new cdt.prompt("Batch_Number", // Name
+				"Batch Number" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_Batch_Number", // Validation
+				false, // ValidIfNotEmpty
+				"BATCH_NUMBER", // Variable
+				frmInvTransfer.RWC_PromptControl1_Batch_Number_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInvTransfer.RWC_PromptControl1.addPrompt(frmInvTransfer.Batch_Number);
+
+		frmInvTransfer.RWC_PromptControl1_Serial_No_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			CurrentLine= 1;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","QTY","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","STATUS","");
+			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0
+			 && 
+			VariableManager.Instance.GetVariableFloat("Var.frmInvTransfer","QTY") == 0)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			RWC_PromptControl1.SetHistoryText("Serial_No",ResourceMgr.GetCDTString("Quantity"),cdt.VariableManager.getLocalVariable("QTY"),true);
+			RWC_PromptControl1.SetHistoryText("Serial_No",ResourceMgr.GetCDTString("Serial Number"),cdt.VariableManager.getLocalVariable("SERIAL_NO"),false);
+			if(cdt.VariableManager.getLocalVariable("LOCATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			RWC_PromptControl1.ShowPrompt("To_Location");
+			
+			}
+			else
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE","");
+			RWC_PromptControl1.ShowPrompt("To_Site");
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_Serial_No_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("PART");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmInvTransfer.Serial_No = new cdt.prompt("Serial_No", // Name
+				"Serial Number" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_Serial_Number", // Validation
+				false, // ValidIfNotEmpty
+				"SERIAL_NO", // Variable
+				frmInvTransfer.RWC_PromptControl1_Serial_No_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInvTransfer.RWC_PromptControl1.addPrompt(frmInvTransfer.Serial_No);
+
+		frmInvTransfer.RWC_PromptControl1_QTY_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			CurrentLine= 1;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","STATUS","");
+			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			if(VariableManager.Instance.GetVariableFloat("Var.frmInvTransfer","QTY") <= 0)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			}
+			else if(VariableManager.Instance.GetVariableFloat("Var.frmInvTransfer","QTY") > VariableManager.Instance.GetVariableFloat("Mvr.v_Item_In_Stock","AVAILABLE_PHYSICAL"))
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","QTY_INFO",ResourceMgr.GetCDTString("Quantity must be less or equal to {Mvr.v_Item_In_Stock.AVAILABLE_PHYSICAL}"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("QTY_INFO")));
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),cdt.VariableManager.getLocalVariable("PRINT_DISP"),2);
+			cancel = true;
+			return;
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("LOCATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","LOCATION","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("FROM_SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("QTY",ResourceMgr.GetCDTString("To Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("QTY",ResourceMgr.GetCDTString("To Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			RWC_PromptControl1.SetHistoryText("QTY",ResourceMgr.GetCDTString("Quantity"),cdt.VariableManager.getLocalVariable("QTY"),false);
+			RWC_PromptControl1.ShowPrompt("To_Location");
+			return;
+			
+			}
+			else
+			{
+			
+			RWC_PromptControl1.ShowPrompt("To_Site");
+			return;
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_QTY_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("PART");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmInvTransfer.QTY = new cdt.prompt("QTY", // Name
+				"Quantity" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"QTY", // Variable
+				frmInvTransfer.RWC_PromptControl1_QTY_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInvTransfer.RWC_PromptControl1.addPrompt(frmInvTransfer.QTY);
+
+		frmInvTransfer.RWC_PromptControl1_To_Location_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_LOCATION",cdt.VariableManager.getLocalVariable("LOCATION"));
+			if(cdt.VariableManager.getLocalVariable("TO_LOCATION").ToUpper().CompareTo(cdt.VariableManager.getLocalVariable("FROM_LOCATION").ToUpper()) == 0)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("To Location must be different than From Location"),2);
+			cancel = true;
+			return;
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("PALLET_ID_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			RWC_PromptControl1.ShowPrompt("TO_PALLET");
+			return;
+			
+			}
+			RWC_PromptControl1.ShowPrompt("Confirm");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_To_Location_OnClick = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+		try{
+			
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE","");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE","");
+			RWC_PromptControl1.SetHistoryText("To_Location","","",true);
+			RWC_PromptControl1.SetHistoryText("QTY",ResourceMgr.GetCDTString("Quantity"),cdt.VariableManager.getLocalVariable("QTY"),true);
+			RWC_PromptControl1.ShowPrompt("To_Site");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_To_Location_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("PART");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmInvTransfer.To_Location = new cdt.prompt("To_Location", // Name
+				"To Location" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"Change To Site & Warehouse", // Button Resource ID
+				frmInvTransfer.To_Location_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_Location", // Validation
+				false, // ValidIfNotEmpty
+				"LOCATION", // Variable
+				frmInvTransfer.RWC_PromptControl1_To_Location_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInvTransfer.RWC_PromptControl1.addPrompt(frmInvTransfer.To_Location);
+
+		frmInvTransfer.RWC_PromptControl1_TO_PALLET_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			if(cdt.VariableManager.getLocalVariable("CONFIRM").CompareTo("Y") == 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			CurrentLine= 3;NetManager.Instance.SendTransaction("t_Transfer_Journal",GetVariableNameSpace());
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Success"),ResourceMgr.GetCDTString("Transaction Sent!"),2);
+			RWC_PromptControl1.ReturnToPrompt("PART",true,true);
+			}
+			else if(cdt.VariableManager.getLocalVariable("CONFIRM").ToUpper().CompareTo("N".ToUpper()) == 0)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Cancelled"),ResourceMgr.GetCDTString("Transaction cancelled !!"),2);
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("PART");
+			
+			}
+			else
+			{
+			
+			ClientApplication.Instance.ShowStatusBox("Error","Answer must be Y or N.",2);
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_TO_PALLET_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("PART");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmInvTransfer.TO_PALLET = new cdt.prompt("TO_PALLET", // Name
+				"To Pallet Id" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_Pallet", // Validation
+				false, // ValidIfNotEmpty
+				"PALLET_ID", // Variable
+				frmInvTransfer.RWC_PromptControl1_TO_PALLET_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInvTransfer.RWC_PromptControl1.addPrompt(frmInvTransfer.TO_PALLET);
+
+		frmInvTransfer.RWC_PromptControl1_Confirm_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			if(cdt.VariableManager.getLocalVariable("CONFIRM").CompareTo("Y") == 0)
+			{
+			
+			CurrentLine= 2;NetManager.Instance.SendTransaction("t_Transfer_Journal",GetVariableNameSpace());
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Success"),ResourceMgr.GetCDTString("Transaction Sent!"),2);
+			RWC_PromptControl1.ReturnToPrompt("PART",true,true);
+			}
+			else if(cdt.VariableManager.getLocalVariable("CONFIRM").ToUpper().CompareTo("N".ToUpper()) == 0)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Cancelled"),ResourceMgr.GetCDTString("Transaction cancelled !!"),2);
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("PART");
+			
+			}
+			else
+			{
+			
+			ClientApplication.Instance.ShowStatusBox("Error","Answer must be Y or N.",2);
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_Confirm_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("PART");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmInvTransfer.Confirm = new cdt.prompt("Confirm", // Name
+				"Confirm?" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"CONFIRM", // Variable
+				frmInvTransfer.RWC_PromptControl1_Confirm_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInvTransfer.RWC_PromptControl1.addPrompt(frmInvTransfer.Confirm);
+
+		frmInvTransfer.RWC_PromptControl1_To_Site_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getLocalVariable("TO_SITE"));
+			CurrentLine= 2;VariableManager.Instance.SetVariableInteger("Var.frmInvTransfer","Result",NetManager.Instance.SendValidation("v_site",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt));
+			if(VariableManager.Instance.GetVariableFloat("Var.frmInvTransfer","Result") < 1)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Invalid Site."),2);
+			cancel = true;
+			return;
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_To_Site_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("PART");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_To_Site_PreviousClick = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+		try{
+			
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getLocalVariable("FROM_SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"));
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmInvTransfer.To_Site = new cdt.prompt("To_Site", // Name
+				"To Site" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"TO_SITE", // Variable
+				frmInvTransfer.RWC_PromptControl1_To_Site_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInvTransfer.RWC_PromptControl1.addPrompt(frmInvTransfer.To_Site);
+
+		frmInvTransfer.RWC_PromptControl1_To_Warehouse_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getLocalVariable("TO_WAREHOUSE"));
+			CurrentLine= 2;VariableManager.Instance.SetVariableInteger("Var.frmInvTransfer","Result",NetManager.Instance.SendValidation("v_Warehouse",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt));
+			if(VariableManager.Instance.GetVariableFloat("Var.frmInvTransfer","Result") < 1)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Invalid Warehouse."),2);
+			cancel = true;
+			return;
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("LOCATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) != 0)
+			{
+			
+			if(cdt.VariableManager.getLocalVariable("TO_WAREHOUSE").ToUpper().CompareTo(cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE").ToUpper()) == 0
+			 && 
+			cdt.VariableManager.getLocalVariable("FROM_SITE").ToUpper().CompareTo(cdt.VariableManager.getLocalVariable("TO_SITE").ToUpper()) == 0)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("To and From dimension must be different"),2);
+			cancel = true;
+			return;
+			
+			}
+			RWC_PromptControl1.ShowPrompt("Confirm");
+			return;
+			
+			}
+			RWC_PromptControl1.SetHistoryText("QTY",ResourceMgr.GetCDTString("To Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("QTY",ResourceMgr.GetCDTString("To Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			RWC_PromptControl1.SetHistoryText("QTY",ResourceMgr.GetCDTString("Quantity"),cdt.VariableManager.getLocalVariable("QTY"),false);
+			RWC_PromptControl1.ReturnToPrompt("To_Location",false,true);
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","LOCATION","");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmInvTransfer.RWC_PromptControl1_To_Warehouse_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("PART");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmInvTransfer.To_Warehouse = new cdt.prompt("To_Warehouse", // Name
+				"To Warehouse" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"TO_WAREHOUSE", // Variable
+				frmInvTransfer.RWC_PromptControl1_To_Warehouse_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInvTransfer.RWC_PromptControl1.addPrompt(frmInvTransfer.To_Warehouse);
+
+		frmInvTransfer.viewModel = new cdt.viewModel( "frmInvTransfer",frmInvTransfer.RWC_PromptControl1,"frmInvTransfer");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmInvTransfer-listControl' data-role='listview' ></ul>
+	            </div>
+	            <ul id='frmInvTransfer-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px; height: 200px; overflow: auto;'></ul>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmInvTransfer-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmInvTransfer-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmInvTransfer-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmInvTransfer-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

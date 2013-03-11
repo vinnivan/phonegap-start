@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmProductionPickList' data-role='view' data-title='Production Picking List' data-show='frmProductionPickList.viewModel.initialize' data-model='frmProductionPickList.viewModel' >
+<script>
+	var frmProductionPickList = frmProductionPickList || {};
+		frmProductionPickList.RWC_ProductionPickingList = new kendo.data.DataSource({ data: [{}] });
+		frmProductionPickList.RWC_ProductionList = new kendo.data.DataSource({ data: [{}] });
+		frmProductionPickList.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmProductionPickList' );
+		frmProductionPickList.RWC_PromptControl1_Production_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRODID","");
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRODUCTIONORDER","");
+			CurrentLine= 3;RWC_PromptControl1.ReceiveDataSetFromQueue("Pick_Production_list");
+			VariableManager.Instance.SetVariableInteger("Var.frmProductionPickList","ROWCNT",RWC_PromptControl1.GetRowCount("Pick_Production_list"));
+			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","ROWCNT") < 1)
+			{
+			
+			CurrentLine= 6;NetManager.Instance.SendValidation("tv_Production_Picking_List",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
+			CurrentLine= 7;RWC_PromptControl1.ReceiveDataSetFromQueue("Pick_Production_list");
+			VariableManager.Instance.SetVariableInteger("Var.frmProductionPickList","ROWCNT2",RWC_PromptControl1.GetRowCount("Pick_Production_list"));
+			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","ROWCNT2") < 1)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No items found for picking"),2);
+			CloseForm( );
+			
+			}
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmProductionPickList.RWC_PromptControl1_Production_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			UpdateData( false );
+			CurrentLine= 4;RWC_PromptControl1.ReceiveDataSetFromQueue("Production");
+			VariableManager.Instance.SetVariableInteger("Var.frmProductionPickList","ROWCNT",RWC_PromptControl1.GetRowCount("Production"));
+			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","ROWCNT") < 1)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No Production Orders Found for picking"),2);
+			CloseForm( );
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmProductionPickList.RWC_PromptControl1LP0 = new cdt.prompt( "Production", // name 
+			"Select Production", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			frmProductionPickList.RWC_PromptControl1_Production_ResetClick , // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmProductionPickList.RWC_PromptControl1_Production_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmProductionPickList.RWC_PromptControl1.addPrompt(frmProductionPickList.RWC_PromptControl1LP0);
+
+
+		frmProductionPickList.RWC_PromptControl1LP0_template = "<li data-uid='#= data.uid #'><a>";
+		frmProductionPickList.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 3%;width: 30%;text-align:right;'>Prod Id:</span>";
+		frmProductionPickList.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 33%;width: 36%;text-align:left;'>#= data.PRODID #</span>";
+		frmProductionPickList.RWC_PromptControl1LP0_template += "<br/>";
+		frmProductionPickList.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 3%;width: 30%;text-align:right;'>Item Id:</span>";
+		frmProductionPickList.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 33%;width: 36%;text-align:left;'>#= data.ITEMID #</span>";
+		frmProductionPickList.RWC_PromptControl1LP0_template += "<br/>";
+		frmProductionPickList.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 33%;text-align:right;'>Item Name:</span>";
+		frmProductionPickList.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 33%;width: 45%;text-align:left;'>#= data.NAME #</span>";
+		frmProductionPickList.RWC_PromptControl1LP0_template += "<br /></a></li>";
+		frmProductionPickList.RWC_PromptControl1LP0.setLayout( kendo.template(frmProductionPickList.RWC_PromptControl1LP0_template, { useWithBlock: false } ) );
+
+		frmProductionPickList.RWC_PromptControl1LP0.setDataSource(frmProductionPickList.RWC_ProductionList);
+		frmProductionPickList.RWC_PromptControl1_Pick_Production_list_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","REC_ID","");
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PROD_JOURNAL_ID","");
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","ITEM_ID","");
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","WAREHOUSE","");
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","SITE","");
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","LOCATION","");
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","CONFIGURATION","");
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","COLOR","");
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","SIZE","");
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","SERIAL_NO","");
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","BATCH_NUMBER","");
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PALLET_ID","");
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","QTY_NEEDED","");
+			RWC_PromptControl1.SetHistoryText("Production",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),true);
+			if(cdt.VariableManager.getLocalVariable("PALLET_ID").ToUpper().CompareTo("".ToUpper()) != 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_NAME",ResourceMgr.GetCDTString("Pallet Id: {Var.PALLET_ID}"));
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
+			RWC_PromptControl1.SetDetailText("Blank",cdt.VariableManager.getLocalVariable("PRINT_DISP"),true);
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("LOCATION").ToUpper().CompareTo("".ToUpper()) != 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_NAME",ResourceMgr.GetCDTString("Location: {Var.LOCATION}"));
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
+			if(cdt.VariableManager.getLocalVariable("PALLET_ID").ToUpper().CompareTo("".ToUpper()) != 0)
+			{
+			
+			RWC_PromptControl1.SetDetailText("Production",cdt.VariableManager.getLocalVariable("PRINT_DISP"),false);
+			
+			}
+			else
+			{
+			
+			RWC_PromptControl1.SetDetailText("Production",cdt.VariableManager.getLocalVariable("PRINT_DISP"),true);
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("WAREHOUSE").ToUpper().CompareTo("".ToUpper()) != 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_NAME",ResourceMgr.GetCDTString("Warehouse: {Var.WAREHOUSE}"));
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
+			if(cdt.VariableManager.getLocalVariable("LOCATION").ToUpper().CompareTo("".ToUpper()) != 0)
+			{
+			
+			RWC_PromptControl1.SetDetailText("Production",cdt.VariableManager.getLocalVariable("PRINT_DISP"),false);
+			
+			}
+			else
+			{
+			
+			RWC_PromptControl1.SetDetailText("Production",cdt.VariableManager.getLocalVariable("PRINT_DISP"),true);
+			
+			}
+			
+			}
+			RWC_PromptControl1.SetHistoryText("Pick_Production_list",ResourceMgr.GetCDTString("Item Id"),cdt.VariableManager.getLocalVariable("ITEM_ID"),true);
+			if(cdt.VariableManager.getLocalVariable("SERIAL_NO").ToUpper().CompareTo("".ToUpper()) != 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_NAME",ResourceMgr.GetCDTString("Serial No: {Var.SERIAL_NO}"));
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
+			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),true);
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("BATCH_NUMBER").ToUpper().CompareTo("".ToUpper()) != 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_NAME",ResourceMgr.GetCDTString("Batch No: {Var.BATCH_NUMBER}"));
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
+			if(cdt.VariableManager.getLocalVariable("SERIAL_NO").ToUpper().CompareTo("".ToUpper()) != 0)
+			{
+			
+			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),false);
+			
+			}
+			else
+			{
+			
+			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),true);
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("SIZE").ToUpper().CompareTo("".ToUpper()) != 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_NAME",ResourceMgr.GetCDTString("Size: {Var.SERIAL_NO}"));
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
+			if(cdt.VariableManager.getLocalVariable("BATCH_NUMBER").ToUpper().CompareTo("".ToUpper()) != 0)
+			{
+			
+			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),false);
+			
+			}
+			else
+			{
+			
+			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),true);
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("CONFIGURATION").ToUpper().CompareTo("".ToUpper()) != 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_NAME",ResourceMgr.GetCDTString("Configuration: {Var.CONFIGURATION}"));
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
+			if(cdt.VariableManager.getLocalVariable("SIZE").ToUpper().CompareTo("".ToUpper()) != 0)
+			{
+			
+			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),false);
+			
+			}
+			else
+			{
+			
+			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),true);
+			
+			}
+			
+			}
+			if(cdt.VariableManager.getLocalVariable("COLOR").ToUpper().CompareTo("".ToUpper()) != 0)
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_NAME",ResourceMgr.GetCDTString("Color: {Var.COLOR}"));
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
+			if(cdt.VariableManager.getLocalVariable("CONFIGURATION").ToUpper().CompareTo("".ToUpper()) != 0)
+			{
+			
+			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),false);
+			
+			}
+			else
+			{
+			
+			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),true);
+			
+			}
+			
+			}
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_NAME",ResourceMgr.GetCDTString("Qty Needed: {Var.QTY_NEEDED}"));
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
+			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),false);
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmProductionPickList.RWC_PromptControl1_Pick_Production_list_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			UpdateData( false );
+			CurrentLine= 4;RWC_PromptControl1.ReceiveDataSetFromQueue("Production");
+			VariableManager.Instance.SetVariableInteger("Var.frmProductionPickList","ROWCNT",RWC_PromptControl1.GetRowCount("Production"));
+			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","ROWCNT") < 1)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No Production Orders Found for picking"),2);
+			CloseForm( );
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmProductionPickList.RWC_PromptControl1LP1 = new cdt.prompt( "Pick_Production_list", // name 
+			"Select item to pick", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			frmProductionPickList.RWC_PromptControl1_Pick_Production_list_ResetClick , // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmProductionPickList.RWC_PromptControl1_Pick_Production_list_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmProductionPickList.RWC_PromptControl1.addPrompt(frmProductionPickList.RWC_PromptControl1LP1);
+
+
+		frmProductionPickList.RWC_PromptControl1LP1_template = "<li data-uid='#= data.uid #'><a>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 3%;width: 30%;text-align:right;'>Row:</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 36%;width: 9%;text-align:left;'>#= data._CURRENT #</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 48%;width: 9%;text-align:left;'>Of</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 61%;width: 9%;text-align:left;'>#= data._COUNT #</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<br/>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 3%;width: 30%;text-align:right;'>Item Id:</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 33%;width: 30%;text-align:left;'>#= data.ITEMID #</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<br/>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 3%;width: 30%;text-align:right;'>Config:</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 33%;width: 30%;text-align:left;'>#= data.CONFIGID #</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<br/>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 3%;width: 30%;text-align:right;'>Color:</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 33%;width: 30%;text-align:left;'>#= data.INVENTCOLORID #</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<br/>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 3%;width: 30%;text-align:right;'>Size:</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 33%;width: 30%;text-align:left;'>#= data.INVENTSIZEID #</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<br/>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 3%;width: 30%;text-align:right;'>Serial:</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 33%;width: 42%;text-align:left;'>#= data.INVENTSERIALID #</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<br/>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 3%;width: 30%;text-align:right;'>Batch No:</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 33%;width: 42%;text-align:left;'>#= data.INVENTBATCHID #</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<br/>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 3%;width: 30%;text-align:right;'>Site:</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 33%;width: 30%;text-align:left;'>#= data.INVENTSITEID #</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<br/>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 33%;text-align:right;'>Warehouse:</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 33%;width: 30%;text-align:left;'>#= data.INVENTLOCATIONID #</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<br/>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 3%;width: 30%;text-align:right;'>Location:</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 33%;width: 30%;text-align:left;'>#= data.WMSLOCATIONID #</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<br/>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 3%;width: 30%;text-align:right;'>Pick QTY:</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 33%;width: 30%;text-align:left;'>#= data.INVENTCONSUMP #</span>";
+		frmProductionPickList.RWC_PromptControl1LP1_template += "<br /></a></li>";
+		frmProductionPickList.RWC_PromptControl1LP1.setLayout( kendo.template(frmProductionPickList.RWC_PromptControl1LP1_template, { useWithBlock: false } ) );
+
+		frmProductionPickList.RWC_PromptControl1LP1.setDataSource(frmProductionPickList.RWC_ProductionPickingList);
+		frmProductionPickList.RWC_PromptControl1_QTY_Pick_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","QTY") <= 0)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Quantity must be greater than 0"),2);
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			if(VariableManager.Instance.GetVariableFloat("Mvr.v_Item_In_Stock","AVAILABELE_WITH_RESERVE") <= 0)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No quantity available"),2);
+			cancel = true;
+			return;
+			
+			}
+			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","QTY") > VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","QTY_NEEDED"))
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_QTY",ResourceMgr.GetCDTString("Quantity must be less than {Var.QTY_NEEDED}"));
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_QTY")));
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),cdt.VariableManager.getLocalVariable("PRINT_DISP"),2);
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			}
+			else if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","QTY") > VariableManager.Instance.GetVariableFloat("Mvr.v_Item_In_Stock","AVAILABELE_WITH_RESERVE"))
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_QTY",ResourceMgr.GetCDTString("Quantity must be less than available quantity {AVAILABELE_WITH_RESERVE}"));
+			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_QTY")));
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),cdt.VariableManager.getLocalVariable("PRINT_DISP"),2);
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmProductionPickList.RWC_PromptControl1_QTY_Pick_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			UpdateData( false );
+			CurrentLine= 4;RWC_PromptControl1.ReceiveDataSetFromQueue("Production");
+			VariableManager.Instance.SetVariableInteger("Var.frmProductionPickList","ROWCNT",RWC_PromptControl1.GetRowCount("Production"));
+			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","ROWCNT") < 1)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No Production Orders Found for picking"),2);
+			CloseForm( );
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmProductionPickList.QTY_Pick = new cdt.prompt("QTY_Pick", // Name
+				"Picked Quantity" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"v_Item_In_Stock", // Validation
+				false, // ValidIfNotEmpty
+				"QTY", // Variable
+				frmProductionPickList.RWC_PromptControl1_QTY_Pick_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmProductionPickList.RWC_PromptControl1.addPrompt(frmProductionPickList.QTY_Pick);
+
+		frmProductionPickList.RWC_PromptControl1_Confirm_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			if(cdt.VariableManager.getLocalVariable("CONFIRM").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			CurrentLine= 2;NetManager.Instance.SendTransaction("t_Post_Production_Picking_List",GetVariableNameSpace());
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Success"),ResourceMgr.GetCDTString("Transaction Sent!"),2);
+			cancel = true;
+			ResetForm( );
+			UpdateData( false );
+			CurrentLine= 7;RWC_PromptControl1.ReceiveDataSetFromQueue("Production");
+			VariableManager.Instance.SetVariableInteger("Var.frmProductionPickList","ROWCNT",RWC_PromptControl1.GetRowCount("Production"));
+			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","ROWCNT") < 1)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No Production Orders Found for picking"),2);
+			CloseForm( );
+			
+			}
+			}
+			else if(cdt.VariableManager.getLocalVariable("CONFIRM").ToUpper().CompareTo("N".ToUpper()) == 0)
+			{
+			
+			cancel = true;
+			ResetForm( );
+			UpdateData( false );
+			CurrentLine= 17;RWC_PromptControl1.ReceiveDataSetFromQueue("Production");
+			VariableManager.Instance.SetVariableInteger("Var.frmProductionPickList","ROWCNT",RWC_PromptControl1.GetRowCount("Production"));
+			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","ROWCNT") < 1)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No Production Orders Found for picking"),2);
+			CloseForm( );
+			
+			}
+			
+			}
+			else
+			{
+			
+			ClientApplication.Instance.ShowStatusBox("Error","Answer must be Y or N.",2);
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmProductionPickList.RWC_PromptControl1_Confirm_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			UpdateData( false );
+			CurrentLine= 4;RWC_PromptControl1.ReceiveDataSetFromQueue("Production");
+			VariableManager.Instance.SetVariableInteger("Var.frmProductionPickList","ROWCNT",RWC_PromptControl1.GetRowCount("Production"));
+			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","ROWCNT") < 1)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No Production Orders Found for picking"),2);
+			CloseForm( );
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmProductionPickList.Confirm = new cdt.prompt("Confirm", // Name
+				"Confirm?" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"CONFIRM", // Variable
+				frmProductionPickList.RWC_PromptControl1_Confirm_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmProductionPickList.RWC_PromptControl1.addPrompt(frmProductionPickList.Confirm);
+
+		frmProductionPickList.viewModel = new cdt.viewModel( "frmProductionPickList",frmProductionPickList.RWC_PromptControl1,"frmProductionPickList");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmProductionPickList-listControl' data-role='listview' ></ul>
+	            </div>
+	            <ul id='frmProductionPickList-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px; height: 200px; overflow: auto;'></ul>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmProductionPickList-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmProductionPickList-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmProductionPickList-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmProductionPickList-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

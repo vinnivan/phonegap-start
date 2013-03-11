@@ -7,6 +7,8 @@
     <link href="css/kendo.mobile.all.min.css" rel="stylesheet" />
     <link href="css/cdt-1.0.0.css" rel="stylesheet" />
 
+ 	<script src="js/cordova-2.0.0.js" type="text/javascript" charset="utf-8"></script>
+
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.ba-bbq.min.js"></script>
     <script src="js/kendo.mobile.min.js"></script>
@@ -14,6 +16,7 @@
     <script src="js/menuItems.js"></script>
     <script src="js/utilities.js"></script>
     <script src="js/message.js"></script>
+    <script src="js/barcodescanner.js"></script>
 
 
     <script type="text/x-kendo-template" id="mainMenuTemplate">
@@ -35,23 +38,6 @@
     <script type="text/x-kendo-template" id="historyTemplate">
         <span style="font-size: x-large">#=getHistory().caption#</span><span style="font-size: x-large">#=getHistory().text#</span>
     </script>
-
-
-	<style>
-.km-root .km-on-android input
-{
-    -webkit-user-modify: inherit;
-}
-
-.km-root .km-on-android .km-list > li
-{
-    bottom: auto;
-    -webkit-transform: none;
-    -moz-transform: none;
-}		
-		
-	</style>
-
 
 </head>
 <body>
@@ -126,7 +112,7 @@
 
         var app = new kendo.mobile.Application(document.body, {
             transition: 'slide',
-            platform: "ios",
+            platform: "android",
             initial: "logon.html"
         });
 

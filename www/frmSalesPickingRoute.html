@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmSalesPickingRoute' data-role='view' data-title='Sales Picking Route' data-show='frmSalesPickingRoute.viewModel.initialize' data-model='frmSalesPickingRoute.viewModel' >
+<script>
+	var frmSalesPickingRoute = frmSalesPickingRoute || {};
+		frmSalesPickingRoute.RWC_Sales_Route_Details = new kendo.data.DataSource({ data: [{}] });
+		frmSalesPickingRoute.RWC_Sales_Routes = new kendo.data.DataSource({ data: [{}] });
+		frmSalesPickingRoute.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmSalesPickingRoute' );
+		frmSalesPickingRoute.RWC_PromptControl1_Route_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","QTY","");
+			CurrentLine= 2;RWC_PromptControl1.ReceiveDataSetFromQueue("Route_Details");
+			VariableManager.Instance.SetVariableInteger("Var.frmSalesPickingRoute","ROWCNT",RWC_PromptControl1.GetRowCount("Route_Details"));
+			if(VariableManager.Instance.GetVariableFloat("Var.frmSalesPickingRoute","ROWCNT") < 1)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Error No Route Lines!"),2);
+			cancel = true;
+			return;
+			
+			}
+			RWC_PromptControl1.ShowPrompt("Route_Details");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmSalesPickingRoute.RWC_PromptControl1_Route_OnClick = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+		try{
+			
+			
+			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","QTY","");
+			CurrentLine= 2;RWC_PromptControl1.ReceiveDataSetFromQueue("Route_Overview");
+			VariableManager.Instance.SetVariableInteger("Var.frmSalesPickingRoute","ROWCNT",RWC_PromptControl1.GetRowCount("Route_Overview"));
+			if(VariableManager.Instance.GetVariableFloat("Var.frmSalesPickingRoute","ROWCNT") < 1)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No Routes Found!"),2);
+			
+			return;
+			
+			}
+			RWC_PromptControl1.SetHistoryText("Route","",true);
+			RWC_PromptControl1.ShowPrompt("Route_Overview");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmSalesPickingRoute.Route = new cdt.prompt("Route", // Name
+				"Route Id" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"Route Overview", // Button Resource ID
+				frmSalesPickingRoute.Route_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"v_Route", // Validation
+				false, // ValidIfNotEmpty
+				"ROUTE_ID", // Variable
+				frmSalesPickingRoute.RWC_PromptControl1_Route_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSalesPickingRoute.RWC_PromptControl1.addPrompt(frmSalesPickingRoute.Route);
+
+		frmSalesPickingRoute.RWC_PromptControl1_Route_Overview_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","ROUTE_ID","");
+			RWC_PromptControl1.SetHistoryText("Route_Overview",ResourceMgr.GetCDTString("Route Id"),cdt.VariableManager.getLocalVariable("ROUTE_ID"),true);
+			CurrentLine= 3;RWC_PromptControl1.ReceiveDataSetFromQueue("Route_Details");
+			VariableManager.Instance.SetVariableInteger("Var.frmSalesPickingRoute","ROWCNT",RWC_PromptControl1.GetRowCount("Route_Details"));
+			if(VariableManager.Instance.GetVariableFloat("Var.frmSalesPickingRoute","ROWCNT") < 1)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Error No Route Lines!"),2);
+			cancel = true;
+			return;
+			
+			}
+			RWC_PromptControl1.ShowPrompt("Route_Details");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmSalesPickingRoute.RWC_PromptControl1LP0 = new cdt.prompt( "Route_Overview", // name 
+			"Route", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"Route Overview", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmSalesPickingRoute.RWC_PromptControl1_Route_Overview_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmSalesPickingRoute.RWC_PromptControl1.addPrompt(frmSalesPickingRoute.RWC_PromptControl1LP0);
+
+
+		frmSalesPickingRoute.RWC_PromptControl1LP0_template = "<li data-uid='#= data.uid #'><a>";
+		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 30%;text-align:right;'>Route:</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 30%;width: 45%;text-align:left;'>#= data.ROUTEID #</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<br/>";
+		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 30%;text-align:right;'>Lines:</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 30%;width: 30%;text-align:left;'>#= data.LINES #</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<br/>";
+		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 30%;text-align:right;'>Type:</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 30%;width: 45%;text-align:left;'>#= data.TRANSTYPE #</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<br /></a></li>";
+		frmSalesPickingRoute.RWC_PromptControl1LP0.setLayout( kendo.template(frmSalesPickingRoute.RWC_PromptControl1LP0_template, { useWithBlock: false } ) );
+
+		frmSalesPickingRoute.RWC_PromptControl1LP0.setDataSource(frmSalesPickingRoute.RWC_Sales_Routes);
+		frmSalesPickingRoute.RWC_PromptControl1_Route_Details_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","ORDER_ID","");
+			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","Status","");
+			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","RequestedQTY","");
+			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","ITEM_ID","");
+			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","WAREHOUSE","");
+			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","SITE","");
+			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","LOCATION","");
+			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","CONFIGURATION","");
+			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","COLOR","");
+			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","SIZE","");
+			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","SERIAL_NO","");
+			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","BATCH_NUMBER","");
+			RWC_PromptControl1.SetHistoryText("Route_Details",ResourceMgr.GetCDTString("Requested Quantity"),cdt.VariableManager.getLocalVariable("RequestedQTY"),true);
+			RWC_PromptControl1.SetHistoryText("Route_Details",ResourceMgr.GetCDTString("Item Number"),"",false);
+			RWC_PromptControl1.SetHistoryText("Route_Details",ResourceMgr.GetCDTString("Order No"),cdt.VariableManager.getLocalVariable("ORDER_ID"),false);
+			if(cdt.VariableManager.getLocalVariable("Status").ToUpper().CompareTo("Picked".ToUpper()) == 0)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Item been picked!"),2);
+			cancel = true;
+			return;
+			}
+			else if(cdt.VariableManager.getLocalVariable("Status").ToUpper().CompareTo("Staged".ToUpper()) == 0)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Item been picked!"),2);
+			cancel = true;
+			return;
+			}
+			else if(cdt.VariableManager.getLocalVariable("Status").ToUpper().CompareTo("Loaded".ToUpper()) == 0)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Item been picked!"),2);
+			cancel = true;
+			return;
+			}
+			else if(cdt.VariableManager.getLocalVariable("Status").ToUpper().CompareTo("Complete".ToUpper()) == 0)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Item been picked!"),2);
+			cancel = true;
+			return;
+			}
+			else if(cdt.VariableManager.getLocalVariable("Status").ToUpper().CompareTo("Cancelled".ToUpper()) == 0)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Item been Cancelled!"),2);
+			cancel = true;
+			return;
+			
+			}
+			RWC_PromptControl1.ShowPrompt("QTY");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmSalesPickingRoute.RWC_PromptControl1LP1 = new cdt.prompt( "Route_Details", // name 
+			"Pick A Route Line", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmSalesPickingRoute.RWC_PromptControl1_Route_Details_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmSalesPickingRoute.RWC_PromptControl1.addPrompt(frmSalesPickingRoute.RWC_PromptControl1LP1);
+
+
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template = "<li data-uid='#= data.uid #'><a>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 30%;width: 15%;text-align:right;'>Row:</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 12%;text-align:left;'>#= data._CURRENT #</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 61%;width: 9%;text-align:left;'>of</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 73%;width: 12%;text-align:left;'>#= data._COUNT #</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 45%;text-align:right;'>Sales Order:</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.NUMBER #</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 15%;width: 30%;text-align:right;'>Order:</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 45%;text-align:left;'>#= data.INVENTORY_ORDER #</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 3%;width: 42%;text-align:right;'>Item Number:</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.ITEM_NUMBER #</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 15%;width: 30%;text-align:right;'>Color:</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.COLOR #</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 45%;text-align:right;'>Configuration:</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.CONFIGURATION #</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 15%;width: 30%;text-align:right;'>Size:</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.SIZE #</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 45%;text-align:right;'>Requested Qty:</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.REQUESTED_QUANTITY #</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 15%;width: 30%;text-align:right;'>Status:</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.HANDLING_STATUS #</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 15%;width: 30%;text-align:right;'>Site:</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.SITE #</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 9%;width: 36%;text-align:right;'>Warehouse:</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.WAREHOUSE #</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 45%;text-align:right;'>Location:</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.LOCATION #</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br /></a></li>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1.setLayout( kendo.template(frmSalesPickingRoute.RWC_PromptControl1LP1_template, { useWithBlock: false } ) );
+
+		frmSalesPickingRoute.RWC_PromptControl1LP1.setDataSource(frmSalesPickingRoute.RWC_Sales_Route_Details);
+		frmSalesPickingRoute.RWC_PromptControl1_QTY_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			if(VariableManager.Instance.GetVariableFloat("Var.frmSalesPickingRoute","QTY") <= 0)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Quantity must be greater than 0"),2);
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			if(VariableManager.Instance.GetVariableFloat("Mvr.v_Item_In_Stock","AVAILABELE_WITH_RESERVE") <= 0)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No quantity available"),2);
+			cancel = true;
+			return;
+			
+			}
+			if(VariableManager.Instance.GetVariableFloat("Var.frmSalesPickingRoute","RequestedQTY") < VariableManager.Instance.GetVariableFloat("Var.frmSalesPickingRoute","QTY"))
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Quantity must be less or equal to the request quantiy!"),2);
+			cancel = true;
+			return;
+			}
+			else if(VariableManager.Instance.GetVariableFloat("Var.frmSalesPickingRoute","QTY") > VariableManager.Instance.GetVariableFloat("Mvr.v_Item_In_Stock","AVAILABELE_WITH_RESERVE"))
+			{
+			
+			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","PRINT_QTY",ResourceMgr.GetCDTString("Quantity must be less than available quantity {Mvr.v_Item_In_Stock.AVAILABELE_WITH_RESERVE}"));
+			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_QTY")));
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),cdt.VariableManager.getLocalVariable("PRINT_DISP"),2);
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmSalesPickingRoute.QTY = new cdt.prompt("QTY", // Name
+				"Quantity" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"v_Item_In_Stock", // Validation
+				false, // ValidIfNotEmpty
+				"QTY", // Variable
+				frmSalesPickingRoute.RWC_PromptControl1_QTY_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSalesPickingRoute.RWC_PromptControl1.addPrompt(frmSalesPickingRoute.QTY);
+
+		frmSalesPickingRoute.RWC_PromptControl1_CONFIRM_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			if(cdt.VariableManager.getLocalVariable("CONFIRM").ToUpper().CompareTo("Y".ToUpper()) == 0)
+			{
+			
+			CurrentLine= 2;NetManager.Instance.SendTransaction("t_Sales_Pick_Lines",GetVariableNameSpace());
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Success"),ResourceMgr.GetCDTString("Transaction Sent!"),2);
+			RWC_PromptControl1.ReturnToPrompt("Route",true,true);
+			}
+			else if(cdt.VariableManager.getLocalVariable("CONFIRM").ToUpper().CompareTo("N".ToUpper()) == 0)
+			{
+			
+			ResetForm( );
+			UpdateData( false );
+			RWC_PromptControl1.ReturnToPrompt("Route",true,true);
+			
+			}
+			else
+			{
+			
+			ClientApplication.Instance.ShowStatusBox("Error","Answer must be Y or N.",2);
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmSalesPickingRoute.CONFIRM = new cdt.prompt("CONFIRM", // Name
+				"Confirm?" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"CONFIRM", // Variable
+				frmSalesPickingRoute.RWC_PromptControl1_CONFIRM_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSalesPickingRoute.RWC_PromptControl1.addPrompt(frmSalesPickingRoute.CONFIRM);
+
+		frmSalesPickingRoute.viewModel = new cdt.viewModel( "frmSalesPickingRoute",frmSalesPickingRoute.RWC_PromptControl1,"frmSalesPickingRoute");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmSalesPickingRoute-listControl' data-role='listview' ></ul>
+	            </div>
+	            <ul id='frmSalesPickingRoute-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px; height: 200px; overflow: auto;'></ul>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmSalesPickingRoute-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmSalesPickingRoute-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmSalesPickingRoute-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmSalesPickingRoute-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

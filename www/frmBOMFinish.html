@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmBOMFinish' data-role='view' data-title='BOM Finish ' data-show='frmBOMFinish.viewModel.initialize' data-model='frmBOMFinish.viewModel' >
+<script>
+	var frmBOMFinish = frmBOMFinish || {};
+		frmBOMFinish.RWC_DataSet1 = new kendo.data.DataSource({ data: [{}] });
+		frmBOMFinish.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmBOMFinish' );
+		frmBOMFinish.RWC_CONFIG_DATASET = new kendo.data.DataSource({ data: [{}] });
+		frmBOMFinish.RWC_SIZE_DATASET = new kendo.data.DataSource({ data: [{}] });
+		frmBOMFinish.RWC_COLOR_DATASET = new kendo.data.DataSource({ data: [{}] });
+		frmBOMFinish.RWC_PromptControl1_Site_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , Item ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmBOMFinish.Site = new cdt.prompt("Site", // Name
+				"Site" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_site", // Validation
+				false, // ValidIfNotEmpty
+				"SITE", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBOMFinish.RWC_PromptControl1.addPrompt(frmBOMFinish.Site);
+
+		frmBOMFinish.RWC_PromptControl1_Warehouse_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , Item ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmBOMFinish.Warehouse = new cdt.prompt("Warehouse", // Name
+				"Warehouse" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_Warehouse", // Validation
+				false, // ValidIfNotEmpty
+				"WAREHOUSE", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBOMFinish.RWC_PromptControl1.addPrompt(frmBOMFinish.Warehouse);
+
+		frmBOMFinish.RWC_PromptControl1_Item_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			// Line#  1 : Var.DIMENSION_ID = Mvr.v_BOM_Item.DIMGROUPID
+			// Line#  2 : Var.COLOR = Mvr.v_BOM_Item.STANDARDINVENTCOLORID
+			// Line#  3 : Var.SIZE = Mvr.v_BOM_Item.STANDARDINVENTSIZEID
+			// Line#  4 : Var.CONFIGURATION = Mvr.v_BOM_Item.STANDARDCONFIGID
+			// Line#  5 : SendValidation ( v_BOM_Version ) 
+			// Line#  6 : Var.STATUS = Mvr.v_BOM_Version.STATUS
+			// Line#  7 : If Var.STATUS <> (Alpha) Y
+			// Line#  8 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  9 : CancelDefault( )
+			// Line#  10 : ExitEvent( )
+			// Line#  11 : End If
+			// Line#  12 : Var.TOTAL = Mvr.v_BOM_Version.TOTAL
+			// Line#  13 : Var.BOM_ID = Mvr.v_BOM_Version.BOMID
+			// Line#  14 : SendValidation ( v_Dimension_Group ) 
+			// Line#  15 : Var.LOCATION_ACTIVE = Mvr.v_Dimension_Group.LOCATION_ACTIVE
+			// Line#  16 : Var.PALLET_ID_ACTIVE = Mvr.v_Dimension_Group.PALLET_ID_ACTIVE
+			// Line#  17 : Var.SIZE_ACTIVE = Mvr.v_Dimension_Group.SIZE_ACTIVE
+			// Line#  18 : Var.QTY_OF_SIZE = Mvr.v_Dimension_Group.QTY_OF_SIZE
+			// Line#  19 : Var.COLOR_ACTIVE = Mvr.v_Dimension_Group.COLOR_ACTIVE
+			// Line#  20 : Var.QTY_OF_COLOR = Mvr.v_Dimension_Group.QTY_OF_COLOR
+			// Line#  21 : Var.CONFIGURATION_ACTIVE = Mvr.v_Dimension_Group.CONFIGURATION_ACTIVE
+			// Line#  22 : Var.QTY_OF_CONFIGURATION = Mvr.v_Dimension_Group.QTY_OF_CONFIGURATION
+			// Line#  23 : Var.BATCH_NO_ACTIVE = Mvr.v_Dimension_Group.BATCH_NO_ACTIVE
+			// Line#  24 : Var.SERIAL_NO_ACTIVE = Mvr.v_Dimension_Group.SERIAL_NO_ACTIVE
+			// Line#  25 : If Var.TOTAL > (Numeric) 1
+			// Line#  26 : DownloadListPromptFromQueue ( RWC_PromptControl1 , BOMVersion ) 
+			// Line#  27 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , BOMVersion ) 
+			// Line#  28 : If Var.ROWCNT < (Numeric) 1
+			// Line#  29 : StatusWindow ( @Info , @Erro No BOM Id found. , 2 ) 
+			// Line#  30 : CloseForm( )
+			// Line#  31 : End If
+			// Line#  32 : ShowPrompt ( RWC_PromptControl1 , BOMVersion ) 
+			// Line#  33 : End If
+			// Line#  34 : If Var.CONFIGURATION_ACTIVE = (Alpha) Y
+			// Line#  35 : If Var.QTY_OF_CONFIGURATION > (Alpha) 1
+			// Line#  36 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Config ) 
+			// Line#  37 : ShowPrompt ( RWC_PromptControl1 , Config ) 
+			// Line#  38 : ExitEvent( )
+			// Line#  39 : End If
+			// Line#  40 : End If
+			// Line#  41 : If Var.COLOR_ACTIVE = (Alpha) Y
+			// Line#  42 : If Var.QTY_OF_COLOR > (Alpha) 1
+			// Line#  43 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Color ) 
+			// Line#  44 : ShowPrompt ( RWC_PromptControl1 , Color ) 
+			// Line#  45 : ExitEvent( )
+			// Line#  46 : End If
+			// Line#  47 : End If
+			// Line#  48 : If Var.SIZE_ACTIVE = (Alpha) Y
+			// Line#  49 : If Var.QTY_OF_SIZE > (Alpha) 1
+			// Line#  50 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Size ) 
+			// Line#  51 : ShowPrompt ( RWC_PromptControl1 , Size ) 
+			// Line#  52 : ExitEvent( )
+			// Line#  53 : End If
+			// Line#  54 : End If
+			// Line#  55 : If Var.BATCH_NO_ACTIVE = (Alpha) Y
+			// Line#  56 : Var.BATCH_EXIST = True
+			// Line#  57 : ShowPrompt ( RWC_PromptControl1 , Batch_Number ) 
+			// Line#  58 : ExitEvent( )
+			// Line#  59 : Else
+			// Line#  60 : Var.BATCH_NUMBER = 
+			// Line#  61 : End If
+			// Line#  62 : If Mvr.v_Dimension_Group.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  63 : Var.SERIAL_EXIST = False
+			// Line#  64 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  65 : ExitEvent( )
+			// Line#  66 : Else
+			// Line#  67 : Var.SERIAL_NO = 
+			// Line#  68 : End If
+			// Line#  69 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmBOMFinish.RWC_PromptControl1_Item_OnClick = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+		try{
+			
+			
+			// Line#  1 : Var.SITE = 
+			// Line#  2 : Var.WAREHOUSE = 
+			// Line#  3 : ReturnToPrompt ( RWC_PromptControl1 , Site , False , True ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmBOMFinish.RWC_PromptControl1_Item_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , Item ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmBOMFinish.RWC_PromptControl1_Item_PreviousClick = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+		try{
+			
+			
+			// Line#  1 : CancelDefault( )
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmBOMFinish.Item = new cdt.prompt("Item", // Name
+				"Item Id" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"Change Site & Warehouse", // Button Resource ID
+				frmBOMFinish.Item_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_BOM_Item", // Validation
+				false, // ValidIfNotEmpty
+				"ITEM_ID", // Variable
+				frmBOMFinish.RWC_PromptControl1_Item_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBOMFinish.RWC_PromptControl1.addPrompt(frmBOMFinish.Item);
+
+		frmBOMFinish.RWC_PromptControl1_BOMVersion_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			// Line#  1 : Var.BOM_ID = Dsv.RWC_DataSet1.BOMID
+			// Line#  2 : If Var.CONFIGURATION_ACTIVE = (Alpha) Y
+			// Line#  3 : If Var.QTY_OF_CONFIGURATION > (Alpha) 1
+			// Line#  4 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Config ) 
+			// Line#  5 : ShowPrompt ( RWC_PromptControl1 , Config ) 
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : End If
+			// Line#  8 : End If
+			// Line#  9 : If Var.COLOR_ACTIVE = (Alpha) Y
+			// Line#  10 : If Var.QTY_OF_COLOR > (Alpha) 1
+			// Line#  11 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Color ) 
+			// Line#  12 : ShowPrompt ( RWC_PromptControl1 , Color ) 
+			// Line#  13 : ExitEvent( )
+			// Line#  14 : End If
+			// Line#  15 : End If
+			// Line#  16 : If Var.SIZE_ACTIVE = (Alpha) Y
+			// Line#  17 : If Var.QTY_OF_SIZE > (Alpha) 1
+			// Line#  18 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Size ) 
+			// Line#  19 : ShowPrompt ( RWC_PromptControl1 , Size ) 
+			// Line#  20 : ExitEvent( )
+			// Line#  21 : End If
+			// Line#  22 : End If
+			// Line#  23 : If Var.BATCH_NO_ACTIVE = (Alpha) Y
+			// Line#  24 : Var.BATCH_EXIST = True
+			// Line#  25 : ShowPrompt ( RWC_PromptControl1 , Batch_Number ) 
+			// Line#  26 : ExitEvent( )
+			// Line#  27 : Else
+			// Line#  28 : Var.BATCH_NUMBER = 
+			// Line#  29 : End If
+			// Line#  30 : If Mvr.v_Dimension_Group.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  31 : Var.SERIAL_EXIST = False
+			// Line#  32 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  33 : ExitEvent( )
+			// Line#  34 : Else
+			// Line#  35 : Var.SERIAL_NO = 
+			// Line#  36 : End If
+			// Line#  37 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmBOMFinish.RWC_PromptControl1_BOMVersion_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , Item ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmBOMFinish.RWC_PromptControl1LP0 = new cdt.prompt( "BOMVersion", // name 
+			"Select BOM Version", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			frmBOMFinish.RWC_PromptControl1_BOMVersion_ResetClick , // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmBOMFinish.RWC_PromptControl1_BOMVersion_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmBOMFinish.RWC_PromptControl1.addPrompt(frmBOMFinish.RWC_PromptControl1LP0);
+
+
+		frmBOMFinish.RWC_PromptControl1LP0_template = "<li data-uid='#= data.uid #'><a>";
+		frmBOMFinish.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 30%;text-align:right;'>BOM Id:</span>";
+		frmBOMFinish.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 30%;width: 61%;text-align:left;'>#= data.BOMID #</span>";
+		frmBOMFinish.RWC_PromptControl1LP0_template += "<br/>";
+		frmBOMFinish.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 30%;text-align:right;'>Name:</span>";
+		frmBOMFinish.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 30%;width: 61%;text-align:left;'>#= data.NAME #</span>";
+		frmBOMFinish.RWC_PromptControl1LP0_template += "<br /></a></li>";
+		frmBOMFinish.RWC_PromptControl1LP0.setLayout( kendo.template(frmBOMFinish.RWC_PromptControl1LP0_template, { useWithBlock: false } ) );
+
+		frmBOMFinish.RWC_PromptControl1LP0.setDataSource(frmBOMFinish.RWC_DataSet1);
+		frmBOMFinish.RWC_PromptControl1_Config_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			// Line#  1 : Var.CONFIGURATION = Dsv.RWC_CONFIG_DATASET.CONFIGID
+			// Line#  2 : If Var.COLOR_ACTIVE = (Alpha) Y
+			// Line#  3 : If Var.QTY_OF_COLOR > (Alpha) 1
+			// Line#  4 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Color ) 
+			// Line#  5 : ShowPrompt ( RWC_PromptControl1 , Color ) 
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : End If
+			// Line#  8 : End If
+			// Line#  9 : If Var.SIZE_ACTIVE = (Alpha) Y
+			// Line#  10 : If Var.QTY_OF_SIZE > (Alpha) 1
+			// Line#  11 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Size ) 
+			// Line#  12 : ShowPrompt ( RWC_PromptControl1 , Size ) 
+			// Line#  13 : ExitEvent( )
+			// Line#  14 : End If
+			// Line#  15 : End If
+			// Line#  16 : If Var.BATCH_NO_ACTIVE = (Alpha) Y
+			// Line#  17 : Var.BATCH_EXIST = True
+			// Line#  18 : ShowPrompt ( RWC_PromptControl1 , Batch_Number ) 
+			// Line#  19 : ExitEvent( )
+			// Line#  20 : Else
+			// Line#  21 : Var.BATCH_NUMBER = 
+			// Line#  22 : End If
+			// Line#  23 : If Mvr.v_Dimension_Group.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  24 : Var.SERIAL_EXIST = False
+			// Line#  25 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  26 : ExitEvent( )
+			// Line#  27 : Else
+			// Line#  28 : Var.SERIAL_NO = 
+			// Line#  29 : End If
+			// Line#  30 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmBOMFinish.RWC_PromptControl1_Config_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , Item ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmBOMFinish.RWC_PromptControl1LP1 = new cdt.prompt( "Config", // name 
+			"Configuration", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			frmBOMFinish.RWC_PromptControl1_Config_ResetClick , // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmBOMFinish.RWC_PromptControl1_Config_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmBOMFinish.RWC_PromptControl1.addPrompt(frmBOMFinish.RWC_PromptControl1LP1);
+
+
+		frmBOMFinish.RWC_PromptControl1LP1_template = "<li data-uid='#= data.uid #'><a>";
+		frmBOMFinish.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 45%;text-align:right;'>Configuration:</span>";
+		frmBOMFinish.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 42%;text-align:left;'>#= data.CONFIGID #</span>";
+		frmBOMFinish.RWC_PromptControl1LP1_template += "<br/>";
+		frmBOMFinish.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 15%;width: 30%;text-align:right;'>Name:</span>";
+		frmBOMFinish.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 48%;text-align:left;'>#= data.NAME #</span>";
+		frmBOMFinish.RWC_PromptControl1LP1_template += "<br /></a></li>";
+		frmBOMFinish.RWC_PromptControl1LP1.setLayout( kendo.template(frmBOMFinish.RWC_PromptControl1LP1_template, { useWithBlock: false } ) );
+
+		frmBOMFinish.RWC_PromptControl1LP1.setDataSource(frmBOMFinish.RWC_CONFIG_DATASET);
+		frmBOMFinish.RWC_PromptControl1_Color_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			// Line#  1 : Var.COLOR = Dsv.RWC_COLOR_DATASET.INVENTCOLORID
+			// Line#  2 : If Var.SIZE_ACTIVE = (Alpha) Y
+			// Line#  3 : If Var.QTY_OF_SIZE > (Alpha) 1
+			// Line#  4 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Size ) 
+			// Line#  5 : ShowPrompt ( RWC_PromptControl1 , Size ) 
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : End If
+			// Line#  8 : End If
+			// Line#  9 : If Var.BATCH_NO_ACTIVE = (Alpha) Y
+			// Line#  10 : Var.BATCH_EXIST = True
+			// Line#  11 : ShowPrompt ( RWC_PromptControl1 , Batch_Number ) 
+			// Line#  12 : ExitEvent( )
+			// Line#  13 : Else
+			// Line#  14 : Var.BATCH_NUMBER = 
+			// Line#  15 : End If
+			// Line#  16 : If Mvr.v_Dimension_Group.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  17 : Var.SERIAL_EXIST = False
+			// Line#  18 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  19 : ExitEvent( )
+			// Line#  20 : Else
+			// Line#  21 : Var.SERIAL_NO = 
+			// Line#  22 : End If
+			// Line#  23 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmBOMFinish.RWC_PromptControl1_Color_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , Item ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmBOMFinish.RWC_PromptControl1LP2 = new cdt.prompt( "Color", // name 
+			"Color", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			frmBOMFinish.RWC_PromptControl1_Color_ResetClick , // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmBOMFinish.RWC_PromptControl1_Color_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmBOMFinish.RWC_PromptControl1.addPrompt(frmBOMFinish.RWC_PromptControl1LP2);
+
+
+		frmBOMFinish.RWC_PromptControl1LP2_template = "<li data-uid='#= data.uid #'><a>";
+		frmBOMFinish.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Color:</span>";
+		frmBOMFinish.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 42%;width: 42%;text-align:left;'>#= data.INVENTCOLORID #</span>";
+		frmBOMFinish.RWC_PromptControl1LP2_template += "<br/>";
+		frmBOMFinish.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Name:</span>";
+		frmBOMFinish.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 42%;width: 48%;text-align:left;'>#= data.NAME #</span>";
+		frmBOMFinish.RWC_PromptControl1LP2_template += "<br/>";
+		frmBOMFinish.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Description:</span>";
+		frmBOMFinish.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 42%;width: 55%;text-align:left;'>#= data.DESCRIPTION #</span>";
+		frmBOMFinish.RWC_PromptControl1LP2_template += "<br /></a></li>";
+		frmBOMFinish.RWC_PromptControl1LP2.setLayout( kendo.template(frmBOMFinish.RWC_PromptControl1LP2_template, { useWithBlock: false } ) );
+
+		frmBOMFinish.RWC_PromptControl1LP2.setDataSource(frmBOMFinish.RWC_COLOR_DATASET);
+		frmBOMFinish.RWC_PromptControl1_Size_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			// Line#  1 : Var.SIZE = Dsv.RWC_SIZE_DATASET.INVENTSIZEID
+			// Line#  2 : If Var.BATCH_NO_ACTIVE = (Alpha) Y
+			// Line#  3 : Var.BATCH_EXIST = True
+			// Line#  4 : ShowPrompt ( RWC_PromptControl1 , Batch_Number ) 
+			// Line#  5 : ExitEvent( )
+			// Line#  6 : Else
+			// Line#  7 : Var.BATCH_NUMBER = 
+			// Line#  8 : End If
+			// Line#  9 : If Mvr.v_Dimension_Group.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  10 : Var.SERIAL_EXIST = False
+			// Line#  11 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  12 : ExitEvent( )
+			// Line#  13 : Else
+			// Line#  14 : Var.SERIAL_NO = 
+			// Line#  15 : End If
+			// Line#  16 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmBOMFinish.RWC_PromptControl1_Size_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			e.Cancel = true;
+			ResetForm( );
+			VariableManager.Instance.SetVariable("Var.frmBOMFinish","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmBOMFinish","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			UpdateData( false );
+			RWC_PromptControl1.ShowPrompt("Item");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmBOMFinish.RWC_PromptControl1LP3 = new cdt.prompt( "Size", // name 
+			"Size", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			frmBOMFinish.RWC_PromptControl1_Size_ResetClick , // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmBOMFinish.RWC_PromptControl1_Size_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmBOMFinish.RWC_PromptControl1.addPrompt(frmBOMFinish.RWC_PromptControl1LP3);
+
+
+		frmBOMFinish.RWC_PromptControl1LP3_template = "<li data-uid='#= data.uid #'><a>";
+		frmBOMFinish.RWC_PromptControl1LP3_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Size:</span>";
+		frmBOMFinish.RWC_PromptControl1LP3_template += "<span style='position:absolute;margin:0;left: 42%;width: 42%;text-align:left;'>#= data.INVENTSIZEID #</span>";
+		frmBOMFinish.RWC_PromptControl1LP3_template += "<br/>";
+		frmBOMFinish.RWC_PromptControl1LP3_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Name:</span>";
+		frmBOMFinish.RWC_PromptControl1LP3_template += "<span style='position:absolute;margin:0;left: 42%;width: 48%;text-align:left;'>#= data.NAME #</span>";
+		frmBOMFinish.RWC_PromptControl1LP3_template += "<br/>";
+		frmBOMFinish.RWC_PromptControl1LP3_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Description:</span>";
+		frmBOMFinish.RWC_PromptControl1LP3_template += "<span style='position:absolute;margin:0;left: 42%;width: 55%;text-align:left;'>#= data.DESCRIPTION #</span>";
+		frmBOMFinish.RWC_PromptControl1LP3_template += "<br /></a></li>";
+		frmBOMFinish.RWC_PromptControl1LP3.setLayout( kendo.template(frmBOMFinish.RWC_PromptControl1LP3_template, { useWithBlock: false } ) );
+
+		frmBOMFinish.RWC_PromptControl1LP3.setDataSource(frmBOMFinish.RWC_SIZE_DATASET);
+		frmBOMFinish.RWC_PromptControl1_Batch_Number_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			// Line#  1 : If Mvr.v_Dimension_Group.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  2 : Var.SERIAL_EXIST = False
+			// Line#  3 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  4 : ExitEvent( )
+			// Line#  5 : Else
+			// Line#  6 : Var.SERIAL_NO = 
+			// Line#  7 : End If
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmBOMFinish.RWC_PromptControl1_Batch_Number_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , Item ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmBOMFinish.Batch_Number = new cdt.prompt("Batch_Number", // Name
+				"Batch Number" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"BATCH_NUMBER", // Variable
+				frmBOMFinish.RWC_PromptControl1_Batch_Number_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBOMFinish.RWC_PromptControl1.addPrompt(frmBOMFinish.Batch_Number);
+
+		frmBOMFinish.RWC_PromptControl1_Serial_No_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			// Line#  1 : Var.QTY = 1
+			// Line#  2 : If Var.LOCATION_ACTIVE = (Alpha) Y
+			// Line#  3 : ShowPrompt ( RWC_PromptControl1 , Location ) 
+			// Line#  4 : ExitEvent( )
+			// Line#  5 : End If
+			// Line#  6 : ShowPrompt ( RWC_PromptControl1 , Confirm ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmBOMFinish.RWC_PromptControl1_Serial_No_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , Item ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmBOMFinish.Serial_No = new cdt.prompt("Serial_No", // Name
+				"Serial Number" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_Serial_Number", // Validation
+				false, // ValidIfNotEmpty
+				"SERIAL_NO", // Variable
+				frmBOMFinish.RWC_PromptControl1_Serial_No_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBOMFinish.RWC_PromptControl1.addPrompt(frmBOMFinish.Serial_No);
+
+		frmBOMFinish.RWC_PromptControl1_QTY_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			// Line#  1 : If Var.QTY <= (Numeric) 0
+			// Line#  2 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  3 : CancelDefault( )
+			// Line#  4 : ExitEvent( )
+			// Line#  5 : End If
+			// Line#  6 : If Var.LOCATION_ACTIVE = (Alpha) Y
+			// Line#  7 : ShowPrompt ( RWC_PromptControl1 , Location ) 
+			// Line#  8 : ExitEvent( )
+			// Line#  9 : End If
+			// Line#  10 : Var.Result = SendValidation ( v_BOM_Finish ) 
+			// Line#  11 : If Var.Result < (Numeric) 1
+			// Line#  12 : StatusWindow ( @Info , @Journal Error: Components have invalid quanitities , 2 ) 
+			// Line#  13 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  14 : CancelDefault( )
+			// Line#  15 : ExitEvent( )
+			// Line#  16 : End If
+			// Line#  17 : ShowPrompt ( RWC_PromptControl1 , Confirm ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmBOMFinish.RWC_PromptControl1_QTY_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , Item ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmBOMFinish.QTY = new cdt.prompt("QTY", // Name
+				"Quantity" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"QTY", // Variable
+				frmBOMFinish.RWC_PromptControl1_QTY_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBOMFinish.RWC_PromptControl1.addPrompt(frmBOMFinish.QTY);
+
+		frmBOMFinish.RWC_PromptControl1_Location_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			// Line#  1 : If Var.PALLET_ID_ACTIVE = (Alpha) YES
+			// Line#  2 : ShowPrompt ( RWC_PromptControl1 , Pallet ) 
+			// Line#  3 : CancelDefault( )
+			// Line#  4 : ExitEvent( )
+			// Line#  5 : End If
+			// Line#  6 : Var.Result = SendValidation ( v_BOM_Finish ) 
+			// Line#  7 : If Var.Result < (Numeric) 1
+			// Line#  8 : StatusWindow ( @Info , @Journal Error: Components have invalid quanitities , 2 ) 
+			// Line#  9 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  10 : CancelDefault( )
+			// Line#  11 : ExitEvent( )
+			// Line#  12 : End If
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , Confirm ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmBOMFinish.RWC_PromptControl1_Location_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , Item ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmBOMFinish.Location = new cdt.prompt("Location", // Name
+				"Location" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_Location", // Validation
+				false, // ValidIfNotEmpty
+				"LOCATION", // Variable
+				frmBOMFinish.RWC_PromptControl1_Location_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBOMFinish.RWC_PromptControl1.addPrompt(frmBOMFinish.Location);
+
+		frmBOMFinish.RWC_PromptControl1_Pallet_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			// Line#  1 : Var.Result = SendValidation ( v_BOM_Finish ) 
+			// Line#  2 : If Var.Result < (Numeric) 1
+			// Line#  3 : StatusWindow ( @Info , @Journal Error: Components have invalid quanitities , 2 ) 
+			// Line#  4 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  5 : CancelDefault( )
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : End If
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmBOMFinish.RWC_PromptControl1_Pallet_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , Item ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmBOMFinish.Pallet = new cdt.prompt("Pallet", // Name
+				"Palllet" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_Pallet", // Validation
+				false, // ValidIfNotEmpty
+				"PALLET_ID", // Variable
+				frmBOMFinish.RWC_PromptControl1_Pallet_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBOMFinish.RWC_PromptControl1.addPrompt(frmBOMFinish.Pallet);
+
+		frmBOMFinish.RWC_PromptControl1_Confirm_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			// Line#  1 : If Var.CONFIRM = Y
+			// Line#  2 : SendTransaction ( t_BOM_Finish ) 
+			// Line#  3 : StatusWindow ( @Success , @Transaction Sent! , 2 ) 
+			// Line#  4 : ResetForm( )
+			// Line#  5 : Var.SITE = Gvr.SITE
+			// Line#  6 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  7 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  8 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  9 : UpdateData ( Get ) 
+			// Line#  10 : ShowPrompt ( RWC_PromptControl1 , Item ) 
+			// Line#  11 : Else If Var.CONFIRM = (Alpha) N
+			// Line#  12 : ResetForm( )
+			// Line#  13 : Var.SITE = Gvr.SITE
+			// Line#  14 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  15 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  16 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  17 : UpdateData ( Get ) 
+			// Line#  18 : ShowPrompt ( RWC_PromptControl1 , Item ) 
+			// Line#  19 : Else
+			// Line#  20 : StatusWindow ( Error , Answer must be Y or N. , 2 ) 
+			// Line#  21 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  22 : CancelDefault( )
+			// Line#  23 : ExitEvent( )
+			// Line#  24 : End If
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmBOMFinish.RWC_PromptControl1_Confirm_ResetClick = function(_value, _completeAction) {
+			var shouldContinue = true;
+			
+		try{
+			
+			
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , Item ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmBOMFinish.Confirm = new cdt.prompt("Confirm", // Name
+				"Confirm?" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"CONFIRM", // Variable
+				frmBOMFinish.RWC_PromptControl1_Confirm_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBOMFinish.RWC_PromptControl1.addPrompt(frmBOMFinish.Confirm);
+
+		frmBOMFinish.viewModel = new cdt.viewModel( "frmBOMFinish",frmBOMFinish.RWC_PromptControl1,"frmBOMFinish");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmBOMFinish-listControl' data-role='listview' ></ul>
+	            </div>
+	            <ul id='frmBOMFinish-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px; height: 200px; overflow: auto;'></ul>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmBOMFinish-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmBOMFinish-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmBOMFinish-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmBOMFinish-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

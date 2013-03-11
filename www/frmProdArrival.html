@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmProdArrival' data-role='view' data-title='Production Arrival' data-show='frmProdArrival.viewModel.initialize' data-model='frmProdArrival.viewModel' >
+<script>
+	var frmProdArrival = frmProdArrival || {};
+		frmProdArrival.RWC_Production_Details = new kendo.data.DataSource({ data: [{}] });
+		frmProdArrival.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmProdArrival' );
+		frmProdArrival.RWC_ARRIVAL_OVERVIEW_DATASET = new kendo.data.DataSource({ data: [{}] });
+		frmProdArrival.RWC_PromptControl1_PO_Number_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmProdArrival","QTY","");
+			VariableManager.Instance.SetVariable("Var.frmProdArrival","LOCATION","");
+			CurrentLine= 3;RWC_PromptControl1.ReceiveDataSetFromQueue("Prod_Arrival_Details");
+			VariableManager.Instance.SetVariableInteger("Var.frmProdArrival","ROWCNT",RWC_PromptControl1.GetRowCount("Prod_Arrival_Details"));
+			if(VariableManager.Instance.GetVariableFloat("Var.frmProdArrival","ROWCNT") < 1)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Production list not found"),2);
+			cancel = true;
+			return;
+			
+			}
+			RWC_PromptControl1.ShowPrompt("Prod_Arrival_Details");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			frmProdArrival.RWC_PromptControl1_PO_Number_OnClick = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+		try{
+			
+			
+			CurrentLine= 1;RWC_PromptControl1.ReceiveDataSetFromQueue("Prod_Arrival_Overview");
+			VariableManager.Instance.SetVariableInteger("Var.frmProdArrival","ROWCNT",RWC_PromptControl1.GetRowCount("Prod_Arrival_Overview"));
+			if(VariableManager.Instance.GetVariableFloat("Var.frmProdArrival","ROWCNT") < 1)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No Production Order Found"),2);
+			CloseForm( );
+			
+			}
+			RWC_PromptControl1.SetHistoryText("PO_Number","",true);
+			RWC_PromptControl1.ShowPrompt("Prod_Arrival_Overview");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmProdArrival.PO_Number = new cdt.prompt("PO_Number", // Name
+				"Production Order" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"Production Arrival Overview", // Button Resource ID
+				frmProdArrival.PO_Number_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_Production_Order", // Validation
+				false, // ValidIfNotEmpty
+				"PRODUCTIONORDER", // Variable
+				frmProdArrival.RWC_PromptControl1_PO_Number_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmProdArrival.RWC_PromptControl1.addPrompt(frmProdArrival.PO_Number);
+
+		frmProdArrival.RWC_PromptControl1_Prod_Arrival_Overview_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmProdArrival","PRODUCTIONORDER","");
+			RWC_PromptControl1.SetHistoryText("Prod_Arrival_Overview",ResourceMgr.GetCDTString("Production Order"),cdt.VariableManager.getLocalVariable("PRODUCTIONORDER"),true);
+			CurrentLine= 3;RWC_PromptControl1.ReceiveDataSetFromQueue("Prod_Arrival_Details");
+			VariableManager.Instance.SetVariableInteger("Var.frmProdArrival","ROWCNT",RWC_PromptControl1.GetRowCount("Prod_Arrival_Details"));
+			if(VariableManager.Instance.GetVariableFloat("Var.frmProdArrival","ROWCNT") < 1)
+			{
+			
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Error Production Records Not Found"),2);
+			cancel = true;
+			return;
+			
+			}
+			RWC_PromptControl1.ShowPrompt("Prod_Arrival_Details");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmProdArrival.RWC_PromptControl1LP0 = new cdt.prompt( "Prod_Arrival_Overview", // name 
+			"Production Arrival", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmProdArrival.RWC_PromptControl1_Prod_Arrival_Overview_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmProdArrival.RWC_PromptControl1.addPrompt(frmProdArrival.RWC_PromptControl1LP0);
+
+
+		frmProdArrival.RWC_PromptControl1LP0_template = "<li data-uid='#= data.uid #'><a>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 27%;width: 15%;text-align:right;'>Row:</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 12%;text-align:left;'>#= data._CURRENT #</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 58%;width: 9%;text-align:left;'>of</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 70%;width: 12%;text-align:left;'>#= data._COUNT #</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Status Date:</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 36%;text-align:left;'>#= data.STATUS_DATE #</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Reference:</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 58%;text-align:left;'>Production Arriva</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Number:</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 55%;text-align:left;'>#= data.NUMBER #</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Lines:</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.LINES #</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Pallets:</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.PALLETS #</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Quantity:</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.QUANTITY #</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Volume:</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.VOLUME #</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Weight:</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.WEIGHT #</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Site:</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.SITE #</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Warehouse:</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.WAREHOUSE #</span>";
+		frmProdArrival.RWC_PromptControl1LP0_template += "<br /></a></li>";
+		frmProdArrival.RWC_PromptControl1LP0.setLayout( kendo.template(frmProdArrival.RWC_PromptControl1LP0_template, { useWithBlock: false } ) );
+
+		frmProdArrival.RWC_PromptControl1LP0.setDataSource(frmProdArrival.RWC_ARRIVAL_OVERVIEW_DATASET);
+		frmProdArrival.RWC_PromptControl1_Prod_Arrival_Details_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			VariableManager.Instance.SetVariable("Var.frmProdArrival","PRODUCTIONTRANSID","");
+			VariableManager.Instance.SetVariable("Var.frmProdArrival","Max_QTY","");
+			RWC_PromptControl1.SetHistoryText("Prod_Arrival_Details",ResourceMgr.GetCDTString("Incoming Quantity"),cdt.VariableManager.getLocalVariable("Max_QTY"),true);
+			VariableManager.Instance.SetVariable("Var.frmProdArrival","PRODUCTIONORDER","");
+			RWC_PromptControl1.SetHistoryText("Prod_Arrival_Details",ResourceMgr.GetCDTString("Item Name"),"",false);
+			RWC_PromptControl1.SetHistoryText("Prod_Arrival_Details",ResourceMgr.GetCDTString("Item Id"),"",false);
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmProdArrival.RWC_PromptControl1LP1 = new cdt.prompt( "Prod_Arrival_Details", // name 
+			"Production Detail", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmProdArrival.RWC_PromptControl1_Prod_Arrival_Details_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmProdArrival.RWC_PromptControl1.addPrompt(frmProdArrival.RWC_PromptControl1LP1);
+
+
+		frmProdArrival.RWC_PromptControl1LP1_template = "<li data-uid='#= data.uid #'><a>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 27%;width: 15%;text-align:right;'>Row</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 12%;text-align:left;'>#= data._CURRENT #</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 58%;width: 9%;text-align:right;'>of</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 70%;width: 12%;text-align:left;'>#= data._COUNT #</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Number:</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 55%;text-align:left;'>#= data.PRODUCTION_NUMBER #</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Status Date:</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.STATUS_DATE #</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Site:</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.SITE #</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Warehouse:</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.WAREHOUSE #</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Item Number:</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 45%;text-align:left;'>#= data.ITEM_NUMBER #</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Item Name:</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 55%;text-align:left;'>#= data.ITEM_NAME #</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Pallets:</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.PALLETS #</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Unit Of MS:</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.UNIT_OF_MEASUREMENT #</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Quantity:</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.QUANTITY #</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Volume:</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.VOLUME #</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Weight:</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.WEIGHT #</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<br/>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Progress QTY:</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.QUANTITY_IN_PROGRESS #</span>";
+		frmProdArrival.RWC_PromptControl1LP1_template += "<br /></a></li>";
+		frmProdArrival.RWC_PromptControl1LP1.setLayout( kendo.template(frmProdArrival.RWC_PromptControl1LP1_template, { useWithBlock: false } ) );
+
+		frmProdArrival.RWC_PromptControl1LP1.setDataSource(frmProdArrival.RWC_Production_Details);
+		frmProdArrival.RWC_PromptControl1_Quantity_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			if(VariableManager.Instance.GetVariableFloat("Var.frmProdArrival","QTY") <= 0)
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			}
+			else if(VariableManager.Instance.GetVariableFloat("Var.frmProdArrival","QTY") > VariableManager.Instance.GetVariableFloat("Var.frmProdArrival","Max_QTY"))
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Quantity must be less or equal to incoming quantity"),2);
+			cancel = true;
+			return;
+			
+			}
+			VariableManager.Instance.SetVariable("Var.frmProdArrival","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
+			VariableManager.Instance.SetVariable("Var.frmProdArrival","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
+			RWC_PromptControl1.SetHistoryText("Quantity",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
+			RWC_PromptControl1.SetHistoryText("Quantity",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
+			RWC_PromptControl1.SetHistoryText("Quantity",ResourceMgr.GetCDTString("Quantity"),cdt.VariableManager.getLocalVariable("QTY"),false);
+			RWC_PromptControl1.ShowPrompt("CONFIRM");
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmProdArrival.Quantity = new cdt.prompt("Quantity", // Name
+				"Quantity" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"QTY", // Variable
+				frmProdArrival.RWC_PromptControl1_Quantity_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmProdArrival.RWC_PromptControl1.addPrompt(frmProdArrival.Quantity);
+
+		frmProdArrival.RWC_PromptControl1_CONFIRM_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+		try{
+			
+			if(cdt.VariableManager.getLocalVariable("CONFIRM").CompareTo("Y") == 0)
+			{
+			
+			CurrentLine= 2;NetManager.Instance.SendTransaction("t_Production_Order_Arrival",GetVariableNameSpace());
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Success"),ResourceMgr.GetCDTString("Transaction Sent!"),2);
+			RWC_PromptControl1.ReturnToPrompt("PO_Number",true,true);
+			}
+			else if(cdt.VariableManager.getLocalVariable("CONFIRM").ToUpper().CompareTo("N".ToUpper()) == 0)
+			{
+			
+			ResetForm( );
+			UpdateData( false );
+			RWC_PromptControl1.ReturnToPrompt("From_Location",true,true);
+			
+			}
+			else
+			{
+			
+			ClientApplication.Instance.ShowStatusBox("Error","Answer must be Y or N.",2);
+			RWC_PromptControl1.IsValid(false);
+			cancel = true;
+			return;
+			
+			}
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
+			
+		frmProdArrival.CONFIRM = new cdt.prompt("CONFIRM", // Name
+				"Confirm?" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"CONFIRM", // Variable
+				frmProdArrival.RWC_PromptControl1_CONFIRM_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmProdArrival.RWC_PromptControl1.addPrompt(frmProdArrival.CONFIRM);
+
+		frmProdArrival.viewModel = new cdt.viewModel( "frmProdArrival",frmProdArrival.RWC_PromptControl1,"frmProdArrival");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmProdArrival-listControl' data-role='listview' ></ul>
+	            </div>
+	            <ul id='frmProdArrival-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px; height: 200px; overflow: auto;'></ul>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmProdArrival-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmProdArrival-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmProdArrival-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmProdArrival-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

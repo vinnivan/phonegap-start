@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='main' data-role='view' data-title='Login' data-show='frmLogon.viewModel.initialize' data-model='frmLogon.viewModel' >
+<script>
+	var frmLogon = frmLogon || {};
+		frmLogon.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmLogon' );
+		frmLogon.RWC_WAREHOUSE_DATASET = new kendo.data.DataSource();
+		frmLogon.RWC_SITE_DATASET = new kendo.data.DataSource();
+		frmLogon.RWC_PromptControl1_USER_NAME_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+			VariableManager.Instance.SetVariable(VariableManager.GlobalNamespace,"LOGGED_IN","N");
+			// Line#  2 : SendValidation ( v_UserId ) 
+			// Line#  3 : If Mvr.v_UserId.STATUS <> (Alpha) Y And Mvr.v_UserId.ENABLE = (Numeric) 0
+			// Line#  4 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  5 : CancelDefault( )
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : Else If Mvr.v_UserId.ENABLE = (Numeric) 1
+			VariableManager.Instance.SetVariable("Var.frmLogon","USERNAME",VariableManager.Instance.GetVariable("Mvr.v_UserId","NAME"));
+			VariableManager.Instance.SetVariable("Var.frmLogon","COMPANY_ID",VariableManager.Instance.GetVariable("Mvr.v_UserId","COMPANY_ID"));
+			VariableManager.Instance.SetVariable("Var.frmLogon","USERID",VariableManager.Instance.GetVariable("Mvr.v_UserId","USERID"));
+			// Line#  11 : End If
+			
+			_completeAction(shouldContinue);
+		};
+			
+		
+		
+		frmLogon.USER_NAME = new cdt.prompt("USER_NAME", // Name
+				"Username" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"USERID", // Variable
+				frmLogon.RWC_PromptControl1_USER_NAME_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmLogon.RWC_PromptControl1.addPrompt(frmLogon.USER_NAME);
+
+		frmLogon.RWC_PromptControl1_PASSWORD_ValidEvent = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+			VariableManager.Instance.SetVariable(VariableManager.GlobalNamespace,"PASSWORD",VariableManager.Instance.GetVariable("Var.frmLogon","PASSWORD"));
+			VariableManager.Instance.SetVariable(VariableManager.GlobalNamespace,"USERID",VariableManager.Instance.GetVariable("Var.frmLogon","USERID"));
+			VariableManager.Instance.SetVariable(VariableManager.GlobalNamespace,"COMPANY_ID",VariableManager.Instance.GetVariable("Var.frmLogon","COMPANY_ID"));
+			VariableManager.Instance.SetVariable("Var.frmLogon","PRINT_NAME",ResourceMgr.GetCDTString("Welcome {Var.USERNAME}"));
+			VariableManager.Instance.SetVariable("Var.frmLogon","PRINT_DISP",Utilities.Instance.BuildTemplateString(VariableManager.Instance.GetVariable("Var.frmLogon","PRINT_NAME")));
+			// Line#  6 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Site ) 
+			// Line#  7 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , Site ) 
+			// Line#  8 : If Var.ROWCNT < (Numeric) 1
+			// Line#  9 : StatusWindow ( @Info , @Error no site records found. , 2 ) 
+			// Line#  10 : CloseForm( )
+			// Line#  11 : CancelDefault( )
+			// Line#  12 : ExitEvent( )
+			// Line#  13 : End If
+			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Welcome"),VariableManager.Instance.GetVariable("Var.frmLogin","PRINT_DISP"),2);
+			
+			_completeAction(shouldContinue);
+		};
+			
+		
+		
+		frmLogon.PASSWORD = new cdt.prompt("PASSWORD", // Name
+				"Password" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"PASSWORD", // Variable
+				frmLogon.RWC_PromptControl1_PASSWORD_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Password
+				);
+
+		frmLogon.RWC_PromptControl1.addPrompt(frmLogon.PASSWORD);
+
+		frmLogon.RWC_PromptControl1_Site_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+			VariableManager.Instance.SetVariable("Var.frmLogon","SITE",VariableManager.Instance.GetVariable("Dsv.RWC_SITE_DATASET","SITEID"));
+			VariableManager.Instance.SetVariable(VariableManager.GlobalNamespace,"SITE",VariableManager.Instance.GetVariable("Var.frmLogon","SITE"));
+			// Line#  3 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Warehouse ) 
+			// Line#  4 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , Warehouse ) 
+			// Line#  5 : If Var.ROWCNT < (Numeric) 1
+			// Line#  6 : StatusWindow ( @Info , @No warehouse records found. , 2 ) 
+			// Line#  7 : ReturnToPrompt ( RWC_PromptControl1 , Site , False , False ) 
+			// Line#  8 : CancelDefault( )
+			// Line#  9 : ExitEvent( )
+			// Line#  10 : End If
+			
+			_completeAction(shouldContinue);
+		};
+			
+		
+		
+		frmLogon.RWC_PromptControl1LP0 = new cdt.prompt( "Site", // name 
+			"Site", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmLogon.RWC_PromptControl1_Site_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmLogon.RWC_PromptControl1.addPrompt(frmLogon.RWC_PromptControl1LP0);
+
+
+		frmLogon.RWC_PromptControl1LP0_template = "<li data-uid='#= data.uid #'><a>";
+		frmLogon.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 30%;text-align:right;'>Site:</span>";
+		frmLogon.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 30%;width: 24%;text-align:left;'>#= data.SITEID #</span>";
+		frmLogon.RWC_PromptControl1LP0_template += "<br/>";
+		frmLogon.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 30%;text-align:right;'>Name:</span>";
+		frmLogon.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 30%;width: 48%;text-align:left;'>#= data.NAME #</span>";
+		frmLogon.RWC_PromptControl1LP0_template += "<br /></a></li>";
+		frmLogon.RWC_PromptControl1LP0.setLayout( kendo.template(frmLogon.RWC_PromptControl1LP0_template, { useWithBlock: false } ) );
+
+		frmLogon.RWC_PromptControl1LP0.setDataSource(frmLogon.RWC_SITE_DATASET);
+		frmLogon.RWC_PromptControl1_Warehouse_Select = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+			
+			VariableManager.Instance.SetVariable("Var.frmLogon","WAREHOUSE",VariableManager.Instance.GetVariable("Dsv.RWC_WAREHOUSE_DATASET","INVENTLOCATIONID"));
+			VariableManager.Instance.SetVariable(VariableManager.GlobalNamespace,"WAREHOUSE",VariableManager.Instance.GetVariable("Var.frmLogon","WAREHOUSE"));
+			VariableManager.Instance.SetVariable("Var.frmLogon","LOGGED_IN","Y");
+			cancel = true;
+			CloseForm( );
+			
+			_completeAction(shouldContinue);
+		};
+			
+		
+		
+		frmLogon.RWC_PromptControl1LP1 = new cdt.prompt( "Warehouse", // name 
+			"Warehouse", // Caption Resource ID
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmLogon.RWC_PromptControl1_Warehouse_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmLogon.RWC_PromptControl1.addPrompt(frmLogon.RWC_PromptControl1LP1);
+
+
+		frmLogon.RWC_PromptControl1LP1_template = "<li data-uid='#= data.uid #'><a>";
+		frmLogon.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 33%;text-align:right;'>Warehouse:</span>";
+		frmLogon.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 33%;width: 39%;text-align:left;'>#= data.INVENTLOCATIONID #</span>";
+		frmLogon.RWC_PromptControl1LP1_template += "<br/>";
+		frmLogon.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 3%;width: 30%;text-align:right;'>Name:</span>";
+		frmLogon.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 33%;width: 61%;text-align:left;'>#= data.NAME #</span>";
+		frmLogon.RWC_PromptControl1LP1_template += "<br/>";
+		frmLogon.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 3%;width: 30%;text-align:right;'>Type:</span>";
+		frmLogon.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 33%;width: 45%;text-align:left;'>#= data.INVENTLOCATIONTYPENAME #</span>";
+		frmLogon.RWC_PromptControl1LP1_template += "<br /></a></li>";
+		frmLogon.RWC_PromptControl1LP1.setLayout( kendo.template(frmLogon.RWC_PromptControl1LP1_template, { useWithBlock: false } ) );
+
+		frmLogon.RWC_PromptControl1LP1.setDataSource(frmLogon.RWC_WAREHOUSE_DATASET);
+		frmLogon.viewModel = new cdt.viewModel( "frmLogon",frmLogon.RWC_PromptControl1,"frmLogon");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	           <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmLogon-listControl' data-role='listview' ></ul>
+	            </div>
+	        <ul id='frmLogon-historyList' data-role='listview' data-template='historyTemplate' style='margin-bottom: 20px; margin-left: 0px; height: 200px; overflow: auto;'></ul>
+	        <div data-bind='visible: promptControl.isCurrentPromptText' >
+	            <div class='promptControlLeft' >
+	                <div><label for='frmLogon-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                <div><input style='width: 100%;'  id='frmLogon-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	            </div>
+	            <div class='promptControlRight'>
+	                <div><img src='images/barcode.png' style='width:32px; height:32px;' /></div>
+	                <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	            </div>
+	        </div>
+	        <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	            <div class='promptControlLeft' >
+	                <div><label for='frmLogon-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                <div><input style='width: 100%;'  id='frmLogon-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	            </div>
+	            <div class='promptControlRight'>
+	                <div style='height:46px'></div>
+	                <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>
