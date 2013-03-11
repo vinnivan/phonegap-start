@@ -5,8 +5,8 @@
 <div id='frmProductionPickList' data-role='view' data-title='Production Picking List' data-show='frmProductionPickList.viewModel.initialize' data-model='frmProductionPickList.viewModel' >
 <script>
 	var frmProductionPickList = frmProductionPickList || {};
-		frmProductionPickList.RWC_ProductionPickingList = new kendo.data.DataSource({ data: [{}] });
-		frmProductionPickList.RWC_ProductionList = new kendo.data.DataSource({ data: [{}] });
+		frmProductionPickList.RWC_ProductionPickingList = new kendo.data.DataSource({ data: [{}]  });
+		frmProductionPickList.RWC_ProductionList = new kendo.data.DataSource({ data: [{}]  });
 		frmProductionPickList.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmProductionPickList' );
 		frmProductionPickList.RWC_PromptControl1_Production_Select = function(_value, _completeAction) {
 			
@@ -472,7 +472,9 @@
 	            <div data-bind='visible: promptControl.isCurrentPromptList' >
 	                <ul id='frmProductionPickList-listControl' data-role='listview' ></ul>
 	            </div>
-	            <ul id='frmProductionPickList-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px; height: 200px; overflow: auto;'></ul>
+	            <div id='frmProductionPickList-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmProductionPickList-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
 	            <div data-bind='visible: promptControl.isCurrentPromptText' >
 	                <div class='promptControlLeft' >
 	                    <div><label for='frmProductionPickList-textInput' data-bind='text: promptControl.textControl.caption'></label></div>

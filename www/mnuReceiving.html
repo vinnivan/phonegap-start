@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head></head>
 <body>
-<div id='frmSilverLightLanguage' data-role='view' data-title='Choose Language' data-show='frmSilverLightLanguage.viewModel.initialize' data-model='frmSilverLightLanguage.viewModel' >
+<div id='mnuReceiving' data-role='view' data-title='Receive' data-show='mnuReceiving.viewModel.initialize' data-model='mnuReceiving.viewModel' >
 <script>
-	var frmSilverLightLanguage = frmSilverLightLanguage || {};
-		frmSilverLightLanguage.viewModel = new cdt.viewModel( "frmSilverLightLanguage",logon.RWC_PromptControl1,"frmSilverLightLanguage");
+	var mnuReceiving = mnuReceiving || {};
+		mnuReceiving.viewModel = new cdt.viewModel( "mnuReceiving",frmPOReceiptArrival.RWC_PromptControl1,"mnuReceiving");
 </script>
 	        <header data-role='header'>
 	            <div data-role='navbar'>
@@ -16,13 +16,15 @@
 	        </header>
 	        <div data-bind='invisible: isLoggedIn'>
 	            <div data-bind='visible: promptControl.isCurrentPromptList' >
-	                <ul id='frmSilverLightLanguage-listControl' data-role='listview' ></ul>
+	                <ul id='mnuReceiving-listControl' data-role='listview' ></ul>
 	            </div>
-	            <ul id='frmSilverLightLanguage-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px; height: 200px; overflow: auto;'></ul>
+	            <div id='mnuReceiving-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='mnuReceiving-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
 	            <div data-bind='visible: promptControl.isCurrentPromptText' >
 	                <div class='promptControlLeft' >
-	                    <div><label for='frmSilverLightLanguage-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
-	                    <div><input style='width: 100%;'  id='frmSilverLightLanguage-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                    <div><label for='mnuReceiving-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='mnuReceiving-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
 	                </div>
 	                <div class='promptControlRight'>
 	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
@@ -31,8 +33,8 @@
 	            </div>
 	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
 	                <div class='promptControlLeft' >
-	                    <div><label for='frmSilverLightLanguage-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
-	                    <div><input style='width: 100%;'  id='frmSilverLightLanguage-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                    <div><label for='mnuReceiving-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='mnuReceiving-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
 	                </div>
 	                <div class='promptControlRight'>
 	                    <div style='height:46px'></div>

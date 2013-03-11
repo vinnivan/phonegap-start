@@ -5,13 +5,13 @@
 <div id='frmInvInq' data-role='view' data-title='Inventory Inquiry' data-show='frmInvInq.viewModel.initialize' data-model='frmInvInq.viewModel' >
 <script>
 	var frmInvInq = frmInvInq || {};
-		frmInvInq.RWC_LOCATION_DATASET = new kendo.data.DataSource({ data: [{}] });
-		frmInvInq.RWC_CONFIG_DATASET = new kendo.data.DataSource({ data: [{}] });
-		frmInvInq.RWC_SIZE_DATASET = new kendo.data.DataSource({ data: [{}] });
-		frmInvInq.RWC_COLOR_DATASET = new kendo.data.DataSource({ data: [{}] });
-		frmInvInq.RWC_ITEM_IN_STOCK_DATASET = new kendo.data.DataSource({ data: [{}] });
+		frmInvInq.RWC_LOCATION_DATASET = new kendo.data.DataSource({ data: [{}]  });
+		frmInvInq.RWC_CONFIG_DATASET = new kendo.data.DataSource({ data: [{}]  });
+		frmInvInq.RWC_SIZE_DATASET = new kendo.data.DataSource({ data: [{}]  });
+		frmInvInq.RWC_COLOR_DATASET = new kendo.data.DataSource({ data: [{}]  });
+		frmInvInq.RWC_ITEM_IN_STOCK_DATASET = new kendo.data.DataSource({ data: [{}]  });
 		frmInvInq.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmInvInq' );
-		frmInvInq.RWC_DataSet1 = new kendo.data.DataSource({ data: [{}] });
+		frmInvInq.RWC_DataSet1 = new kendo.data.DataSource({ data: [{}]  });
 		frmInvInq.RWC_PromptControl1_Site_ResetClick = function(_value, _completeAction) {
 			var shouldContinue = true;
 			
@@ -847,7 +847,9 @@
 	            <div data-bind='visible: promptControl.isCurrentPromptList' >
 	                <ul id='frmInvInq-listControl' data-role='listview' ></ul>
 	            </div>
-	            <ul id='frmInvInq-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px; height: 200px; overflow: auto;'></ul>
+	            <div id='frmInvInq-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmInvInq-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
 	            <div data-bind='visible: promptControl.isCurrentPromptText' >
 	                <div class='promptControlLeft' >
 	                    <div><label for='frmInvInq-textInput' data-bind='text: promptControl.textControl.caption'></label></div>

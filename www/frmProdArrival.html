@@ -5,9 +5,9 @@
 <div id='frmProdArrival' data-role='view' data-title='Production Arrival' data-show='frmProdArrival.viewModel.initialize' data-model='frmProdArrival.viewModel' >
 <script>
 	var frmProdArrival = frmProdArrival || {};
-		frmProdArrival.RWC_Production_Details = new kendo.data.DataSource({ data: [{}] });
+		frmProdArrival.RWC_Production_Details = new kendo.data.DataSource({ data: [{}]  });
 		frmProdArrival.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmProdArrival' );
-		frmProdArrival.RWC_ARRIVAL_OVERVIEW_DATASET = new kendo.data.DataSource({ data: [{}] });
+		frmProdArrival.RWC_ARRIVAL_OVERVIEW_DATASET = new kendo.data.DataSource({ data: [{}]  });
 		frmProdArrival.RWC_PromptControl1_PO_Number_ValidEvent = function(_value, _completeAction) {
 			
 			var shouldContinue = true;
@@ -396,7 +396,9 @@
 	            <div data-bind='visible: promptControl.isCurrentPromptList' >
 	                <ul id='frmProdArrival-listControl' data-role='listview' ></ul>
 	            </div>
-	            <ul id='frmProdArrival-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px; height: 200px; overflow: auto;'></ul>
+	            <div id='frmProdArrival-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmProdArrival-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
 	            <div data-bind='visible: promptControl.isCurrentPromptText' >
 	                <div class='promptControlLeft' >
 	                    <div><label for='frmProdArrival-textInput' data-bind='text: promptControl.textControl.caption'></label></div>

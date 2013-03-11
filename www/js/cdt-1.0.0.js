@@ -1,4 +1,4 @@
-var cdt = cdt || {};
+﻿var cdt = cdt || {};
 
 var global = global || {};
 
@@ -913,6 +913,8 @@ cdt.promptControl = function (_resetCaptionId, _previousCaptionId, _abortCaption
     var model;
     var testItems = new kendo.data.ObservableArray([{ Test: "Hello" }, { Test: "world" }]);
     var historyListControl;
+    var historyScroller;
+    var historyScrollerHtml;
 
     var isCurrentPromptText = false;
     var isCurrentPromptPassword = false;
@@ -1110,6 +1112,13 @@ cdt.promptControl = function (_resetCaptionId, _previousCaptionId, _abortCaption
         
         cdt.Application.getCurrentViewModel().resetScroller();
 
+        var height = historyScrollerHtml.height();
+        var scrollHeight = height - historyScroller.scrollHeight();
+
+        if(scrollHeight < 0 ) {
+            historyScroller.scrollTo(0, scrollHeight);
+        }
+
     };
 
     var returnToPrompt = function (_promptName, _resetFirst, _resetHistory) {
@@ -1239,6 +1248,8 @@ cdt.promptControl = function (_resetCaptionId, _previousCaptionId, _abortCaption
         listControl.initialize();
 
         historyListControl = $("#" + controlPrefix + "-historyList").data().kendoMobileListView.setDataSource(kendo.data.DataSource.create(promptHistoryStack));
+        historyScrollerHtml = $("#" + controlPrefix + "-historyScroller");
+        historyScroller = historyScrollerHtml.data().kendoMobileScroller;
     };
 
     var onActivate = function () {

@@ -6,9 +6,9 @@
 <script>
 	var frmItemLabel = frmItemLabel || {};
 		frmItemLabel.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmItemLabel' );
-		frmItemLabel.RWC_CONFIG_DATASET = new kendo.data.DataSource({ data: [{}] });
-		frmItemLabel.RWC_SIZE_DATASET = new kendo.data.DataSource({ data: [{}] });
-		frmItemLabel.RWC_COLOR_DATASET = new kendo.data.DataSource({ data: [{}] });
+		frmItemLabel.RWC_CONFIG_DATASET = new kendo.data.DataSource({ data: [{}]  });
+		frmItemLabel.RWC_SIZE_DATASET = new kendo.data.DataSource({ data: [{}]  });
+		frmItemLabel.RWC_COLOR_DATASET = new kendo.data.DataSource({ data: [{}]  });
 		
 		frmItemLabel.Site = new cdt.prompt("Site", // Name
 				"Site" , // Caption Resource ID
@@ -834,7 +834,9 @@
 	            <div data-bind='visible: promptControl.isCurrentPromptList' >
 	                <ul id='frmItemLabel-listControl' data-role='listview' ></ul>
 	            </div>
-	            <ul id='frmItemLabel-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px; height: 200px; overflow: auto;'></ul>
+	            <div id='frmItemLabel-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmItemLabel-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
 	            <div data-bind='visible: promptControl.isCurrentPromptText' >
 	                <div class='promptControlLeft' >
 	                    <div><label for='frmItemLabel-textInput' data-bind='text: promptControl.textControl.caption'></label></div>

@@ -5,8 +5,8 @@
 <div id='frmSalesPickingRoute' data-role='view' data-title='Sales Picking Route' data-show='frmSalesPickingRoute.viewModel.initialize' data-model='frmSalesPickingRoute.viewModel' >
 <script>
 	var frmSalesPickingRoute = frmSalesPickingRoute || {};
-		frmSalesPickingRoute.RWC_Sales_Route_Details = new kendo.data.DataSource({ data: [{}] });
-		frmSalesPickingRoute.RWC_Sales_Routes = new kendo.data.DataSource({ data: [{}] });
+		frmSalesPickingRoute.RWC_Sales_Route_Details = new kendo.data.DataSource({ data: [{}]  });
+		frmSalesPickingRoute.RWC_Sales_Routes = new kendo.data.DataSource({ data: [{}]  });
 		frmSalesPickingRoute.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmSalesPickingRoute' );
 		frmSalesPickingRoute.RWC_PromptControl1_Route_ValidEvent = function(_value, _completeAction) {
 			
@@ -406,7 +406,9 @@
 	            <div data-bind='visible: promptControl.isCurrentPromptList' >
 	                <ul id='frmSalesPickingRoute-listControl' data-role='listview' ></ul>
 	            </div>
-	            <ul id='frmSalesPickingRoute-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px; height: 200px; overflow: auto;'></ul>
+	            <div id='frmSalesPickingRoute-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmSalesPickingRoute-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
 	            <div data-bind='visible: promptControl.isCurrentPromptText' >
 	                <div class='promptControlLeft' >
 	                    <div><label for='frmSalesPickingRoute-textInput' data-bind='text: promptControl.textControl.caption'></label></div>

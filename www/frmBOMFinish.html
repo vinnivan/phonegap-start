@@ -5,11 +5,11 @@
 <div id='frmBOMFinish' data-role='view' data-title='BOM Finish ' data-show='frmBOMFinish.viewModel.initialize' data-model='frmBOMFinish.viewModel' >
 <script>
 	var frmBOMFinish = frmBOMFinish || {};
-		frmBOMFinish.RWC_DataSet1 = new kendo.data.DataSource({ data: [{}] });
+		frmBOMFinish.RWC_DataSet1 = new kendo.data.DataSource({ data: [{}]  });
 		frmBOMFinish.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmBOMFinish' );
-		frmBOMFinish.RWC_CONFIG_DATASET = new kendo.data.DataSource({ data: [{}] });
-		frmBOMFinish.RWC_SIZE_DATASET = new kendo.data.DataSource({ data: [{}] });
-		frmBOMFinish.RWC_COLOR_DATASET = new kendo.data.DataSource({ data: [{}] });
+		frmBOMFinish.RWC_CONFIG_DATASET = new kendo.data.DataSource({ data: [{}]  });
+		frmBOMFinish.RWC_SIZE_DATASET = new kendo.data.DataSource({ data: [{}]  });
+		frmBOMFinish.RWC_COLOR_DATASET = new kendo.data.DataSource({ data: [{}]  });
 		frmBOMFinish.RWC_PromptControl1_Site_ResetClick = function(_value, _completeAction) {
 			var shouldContinue = true;
 			
@@ -1120,7 +1120,9 @@
 	            <div data-bind='visible: promptControl.isCurrentPromptList' >
 	                <ul id='frmBOMFinish-listControl' data-role='listview' ></ul>
 	            </div>
-	            <ul id='frmBOMFinish-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px; height: 200px; overflow: auto;'></ul>
+	            <div id='frmBOMFinish-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmBOMFinish-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
 	            <div data-bind='visible: promptControl.isCurrentPromptText' >
 	                <div class='promptControlLeft' >
 	                    <div><label for='frmBOMFinish-textInput' data-bind='text: promptControl.textControl.caption'></label></div>

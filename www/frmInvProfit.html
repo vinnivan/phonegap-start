@@ -6,9 +6,9 @@
 <script>
 	var frmInvProfit = frmInvProfit || {};
 		frmInvProfit.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmInvProfit' );
-		frmInvProfit.RWC_CONFIG_DATASET = new kendo.data.DataSource({ data: [{}] });
-		frmInvProfit.RWC_SIZE_DATASET = new kendo.data.DataSource({ data: [{}] });
-		frmInvProfit.RWC_COLOR_DATASET = new kendo.data.DataSource({ data: [{}] });
+		frmInvProfit.RWC_CONFIG_DATASET = new kendo.data.DataSource({ data: [{}]  });
+		frmInvProfit.RWC_SIZE_DATASET = new kendo.data.DataSource({ data: [{}]  });
+		frmInvProfit.RWC_COLOR_DATASET = new kendo.data.DataSource({ data: [{}]  });
 		frmInvProfit.RWC_PromptControl1_Site_ResetClick = function(_value, _completeAction) {
 			var shouldContinue = true;
 			
@@ -1053,7 +1053,9 @@
 	            <div data-bind='visible: promptControl.isCurrentPromptList' >
 	                <ul id='frmInvProfit-listControl' data-role='listview' ></ul>
 	            </div>
-	            <ul id='frmInvProfit-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px; height: 200px; overflow: auto;'></ul>
+	            <div id='frmInvProfit-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmInvProfit-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
 	            <div data-bind='visible: promptControl.isCurrentPromptText' >
 	                <div class='promptControlLeft' >
 	                    <div><label for='frmInvProfit-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
