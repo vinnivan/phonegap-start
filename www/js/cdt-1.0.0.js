@@ -684,12 +684,12 @@ cdt.textControl = function (_name, _captionId) {
         if (hasFocus == false && secondsWaited < 2000) {
             uiTextControl.focus();
             cdt.Diagnostics.writeLine("setting timeout!");
-            setTimeout("cdt.Application.getCurrentViewModel().promptControl.getCurrentControl().focus(" + secondsWaited + ")", 100);
+            //setTimeout("cdt.Application.getCurrentViewModel().promptControl.getCurrentControl().focus(" + secondsWaited + ")", 100);
         }
         else if (focusCount < 2 && secondsWaited < 2000) {
             uiTextControl.focus();
             cdt.Diagnostics.writeLine("setting Focus again!");
-            setTimeout("cdt.Application.getCurrentViewModel().promptControl.getCurrentControl().focus(" + secondsWaited + ")", 100);
+            //setTimeout("cdt.Application.getCurrentViewModel().promptControl.getCurrentControl().focus(" + secondsWaited + ")", 100);
         }
     };
 
