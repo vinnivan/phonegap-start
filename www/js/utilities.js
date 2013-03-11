@@ -19,8 +19,8 @@ var showScanner = function () {
 
     alert("Show Scanner!");
 
-    var scanner = window.PhoneGap.require("cordova/plugin/BarcodeScanner");
-
+    //var scanner = window.PhoneGap.require("cordova/plugin/BarcodeScanner");
+    var scanner = window.plugins.barcodeScanner;
     if (scanner == null) {
 
         alert("Did not create scanner!");
