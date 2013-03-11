@@ -43,7 +43,7 @@ $(window).bind("hashchange", function (e) {
 
     var main = $("#" + cdt.Application.getCurrentViewModel().viewId);
 
-    alert("ViewChanged:" + url + "\r\nMain:" + main );
+    alert("ViewChanged:" + url + "\r\current:" + cdt.Application.getCurrentViewModel().viewId);
 
 
 
@@ -73,7 +73,7 @@ $(window).bind("hashchange", function (e) {
             //showView = undefined;
 
 
-            alert("Show new view");
+            alert("Show new view:" + showView);
 
             main.animate({ left: '-=300' }, 400);
             mm.animate({ left: '-=300' }, 400, function () {
