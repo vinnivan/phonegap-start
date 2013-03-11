@@ -18,6 +18,16 @@
         padding:30px;
     }
 
+    .radleyLogo
+    {
+        display:block;
+        margin-left:auto;
+        width:40%;
+        margin-right:auto;
+        padding:20px;
+    }
+
+
     .promptControlLeft
     {
         position: absolute;
@@ -137,6 +147,13 @@
         color: #000000;
     }
 
+    #mainMenuContainer 
+    {
+        width: 300px; 
+        height: 500px;
+        background-color: red;
+        display:none;
+    }
 
 
     @media all and (max-width: 400px)
@@ -162,6 +179,35 @@
             width: 100px;
         }
     }
+
+    @media all and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)
+    {
+        #mainMenuContainer 
+        {
+            width: 300px; 
+            height: 1000px;
+        }
+    }
+
+    @media all and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)
+    {
+        #mainMenuContainer 
+        {
+            width: 300px; 
+            height: 750px;
+        }
+    }
+
+
+    @media all and (min-device-width: 1025px)
+    {
+        #mainMenuContainer 
+        {
+            width: 300px; 
+            height: 640px;
+        }
+    }
+
 
     #overview
     {
