@@ -45,7 +45,11 @@ $(window).bind("hashchange", function (e) {
 
     alert("ViewChanged:" + url + "\r\current:" + cdt.Application.getCurrentViewModel().viewId);
 
-
+    if (url == "" && ("#" + cdt.Application.getCurrentViewModel().viewId) !=  cdt.Application.getStartView()) {
+        
+        showView = cdt.Application.getStartView();
+        alert("Show start:" + showView);
+    }
 
     if (url == "#main") {
         alert("Show main");
