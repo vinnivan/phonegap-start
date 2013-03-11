@@ -122,7 +122,7 @@
 
     #mainMenu .item-title, #mainMenu .item-info
     {
-        color: #fff;
+        color: #000;
     }
 
 
@@ -134,7 +134,7 @@
 
     #mainMenu .head
     {
-        color: white;
+        color: #000000;
     }
 
 
