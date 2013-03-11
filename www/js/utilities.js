@@ -8,7 +8,7 @@ var showMenu = function () {
     var mm = $("#mainMenuContainer");
 
     if (mm.is(":visible")) {
-        kendo.history.navigate("#:back");
+        kendo.history.navigate("logon.html");
     } else {
         kendo.history.navigate("#main");
     }
@@ -61,9 +61,12 @@ $(window).bind("hashchange", function (e) {
 
         if (showView == undefined) {
 
-            alert("Unknown!");
+            alert("Not a menu selection");
 
             if (main.css("left") != "0px") {
+
+                alert("Adjusting Menu");
+
                 main.animate({ left: '-=300' }, 400);
                 mm.animate({ left: '-=300' }, 400, function () { mm.data().kendoMobileScroller.reset(); mm.hide(0); cdt.Application.getCurrentViewModel().setIsMenuOpen(false); });
 
