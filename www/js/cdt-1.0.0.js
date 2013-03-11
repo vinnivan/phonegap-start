@@ -1,4 +1,4 @@
-﻿var cdt = cdt || {};
+var cdt = cdt || {};
 
 var global = global || {};
 
@@ -681,15 +681,16 @@ cdt.textControl = function (_name, _captionId) {
         secondsWaited += 100;
         cdt.Diagnostics.writeLine("checking focus:" + hasFocus);
 
+
         if (hasFocus == false && secondsWaited < 2000) {
             uiTextControl.focus();
-            cdt.Diagnostics.writeLine("setting timeout!");
-            //setTimeout("cdt.Application.getCurrentViewModel().promptControl.getCurrentControl().focus(" + secondsWaited + ")", 100);
+            //cdt.Diagnostics.writeLine("setting timeout!");
+            setTimeout("cdt.Application.getCurrentViewModel().promptControl.getCurrentControl().focus(" + secondsWaited + ")", 100);
         }
         else if (focusCount < 2 && secondsWaited < 2000) {
             uiTextControl.focus();
-            cdt.Diagnostics.writeLine("setting Focus again!");
-            //setTimeout("cdt.Application.getCurrentViewModel().promptControl.getCurrentControl().focus(" + secondsWaited + ")", 100);
+            //cdt.Diagnostics.writeLine("setting Focus again!");
+            setTimeout("cdt.Application.getCurrentViewModel().promptControl.getCurrentControl().focus(" + secondsWaited + ")", 100);
         }
     };
 
@@ -934,7 +935,12 @@ cdt.promptControl = function (_resetCaptionId, _previousCaptionId, _abortCaption
         // Validations are asynchronous so pass callback
         currentPrompt.validate(value, function (_success) {
             if (_success) {
-                showNextPrompt();
+
+                getCurrentControl().blur();
+
+                setTimeout("cdt.Application.getCurrentViewModel().promptControl.showNextPrompt()", 100);
+
+                //showNextPrompt();
             }
         });
     };
@@ -944,6 +950,9 @@ cdt.promptControl = function (_resetCaptionId, _previousCaptionId, _abortCaption
         // Validations are asynchronous so pass callback
         currentPrompt.validate(e.dataItem, function (_success) {
             if (_success) {
+
+
+
                 showNextPrompt();
             }
         });
@@ -1339,6 +1348,7 @@ cdt.promptControl = function (_resetCaptionId, _previousCaptionId, _abortCaption
         // methods 
         addPrompt: addPrompt,
         showFirstPrompt: showFirstPrompt,
+        showNextPrompt: showNextPrompt,
         showPrompt: showPrompt,
         returnToPrompt: returnToPrompt,
         loadResources: loadResources,
