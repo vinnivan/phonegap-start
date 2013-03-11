@@ -14,25 +14,19 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRODID","");
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRODUCTIONORDER","");
-			CurrentLine= 3;RWC_PromptControl1.ReceiveDataSetFromQueue("Pick_Production_list");
-			VariableManager.Instance.SetVariableInteger("Var.frmProductionPickList","ROWCNT",RWC_PromptControl1.GetRowCount("Pick_Production_list"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","ROWCNT") < 1)
-			{
-			
-			CurrentLine= 6;NetManager.Instance.SendValidation("tv_Production_Picking_List",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
-			CurrentLine= 7;RWC_PromptControl1.ReceiveDataSetFromQueue("Pick_Production_list");
-			VariableManager.Instance.SetVariableInteger("Var.frmProductionPickList","ROWCNT2",RWC_PromptControl1.GetRowCount("Pick_Production_list"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","ROWCNT2") < 1)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No items found for picking"),2);
-			CloseForm( );
-			
-			}
-			
-			}
+			// Line#  1 : Var.PRODID = Dsv.RWC_ProductionList.PRODID
+			// Line#  2 : Var.PRODUCTIONORDER = Dsv.RWC_ProductionList.PRODID
+			// Line#  3 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Pick_Production_list ) 
+			// Line#  4 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , Pick_Production_list ) 
+			// Line#  5 : If Var.ROWCNT < (Numeric) 1
+			// Line#  6 : SendValidation ( tv_Production_Picking_List ) 
+			// Line#  7 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Pick_Production_list ) 
+			// Line#  8 : Var.ROWCNT2 = ListPromptGetRowCount ( RWC_PromptControl1 , Pick_Production_list ) 
+			// Line#  9 : If Var.ROWCNT2 < (Numeric) 1
+			// Line#  10 : StatusWindow ( @Info , @No items found for picking , 2 ) 
+			// Line#  11 : CloseForm( )
+			// Line#  12 : End If
+			// Line#  13 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -43,18 +37,15 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			UpdateData( false );
-			CurrentLine= 4;RWC_PromptControl1.ReceiveDataSetFromQueue("Production");
-			VariableManager.Instance.SetVariableInteger("Var.frmProductionPickList","ROWCNT",RWC_PromptControl1.GetRowCount("Production"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","ROWCNT") < 1)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No Production Orders Found for picking"),2);
-			CloseForm( );
-			
-			}
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : UpdateData ( Get ) 
+			// Line#  4 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Production ) 
+			// Line#  5 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , Production ) 
+			// Line#  6 : If Var.ROWCNT < (Numeric) 1
+			// Line#  7 : StatusWindow ( @Info , @No Production Orders Found for picking , 2 ) 
+			// Line#  8 : CloseForm( )
+			// Line#  9 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -112,154 +103,88 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","REC_ID","");
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PROD_JOURNAL_ID","");
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","ITEM_ID","");
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","WAREHOUSE","");
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","SITE","");
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","LOCATION","");
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","CONFIGURATION","");
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","COLOR","");
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","SIZE","");
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","SERIAL_NO","");
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","BATCH_NUMBER","");
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PALLET_ID","");
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","QTY_NEEDED","");
-			RWC_PromptControl1.SetHistoryText("Production",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),true);
-			if(cdt.VariableManager.getLocalVariable("PALLET_ID").ToUpper().CompareTo("".ToUpper()) != 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_NAME",ResourceMgr.GetCDTString("Pallet Id: {Var.PALLET_ID}"));
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
-			RWC_PromptControl1.SetDetailText("Blank",cdt.VariableManager.getLocalVariable("PRINT_DISP"),true);
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("LOCATION").ToUpper().CompareTo("".ToUpper()) != 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_NAME",ResourceMgr.GetCDTString("Location: {Var.LOCATION}"));
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
-			if(cdt.VariableManager.getLocalVariable("PALLET_ID").ToUpper().CompareTo("".ToUpper()) != 0)
-			{
-			
-			RWC_PromptControl1.SetDetailText("Production",cdt.VariableManager.getLocalVariable("PRINT_DISP"),false);
-			
-			}
-			else
-			{
-			
-			RWC_PromptControl1.SetDetailText("Production",cdt.VariableManager.getLocalVariable("PRINT_DISP"),true);
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("WAREHOUSE").ToUpper().CompareTo("".ToUpper()) != 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_NAME",ResourceMgr.GetCDTString("Warehouse: {Var.WAREHOUSE}"));
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
-			if(cdt.VariableManager.getLocalVariable("LOCATION").ToUpper().CompareTo("".ToUpper()) != 0)
-			{
-			
-			RWC_PromptControl1.SetDetailText("Production",cdt.VariableManager.getLocalVariable("PRINT_DISP"),false);
-			
-			}
-			else
-			{
-			
-			RWC_PromptControl1.SetDetailText("Production",cdt.VariableManager.getLocalVariable("PRINT_DISP"),true);
-			
-			}
-			
-			}
-			RWC_PromptControl1.SetHistoryText("Pick_Production_list",ResourceMgr.GetCDTString("Item Id"),cdt.VariableManager.getLocalVariable("ITEM_ID"),true);
-			if(cdt.VariableManager.getLocalVariable("SERIAL_NO").ToUpper().CompareTo("".ToUpper()) != 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_NAME",ResourceMgr.GetCDTString("Serial No: {Var.SERIAL_NO}"));
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
-			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),true);
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("BATCH_NUMBER").ToUpper().CompareTo("".ToUpper()) != 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_NAME",ResourceMgr.GetCDTString("Batch No: {Var.BATCH_NUMBER}"));
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
-			if(cdt.VariableManager.getLocalVariable("SERIAL_NO").ToUpper().CompareTo("".ToUpper()) != 0)
-			{
-			
-			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),false);
-			
-			}
-			else
-			{
-			
-			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),true);
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("SIZE").ToUpper().CompareTo("".ToUpper()) != 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_NAME",ResourceMgr.GetCDTString("Size: {Var.SERIAL_NO}"));
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
-			if(cdt.VariableManager.getLocalVariable("BATCH_NUMBER").ToUpper().CompareTo("".ToUpper()) != 0)
-			{
-			
-			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),false);
-			
-			}
-			else
-			{
-			
-			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),true);
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("CONFIGURATION").ToUpper().CompareTo("".ToUpper()) != 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_NAME",ResourceMgr.GetCDTString("Configuration: {Var.CONFIGURATION}"));
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
-			if(cdt.VariableManager.getLocalVariable("SIZE").ToUpper().CompareTo("".ToUpper()) != 0)
-			{
-			
-			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),false);
-			
-			}
-			else
-			{
-			
-			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),true);
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("COLOR").ToUpper().CompareTo("".ToUpper()) != 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_NAME",ResourceMgr.GetCDTString("Color: {Var.COLOR}"));
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
-			if(cdt.VariableManager.getLocalVariable("CONFIGURATION").ToUpper().CompareTo("".ToUpper()) != 0)
-			{
-			
-			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),false);
-			
-			}
-			else
-			{
-			
-			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),true);
-			
-			}
-			
-			}
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_NAME",ResourceMgr.GetCDTString("Qty Needed: {Var.QTY_NEEDED}"));
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_NAME")));
-			RWC_PromptControl1.SetDetailText("Pick_Production_list",cdt.VariableManager.getLocalVariable("PRINT_DISP"),false);
+			// Line#  1 : Var.REC_ID = Dsv.RWC_ProductionPickingList.RECID
+			// Line#  2 : Var.PROD_JOURNAL_ID = Dsv.RWC_ProductionPickingList.JOURNALID
+			// Line#  3 : Var.ITEM_ID = Dsv.RWC_ProductionPickingList.ITEMID
+			// Line#  4 : Var.WAREHOUSE = Dsv.RWC_ProductionPickingList.INVENTLOCATIONID
+			// Line#  5 : Var.SITE = Dsv.RWC_ProductionPickingList.INVENTSITEID
+			// Line#  6 : Var.LOCATION = Dsv.RWC_ProductionPickingList.WMSLOCATIONID
+			// Line#  7 : Var.CONFIGURATION = Dsv.RWC_ProductionPickingList.CONFIGID
+			// Line#  8 : Var.COLOR = Dsv.RWC_ProductionPickingList.INVENTCOLORID
+			// Line#  9 : Var.SIZE = Dsv.RWC_ProductionPickingList.INVENTSIZEID
+			// Line#  10 : Var.SERIAL_NO = Dsv.RWC_ProductionPickingList.INVENTSERIALID
+			// Line#  11 : Var.BATCH_NUMBER = Dsv.RWC_ProductionPickingList.INVENTBATCHID
+			// Line#  12 : Var.PALLET_ID = Dsv.RWC_ProductionPickingList.WMSPALLETID
+			// Line#  13 : Var.QTY_NEEDED = Dsv.RWC_ProductionPickingList.INVENTCONSUMP
+			// Line#  14 : SetHistoryTextEx ( RWC_PromptControl1 , Production , @Site , Var.SITE , True ) 
+			// Line#  15 : If Var.PALLET_ID <> (Alpha) ""
+			// Line#  16 : Var.PRINT_NAME = @Pallet Id: {Var.PALLET_ID}
+			// Line#  17 : Var.PRINT_DISP = BuildTemplateString ( Var.PRINT_NAME ) 
+			// Line#  18 : SetDetailText ( RWC_PromptControl1 , Blank , Var.PRINT_DISP , True ) 
+			// Line#  19 : End If
+			// Line#  20 : If Var.LOCATION <> (Alpha) ""
+			// Line#  21 : Var.PRINT_NAME = @Location: {Var.LOCATION}
+			// Line#  22 : Var.PRINT_DISP = BuildTemplateString ( Var.PRINT_NAME ) 
+			// Line#  23 : If Var.PALLET_ID <> (Alpha) ""
+			// Line#  24 : SetDetailText ( RWC_PromptControl1 , Production , Var.PRINT_DISP , False ) 
+			// Line#  25 : Else
+			// Line#  26 : SetDetailText ( RWC_PromptControl1 , Production , Var.PRINT_DISP , True ) 
+			// Line#  27 : End If
+			// Line#  28 : End If
+			// Line#  29 : If Var.WAREHOUSE <> (Alpha) ""
+			// Line#  30 : Var.PRINT_NAME = @Warehouse: {Var.WAREHOUSE}
+			// Line#  31 : Var.PRINT_DISP = BuildTemplateString ( Var.PRINT_NAME ) 
+			// Line#  32 : If Var.LOCATION <> (Alpha) ""
+			// Line#  33 : SetDetailText ( RWC_PromptControl1 , Production , Var.PRINT_DISP , False ) 
+			// Line#  34 : Else
+			// Line#  35 : SetDetailText ( RWC_PromptControl1 , Production , Var.PRINT_DISP , True ) 
+			// Line#  36 : End If
+			// Line#  37 : End If
+			// Line#  38 : SetHistoryTextEx ( RWC_PromptControl1 , Pick_Production_list , @Item Id , Var.ITEM_ID , True ) 
+			// Line#  39 : If Var.SERIAL_NO <> (Alpha) ""
+			// Line#  40 : Var.PRINT_NAME = @Serial No: {Var.SERIAL_NO}
+			// Line#  41 : Var.PRINT_DISP = BuildTemplateString ( Var.PRINT_NAME ) 
+			// Line#  42 : SetDetailText ( RWC_PromptControl1 , Pick_Production_list , Var.PRINT_DISP , True ) 
+			// Line#  43 : End If
+			// Line#  44 : If Var.BATCH_NUMBER <> (Alpha) ""
+			// Line#  45 : Var.PRINT_NAME = @Batch No: {Var.BATCH_NUMBER}
+			// Line#  46 : Var.PRINT_DISP = BuildTemplateString ( Var.PRINT_NAME ) 
+			// Line#  47 : If Var.SERIAL_NO <> (Alpha) ""
+			// Line#  48 : SetDetailText ( RWC_PromptControl1 , Pick_Production_list , Var.PRINT_DISP , False ) 
+			// Line#  49 : Else
+			// Line#  50 : SetDetailText ( RWC_PromptControl1 , Pick_Production_list , Var.PRINT_DISP , True ) 
+			// Line#  51 : End If
+			// Line#  52 : End If
+			// Line#  53 : If Var.SIZE <> (Alpha) ""
+			// Line#  54 : Var.PRINT_NAME = @Size: {Var.SERIAL_NO}
+			// Line#  55 : Var.PRINT_DISP = BuildTemplateString ( Var.PRINT_NAME ) 
+			// Line#  56 : If Var.BATCH_NUMBER <> (Alpha) ""
+			// Line#  57 : SetDetailText ( RWC_PromptControl1 , Pick_Production_list , Var.PRINT_DISP , False ) 
+			// Line#  58 : Else
+			// Line#  59 : SetDetailText ( RWC_PromptControl1 , Pick_Production_list , Var.PRINT_DISP , True ) 
+			// Line#  60 : End If
+			// Line#  61 : End If
+			// Line#  62 : If Var.CONFIGURATION <> (Alpha) ""
+			// Line#  63 : Var.PRINT_NAME = @Configuration: {Var.CONFIGURATION}
+			// Line#  64 : Var.PRINT_DISP = BuildTemplateString ( Var.PRINT_NAME ) 
+			// Line#  65 : If Var.SIZE <> (Alpha) ""
+			// Line#  66 : SetDetailText ( RWC_PromptControl1 , Pick_Production_list , Var.PRINT_DISP , False ) 
+			// Line#  67 : Else
+			// Line#  68 : SetDetailText ( RWC_PromptControl1 , Pick_Production_list , Var.PRINT_DISP , True ) 
+			// Line#  69 : End If
+			// Line#  70 : End If
+			// Line#  71 : If Var.COLOR <> (Alpha) ""
+			// Line#  72 : Var.PRINT_NAME = @Color: {Var.COLOR}
+			// Line#  73 : Var.PRINT_DISP = BuildTemplateString ( Var.PRINT_NAME ) 
+			// Line#  74 : If Var.CONFIGURATION <> (Alpha) ""
+			// Line#  75 : SetDetailText ( RWC_PromptControl1 , Pick_Production_list , Var.PRINT_DISP , False ) 
+			// Line#  76 : Else
+			// Line#  77 : SetDetailText ( RWC_PromptControl1 , Pick_Production_list , Var.PRINT_DISP , True ) 
+			// Line#  78 : End If
+			// Line#  79 : End If
+			// Line#  80 : Var.PRINT_NAME = @Qty Needed: {Var.QTY_NEEDED}
+			// Line#  81 : Var.PRINT_DISP = BuildTemplateString ( Var.PRINT_NAME ) 
+			// Line#  82 : SetDetailText ( RWC_PromptControl1 , Pick_Production_list , Var.PRINT_DISP , False ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -270,18 +195,15 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			UpdateData( false );
-			CurrentLine= 4;RWC_PromptControl1.ReceiveDataSetFromQueue("Production");
-			VariableManager.Instance.SetVariableInteger("Var.frmProductionPickList","ROWCNT",RWC_PromptControl1.GetRowCount("Production"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","ROWCNT") < 1)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No Production Orders Found for picking"),2);
-			CloseForm( );
-			
-			}
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : UpdateData ( Get ) 
+			// Line#  4 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Production ) 
+			// Line#  5 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , Production ) 
+			// Line#  6 : If Var.ROWCNT < (Numeric) 1
+			// Line#  7 : StatusWindow ( @Info , @No Production Orders Found for picking , 2 ) 
+			// Line#  8 : CloseForm( )
+			// Line#  9 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -365,44 +287,32 @@
 			
 		try{
 			
-			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","QTY") <= 0)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Quantity must be greater than 0"),2);
-			RWC_PromptControl1.IsValid(false);
-			cancel = true;
-			return;
-			
-			}
-			if(VariableManager.Instance.GetVariableFloat("Mvr.v_Item_In_Stock","AVAILABELE_WITH_RESERVE") <= 0)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No quantity available"),2);
-			cancel = true;
-			return;
-			
-			}
-			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","QTY") > VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","QTY_NEEDED"))
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_QTY",ResourceMgr.GetCDTString("Quantity must be less than {Var.QTY_NEEDED}"));
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_QTY")));
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),cdt.VariableManager.getLocalVariable("PRINT_DISP"),2);
-			RWC_PromptControl1.IsValid(false);
-			cancel = true;
-			return;
-			}
-			else if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","QTY") > VariableManager.Instance.GetVariableFloat("Mvr.v_Item_In_Stock","AVAILABELE_WITH_RESERVE"))
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_QTY",ResourceMgr.GetCDTString("Quantity must be less than available quantity {AVAILABELE_WITH_RESERVE}"));
-			VariableManager.Instance.SetVariable("Var.frmProductionPickList","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_QTY")));
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),cdt.VariableManager.getLocalVariable("PRINT_DISP"),2);
-			RWC_PromptControl1.IsValid(false);
-			cancel = true;
-			return;
-			
-			}
+			// Line#  1 : If Var.QTY <= (Numeric) 0
+			// Line#  2 : StatusWindow ( @Info , @Quantity must be greater than 0 , 2 ) 
+			// Line#  3 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  4 : CancelDefault( )
+			// Line#  5 : ExitEvent( )
+			// Line#  6 : End If
+			// Line#  7 : If Mvr.v_Item_In_Stock.AVAILABELE_WITH_RESERVE <= (Numeric) 0
+			// Line#  8 : StatusWindow ( @Info , @No quantity available , 2 ) 
+			// Line#  9 : CancelDefault( )
+			// Line#  10 : ExitEvent( )
+			// Line#  11 : End If
+			// Line#  12 : If Var.QTY > (Numeric) Var.QTY_NEEDED
+			// Line#  13 : Var.PRINT_QTY = @Quantity must be less than {Var.QTY_NEEDED}
+			// Line#  14 : Var.PRINT_DISP = BuildTemplateString ( Var.PRINT_QTY ) 
+			// Line#  15 : StatusWindow ( @Info , Var.PRINT_DISP , 2 ) 
+			// Line#  16 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  17 : CancelDefault( )
+			// Line#  18 : ExitEvent( )
+			// Line#  19 : Else If Var.QTY > (Numeric) Mvr.v_Item_In_Stock.AVAILABELE_WITH_RESERVE
+			// Line#  20 : Var.PRINT_QTY = @Quantity must be less than available quantity {AVAILABELE_WITH_RESERVE}
+			// Line#  21 : Var.PRINT_DISP = BuildTemplateString ( Var.PRINT_QTY ) 
+			// Line#  22 : StatusWindow ( @Info , Var.PRINT_DISP , 2 ) 
+			// Line#  23 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  24 : CancelDefault( )
+			// Line#  25 : ExitEvent( )
+			// Line#  26 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -413,18 +323,15 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			UpdateData( false );
-			CurrentLine= 4;RWC_PromptControl1.ReceiveDataSetFromQueue("Production");
-			VariableManager.Instance.SetVariableInteger("Var.frmProductionPickList","ROWCNT",RWC_PromptControl1.GetRowCount("Production"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","ROWCNT") < 1)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No Production Orders Found for picking"),2);
-			CloseForm( );
-			
-			}
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : UpdateData ( Get ) 
+			// Line#  4 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Production ) 
+			// Line#  5 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , Production ) 
+			// Line#  6 : If Var.ROWCNT < (Numeric) 1
+			// Line#  7 : StatusWindow ( @Info , @No Production Orders Found for picking , 2 ) 
+			// Line#  8 : CloseForm( )
+			// Line#  9 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -468,50 +375,34 @@
 			
 		try{
 			
-			if(cdt.VariableManager.getLocalVariable("CONFIRM").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			CurrentLine= 2;NetManager.Instance.SendTransaction("t_Post_Production_Picking_List",GetVariableNameSpace());
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Success"),ResourceMgr.GetCDTString("Transaction Sent!"),2);
-			cancel = true;
-			ResetForm( );
-			UpdateData( false );
-			CurrentLine= 7;RWC_PromptControl1.ReceiveDataSetFromQueue("Production");
-			VariableManager.Instance.SetVariableInteger("Var.frmProductionPickList","ROWCNT",RWC_PromptControl1.GetRowCount("Production"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","ROWCNT") < 1)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No Production Orders Found for picking"),2);
-			CloseForm( );
-			
-			}
-			}
-			else if(cdt.VariableManager.getLocalVariable("CONFIRM").ToUpper().CompareTo("N".ToUpper()) == 0)
-			{
-			
-			cancel = true;
-			ResetForm( );
-			UpdateData( false );
-			CurrentLine= 17;RWC_PromptControl1.ReceiveDataSetFromQueue("Production");
-			VariableManager.Instance.SetVariableInteger("Var.frmProductionPickList","ROWCNT",RWC_PromptControl1.GetRowCount("Production"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","ROWCNT") < 1)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No Production Orders Found for picking"),2);
-			CloseForm( );
-			
-			}
-			
-			}
-			else
-			{
-			
-			ClientApplication.Instance.ShowStatusBox("Error","Answer must be Y or N.",2);
-			RWC_PromptControl1.IsValid(false);
-			cancel = true;
-			return;
-			
-			}
+			// Line#  1 : If Var.CONFIRM = (Alpha) Y
+			// Line#  2 : SendTransaction ( t_Post_Production_Picking_List ) 
+			// Line#  3 : StatusWindow ( @Success , @Transaction Sent! , 2 ) 
+			// Line#  4 : CancelDefault( )
+			// Line#  5 : ResetForm( )
+			// Line#  6 : UpdateData ( Get ) 
+			// Line#  7 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Production ) 
+			// Line#  8 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , Production ) 
+			// Line#  9 : If Var.ROWCNT < (Numeric) 1
+			// Line#  10 : StatusWindow ( @Info , @No Production Orders Found for picking , 2 ) 
+			// Line#  11 : CloseForm( )
+			// Line#  12 : End If
+			// Line#  13 : Else If Var.CONFIRM = (Alpha) N
+			// Line#  14 : CancelDefault( )
+			// Line#  15 : ResetForm( )
+			// Line#  16 : UpdateData ( Get ) 
+			// Line#  17 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Production ) 
+			// Line#  18 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , Production ) 
+			// Line#  19 : If Var.ROWCNT < (Numeric) 1
+			// Line#  20 : StatusWindow ( @Info , @No Production Orders Found for picking , 2 ) 
+			// Line#  21 : CloseForm( )
+			// Line#  22 : End If
+			// Line#  23 : Else
+			// Line#  24 : StatusWindow ( Error , Answer must be Y or N. , 2 ) 
+			// Line#  25 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  26 : CancelDefault( )
+			// Line#  27 : ExitEvent( )
+			// Line#  28 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -522,18 +413,15 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			UpdateData( false );
-			CurrentLine= 4;RWC_PromptControl1.ReceiveDataSetFromQueue("Production");
-			VariableManager.Instance.SetVariableInteger("Var.frmProductionPickList","ROWCNT",RWC_PromptControl1.GetRowCount("Production"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmProductionPickList","ROWCNT") < 1)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No Production Orders Found for picking"),2);
-			CloseForm( );
-			
-			}
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : UpdateData ( Get ) 
+			// Line#  4 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Production ) 
+			// Line#  5 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , Production ) 
+			// Line#  6 : If Var.ROWCNT < (Numeric) 1
+			// Line#  7 : StatusWindow ( @Info , @No Production Orders Found for picking , 2 ) 
+			// Line#  8 : CloseForm( )
+			// Line#  9 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);

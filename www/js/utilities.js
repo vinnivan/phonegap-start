@@ -17,30 +17,24 @@ var showMenu = function () {
 
 var showScanner = function () {
 
-    alert("Show Scanner!");
-
-    //var scanner = window.PhoneGap.require("cordova/plugin/BarcodeScanner");
     var scanner = window.plugins.barcodeScanner;
     if (scanner == null) {
 
-        alert("Did not create scanner!");
+        alert("Unable to initialize scanner!");
+        return;
     }
-
-    scanner.scan(function (result) {
-        cdt.Application.getCurrentViewModel().promptControl.onScan(result.text, result.cancelled);
-    }, function (error) {
-        alert("Scanning failed: " + error);
-        cdt.Application.getCurrentViewModel().promptControl.onScan(result.text, true);
+    try{
+        scanner.scan(function (result) {
+            cdt.Application.getCurrentViewModel().promptControl.onScan(result.text, result.cancelled);
+        }, function (error) {
+            alert("Scanning failed: " + error);
+            cdt.Application.getCurrentViewModel().promptControl.onScan(result.text, true);
+        }
+                );
     }
-            );
-
-    //window.plugins.barcodeScanner.scan(function (result) {
-    //    cdt.Application.getCurrentViewModel().promptControl.onScan(result.text, result.cancelled);
-    //}, function (error) {
-    //    alert("Scanning failed: " + error);
-    //    cdt.Application.getCurrentViewModel().promptControl.onScan(result.text, true);
-    //}
-    //        );
+    catch (ex) {
+        alert(ex);
+    }
 };
 
 var showView = undefined;

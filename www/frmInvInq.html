@@ -18,14 +18,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvInq","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvInq","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -69,14 +69,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvInq","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvInq","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -225,9 +225,9 @@
 		try{
 			
 			
-			VariableManager.Instance.SetVariable("Var.frmInvInq","SITE","");
-			VariableManager.Instance.SetVariable("Var.frmInvInq","WAREHOUSE","");
-			RWC_PromptControl1.ReturnToPrompt("Site",true,true);
+			// Line#  1 : Var.SITE = 
+			// Line#  2 : Var.WAREHOUSE = 
+			// Line#  3 : ReturnToPrompt ( RWC_PromptControl1 , Site , True , True ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -238,14 +238,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvInq","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvInq","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -256,7 +256,7 @@
 		try{
 			
 			
-			e.Cancel = true;
+			// Line#  1 : CancelDefault( )
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -300,211 +300,107 @@
 			
 		try{
 			
-			if(cdt.VariableManager.getLocalVariable("LOCATION").ToUpper().CompareTo("".ToUpper()) != 0)
-			{
-			
-			CurrentLine= 2;NetManager.Instance.SendValidation("v_Location",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
-			VariableManager.Instance.SetVariable("Var.frmInvInq","STATUS","");
-			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
-			{
-			
-			RWC_PromptControl1.IsValid(false);
-			cancel = true;
-			return;
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("SIZE_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_SIZE").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 11;RWC_PromptControl1.ReceiveDataSetFromQueue("Size");
-			RWC_PromptControl1.ShowPrompt("Size");
-			return;
-			}
-			else if(cdt.VariableManager.getLocalVariable("QTY_OF_SIZE").ToUpper().CompareTo("1".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvInq","SIZE","");
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvInq","SIZE","");
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 22;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
-			RWC_PromptControl1.ShowPrompt("Color");
-			return;
-			}
-			else if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvInq","COLOR","");
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvInq","COLOR","");
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 33;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
-			RWC_PromptControl1.ShowPrompt("Config");
-			return;
-			}
-			else if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvInq","CONFIGURATION","");
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvInq","CONFIGURATION","");
-			
-			}
-			
-			}
-			CurrentLine= 42;RWC_PromptControl1.ReceiveDataSetFromQueue("InventoryList");
-			VariableManager.Instance.SetVariableInteger("Var.frmInvInq","ROWCNT",RWC_PromptControl1.GetRowCount("InventoryList"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmInvInq","ROWCNT") < 1)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No item in stock."),2);
-			cancel = true;
-			return;
-			
-			}
-			else
-			{
-			
-			RWC_PromptControl1.ShowPrompt("InventoryList");
-			return;
-			
-			}
-			}
-			else if(cdt.VariableManager.getLocalVariable("ITEM_ID").ToUpper().CompareTo("".ToUpper()) == 0)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Item or location is required"),2);
-			RWC_PromptControl1.IsValid(false);
-			cancel = true;
-			return;
-			}
-			else if(cdt.VariableManager.getLocalVariable("ITEM_ID").ToUpper().CompareTo("".ToUpper()) != 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("SIZE_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_SIZE").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 60;RWC_PromptControl1.ReceiveDataSetFromQueue("Size");
-			RWC_PromptControl1.ShowPrompt("Size");
-			return;
-			}
-			else if(cdt.VariableManager.getLocalVariable("QTY_OF_SIZE").ToUpper().CompareTo("1".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvInq","SIZE","");
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvInq","SIZE","");
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 71;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
-			RWC_PromptControl1.ShowPrompt("Color");
-			return;
-			}
-			else if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvInq","COLOR","");
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvInq","COLOR","");
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 82;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
-			RWC_PromptControl1.ShowPrompt("Config");
-			return;
-			}
-			else if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvInq","CONFIGURATION","");
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvInq","CONFIGURATION","");
-			
-			}
-			
-			}
-			CurrentLine= 91;RWC_PromptControl1.ReceiveDataSetFromQueue("InventoryList");
-			VariableManager.Instance.SetVariableInteger("Var.frmInvInq","ROWCNT",RWC_PromptControl1.GetRowCount("InventoryList"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmInvInq","ROWCNT") < 1)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No item in stock."),2);
-			cancel = true;
-			return;
-			
-			}
-			else
-			{
-			
-			RWC_PromptControl1.ShowPrompt("InventoryList");
-			return;
-			
-			}
-			
-			}
+			// Line#  1 : If Var.LOCATION <> (Alpha) ""
+			// Line#  2 : SendValidation ( v_Location ) 
+			// Line#  3 : Var.STATUS = Mvr.v_Location.STATUS
+			// Line#  4 : If Var.STATUS <> (Alpha) Y
+			// Line#  5 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  6 : CancelDefault( )
+			// Line#  7 : ExitEvent( )
+			// Line#  8 : End If
+			// Line#  9 : If Var.SIZE_ACTIVE = (Alpha) Y
+			// Line#  10 : If Var.QTY_OF_SIZE > (Alpha) 1
+			// Line#  11 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Size ) 
+			// Line#  12 : ShowPrompt ( RWC_PromptControl1 , Size ) 
+			// Line#  13 : ExitEvent( )
+			// Line#  14 : Else If Var.QTY_OF_SIZE = (Alpha) 1
+			// Line#  15 : Var.SIZE = Mvr.v_Item.STANDARDINVENTSIZEID
+			// Line#  16 : Else
+			// Line#  17 : Var.SIZE = 
+			// Line#  18 : End If
+			// Line#  19 : End If
+			// Line#  20 : If Var.COLOR_ACTIVE = (Alpha) Y
+			// Line#  21 : If Var.QTY_OF_COLOR > (Alpha) 1
+			// Line#  22 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Color ) 
+			// Line#  23 : ShowPrompt ( RWC_PromptControl1 , Color ) 
+			// Line#  24 : ExitEvent( )
+			// Line#  25 : Else If Var.QTY_OF_COLOR = (Alpha) 1
+			// Line#  26 : Var.COLOR = Mvr.v_Item.STANDARDINVENTSIZEID
+			// Line#  27 : Else
+			// Line#  28 : Var.COLOR = 
+			// Line#  29 : End If
+			// Line#  30 : End If
+			// Line#  31 : If Var.CONFIGURATION_ACTIVE = (Alpha) Y
+			// Line#  32 : If Var.QTY_OF_CONFIGURATION > (Alpha) 1
+			// Line#  33 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Config ) 
+			// Line#  34 : ShowPrompt ( RWC_PromptControl1 , Config ) 
+			// Line#  35 : ExitEvent( )
+			// Line#  36 : Else If Var.QTY_OF_CONFIGURATION = (Alpha) 1
+			// Line#  37 : Var.CONFIGURATION = Mvr.v_Item.STANDARDCONFIGID
+			// Line#  38 : Else
+			// Line#  39 : Var.CONFIGURATION = 
+			// Line#  40 : End If
+			// Line#  41 : End If
+			// Line#  42 : DownloadListPromptFromQueue ( RWC_PromptControl1 , InventoryList ) 
+			// Line#  43 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , InventoryList ) 
+			// Line#  44 : If Var.ROWCNT < (Numeric) 1
+			// Line#  45 : StatusWindow ( @Info , @No item in stock. , 2 ) 
+			// Line#  46 : CancelDefault( )
+			// Line#  47 : ExitEvent( )
+			// Line#  48 : Else
+			// Line#  49 : ShowPrompt ( RWC_PromptControl1 , InventoryList ) 
+			// Line#  50 : ExitEvent( )
+			// Line#  51 : End If
+			// Line#  52 : Else If Var.ITEM_ID = (Alpha) ""
+			// Line#  53 : StatusWindow ( @Info , @Item or location is required , 2 ) 
+			// Line#  54 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  55 : CancelDefault( )
+			// Line#  56 : ExitEvent( )
+			// Line#  57 : Else If Var.ITEM_ID <> (Alpha) ""
+			// Line#  58 : If Var.SIZE_ACTIVE = (Alpha) Y
+			// Line#  59 : If Var.QTY_OF_SIZE > (Alpha) 1
+			// Line#  60 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Size ) 
+			// Line#  61 : ShowPrompt ( RWC_PromptControl1 , Size ) 
+			// Line#  62 : ExitEvent( )
+			// Line#  63 : Else If Var.QTY_OF_SIZE = (Alpha) 1
+			// Line#  64 : Var.SIZE = Mvr.v_Item.STANDARDINVENTSIZEID
+			// Line#  65 : Else
+			// Line#  66 : Var.SIZE = 
+			// Line#  67 : End If
+			// Line#  68 : End If
+			// Line#  69 : If Var.COLOR_ACTIVE = (Alpha) Y
+			// Line#  70 : If Var.QTY_OF_COLOR > (Alpha) 1
+			// Line#  71 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Color ) 
+			// Line#  72 : ShowPrompt ( RWC_PromptControl1 , Color ) 
+			// Line#  73 : ExitEvent( )
+			// Line#  74 : Else If Var.QTY_OF_COLOR = (Alpha) 1
+			// Line#  75 : Var.COLOR = Mvr.v_Item.STANDARDINVENTSIZEID
+			// Line#  76 : Else
+			// Line#  77 : Var.COLOR = 
+			// Line#  78 : End If
+			// Line#  79 : End If
+			// Line#  80 : If Var.CONFIGURATION_ACTIVE = (Alpha) Y
+			// Line#  81 : If Var.QTY_OF_CONFIGURATION > (Alpha) 1
+			// Line#  82 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Config ) 
+			// Line#  83 : ShowPrompt ( RWC_PromptControl1 , Config ) 
+			// Line#  84 : ExitEvent( )
+			// Line#  85 : Else If Var.QTY_OF_CONFIGURATION = (Alpha) 1
+			// Line#  86 : Var.CONFIGURATION = Mvr.v_Item.STANDARDCONFIGID
+			// Line#  87 : Else
+			// Line#  88 : Var.CONFIGURATION = 
+			// Line#  89 : End If
+			// Line#  90 : End If
+			// Line#  91 : DownloadListPromptFromQueue ( RWC_PromptControl1 , InventoryList ) 
+			// Line#  92 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , InventoryList ) 
+			// Line#  93 : If Var.ROWCNT < (Numeric) 1
+			// Line#  94 : StatusWindow ( @Info , @No item in stock. , 2 ) 
+			// Line#  95 : CancelDefault( )
+			// Line#  96 : ExitEvent( )
+			// Line#  97 : Else
+			// Line#  98 : ShowPrompt ( RWC_PromptControl1 , InventoryList ) 
+			// Line#  99 : ExitEvent( )
+			// Line#  100 : End If
+			// Line#  101 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -515,14 +411,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvInq","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvInq","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -566,51 +462,32 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmInvInq","SIZE","");
-			RWC_PromptControl1.SetHistoryText("Size",ResourceMgr.GetCDTString("Size"),cdt.VariableManager.getLocalVariable("SIZE"),true);
-			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 5;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
-			RWC_PromptControl1.ShowPrompt("Color");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 12;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
-			RWC_PromptControl1.ShowPrompt("Config");
-			return;
-			
-			}
-			
-			}
-			CurrentLine= 17;RWC_PromptControl1.ReceiveDataSetFromQueue("InventoryList");
-			VariableManager.Instance.SetVariableInteger("Var.frmInvInq","ROWCNT",RWC_PromptControl1.GetRowCount("InventoryList"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmInvInq","ROWCNT") < 1)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No item in stock."),2);
-			cancel = true;
-			return;
-			
-			}
-			else
-			{
-			
-			RWC_PromptControl1.ShowPrompt("InventoryList");
-			return;
-			
-			}
+			// Line#  1 : Var.SIZE = Dsv.RWC_SIZE_DATASET.NAME
+			// Line#  2 : SetHistoryTextEx ( RWC_PromptControl1 , Size , @Size , Var.SIZE , True ) 
+			// Line#  3 : If Var.COLOR_ACTIVE = (Alpha) Y
+			// Line#  4 : If Var.QTY_OF_COLOR > (Alpha) 1
+			// Line#  5 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Color ) 
+			// Line#  6 : ShowPrompt ( RWC_PromptControl1 , Color ) 
+			// Line#  7 : ExitEvent( )
+			// Line#  8 : End If
+			// Line#  9 : End If
+			// Line#  10 : If Var.CONFIGURATION_ACTIVE = (Alpha) Y
+			// Line#  11 : If Var.QTY_OF_CONFIGURATION > (Alpha) 1
+			// Line#  12 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Config ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , Config ) 
+			// Line#  14 : ExitEvent( )
+			// Line#  15 : End If
+			// Line#  16 : End If
+			// Line#  17 : DownloadListPromptFromQueue ( RWC_PromptControl1 , InventoryList ) 
+			// Line#  18 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , InventoryList ) 
+			// Line#  19 : If Var.ROWCNT < (Numeric) 1
+			// Line#  20 : StatusWindow ( @Info , @No item in stock. , 2 ) 
+			// Line#  21 : CancelDefault( )
+			// Line#  22 : ExitEvent( )
+			// Line#  23 : Else
+			// Line#  24 : ShowPrompt ( RWC_PromptControl1 , InventoryList ) 
+			// Line#  25 : ExitEvent( )
+			// Line#  26 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -621,13 +498,13 @@
 		try{
 			
 			
-			e.Cancel = true;
-			VariableManager.Instance.SetVariable("Var.frmInvInq","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvInq","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : Var.SITE = Gvr.SITE
+			// Line#  3 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  4 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  6 : UpdateData ( Get ) 
+			// Line#  7 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -682,38 +559,25 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmInvInq","COLOR","");
-			RWC_PromptControl1.SetHistoryText("Color",ResourceMgr.GetCDTString("Color"),cdt.VariableManager.getLocalVariable("COLOR"),true);
-			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 5;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
-			RWC_PromptControl1.ShowPrompt("Config");
-			return;
-			
-			}
-			
-			}
-			CurrentLine= 10;RWC_PromptControl1.ReceiveDataSetFromQueue("InventoryList");
-			VariableManager.Instance.SetVariableInteger("Var.frmInvInq","ROWCNT",RWC_PromptControl1.GetRowCount("InventoryList"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmInvInq","ROWCNT") < 1)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No item in stock."),2);
-			cancel = true;
-			return;
-			
-			}
-			else
-			{
-			
-			RWC_PromptControl1.ShowPrompt("InventoryList");
-			return;
-			
-			}
+			// Line#  1 : Var.COLOR = Dsv.RWC_COLOR_DATASET.NAME
+			// Line#  2 : SetHistoryTextEx ( RWC_PromptControl1 , Color , @Color , Var.COLOR , True ) 
+			// Line#  3 : If Var.CONFIGURATION_ACTIVE = (Alpha) Y
+			// Line#  4 : If Var.QTY_OF_CONFIGURATION > (Alpha) 1
+			// Line#  5 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Config ) 
+			// Line#  6 : ShowPrompt ( RWC_PromptControl1 , Config ) 
+			// Line#  7 : ExitEvent( )
+			// Line#  8 : End If
+			// Line#  9 : End If
+			// Line#  10 : DownloadListPromptFromQueue ( RWC_PromptControl1 , InventoryList ) 
+			// Line#  11 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , InventoryList ) 
+			// Line#  12 : If Var.ROWCNT < (Numeric) 1
+			// Line#  13 : StatusWindow ( @Info , @No item in stock. , 2 ) 
+			// Line#  14 : CancelDefault( )
+			// Line#  15 : ExitEvent( )
+			// Line#  16 : Else
+			// Line#  17 : ShowPrompt ( RWC_PromptControl1 , InventoryList ) 
+			// Line#  18 : ExitEvent( )
+			// Line#  19 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -724,14 +588,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvInq","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvInq","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -786,23 +650,16 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmInvInq","CONFIGURATION","");
-			CurrentLine= 2;RWC_PromptControl1.ReceiveDataSetFromQueue("InventoryList");
-			VariableManager.Instance.SetVariableInteger("Var.frmInvInq","ROWCNT",RWC_PromptControl1.GetRowCount("InventoryList"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmInvInq","ROWCNT") < 1)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No item in stock."),2);
-			cancel = true;
-			return;
-			
-			}
-			else
-			{
-			
-			RWC_PromptControl1.ShowPrompt("InventoryList");
-			
-			}
+			// Line#  1 : Var.CONFIGURATION = Dsv.RWC_CONFIG_DATASET.NAME
+			// Line#  2 : DownloadListPromptFromQueue ( RWC_PromptControl1 , InventoryList ) 
+			// Line#  3 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , InventoryList ) 
+			// Line#  4 : If Var.ROWCNT < (Numeric) 1
+			// Line#  5 : StatusWindow ( @Info , @No item in stock. , 2 ) 
+			// Line#  6 : CancelDefault( )
+			// Line#  7 : ExitEvent( )
+			// Line#  8 : Else
+			// Line#  9 : ShowPrompt ( RWC_PromptControl1 , InventoryList ) 
+			// Line#  10 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -813,14 +670,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvInq","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvInq","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -875,7 +732,7 @@
 			
 		try{
 			
-			RWC_PromptControl1.ReturnToPrompt("PART",true,true);
+			// Line#  1 : ReturnToPrompt ( RWC_PromptControl1 , PART , True , True ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -886,14 +743,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvInq","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvInq","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);

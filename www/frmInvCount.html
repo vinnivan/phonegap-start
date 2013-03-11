@@ -15,14 +15,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvCount","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -66,14 +66,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvCount","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -243,9 +243,9 @@
 		try{
 			
 			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","WAREHOUSE","");
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SITE","");
-			RWC_PromptControl1.ReturnToPrompt("Site",false,true);
+			// Line#  1 : Var.WAREHOUSE = 
+			// Line#  2 : Var.SITE = 
+			// Line#  3 : ReturnToPrompt ( RWC_PromptControl1 , Site , False , True ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -256,14 +256,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvCount","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -274,7 +274,7 @@
 		try{
 			
 			
-			e.Cancel = true;
+			// Line#  1 : CancelDefault( )
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -318,94 +318,56 @@
 			
 		try{
 			
-			if(cdt.VariableManager.getLocalVariable("PALLET_ID_ACTIVE").ToUpper().CompareTo("YES".ToUpper()) == 0)
-			{
-			
-			RWC_PromptControl1.ShowPrompt("Pallet");
-			return;
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("SIZE_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_SIZE").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 7;RWC_PromptControl1.ReceiveDataSetFromQueue("Size");
-			RWC_PromptControl1.ShowPrompt("Size");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 14;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
-			RWC_PromptControl1.ShowPrompt("Color");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 21;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
-			RWC_PromptControl1.ShowPrompt("Config");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","BATCH_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Batch_Number");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","BATCH_NUMBER","");
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SERIAL_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Serial_No");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SERIAL_NO","");
-			
-			}
-			CurrentLine= 40;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
-			VariableManager.Instance.SetVariable("Var.frmInvCount","STATUS","");
-			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
-			{
-			
-			RWC_PromptControl1.SetHistoryText("From_Location",ResourceMgr.GetCDTString("On Hand"),"0",true);
-			RWC_PromptControl1.SetHistoryText("From_Location",ResourceMgr.GetCDTString("Location"),cdt.VariableManager.getLocalVariable("LOCATION"),false);
-			RWC_PromptControl1.ShowPrompt("QTY");
-			return;
-			
-			}
-			RWC_PromptControl1.SetHistoryText("From_Location",ResourceMgr.GetCDTString("On Hand"),"",true);
-			RWC_PromptControl1.SetHistoryText("From_Location",ResourceMgr.GetCDTString("Location"),cdt.VariableManager.getLocalVariable("LOCATION"),false);
-			RWC_PromptControl1.ShowPrompt("QTY");
+			// Line#  1 : If Var.PALLET_ID_ACTIVE = (Alpha) YES
+			// Line#  2 : ShowPrompt ( RWC_PromptControl1 , Pallet ) 
+			// Line#  3 : ExitEvent( )
+			// Line#  4 : End If
+			// Line#  5 : If Var.SIZE_ACTIVE = (Alpha) Y
+			// Line#  6 : If Var.QTY_OF_SIZE > (Alpha) 1
+			// Line#  7 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Size ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , Size ) 
+			// Line#  9 : ExitEvent( )
+			// Line#  10 : End If
+			// Line#  11 : End If
+			// Line#  12 : If Var.COLOR_ACTIVE = (Alpha) Y
+			// Line#  13 : If Var.QTY_OF_COLOR > (Alpha) 1
+			// Line#  14 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Color ) 
+			// Line#  15 : ShowPrompt ( RWC_PromptControl1 , Color ) 
+			// Line#  16 : ExitEvent( )
+			// Line#  17 : End If
+			// Line#  18 : End If
+			// Line#  19 : If Var.CONFIGURATION_ACTIVE = (Alpha) Y
+			// Line#  20 : If Var.QTY_OF_CONFIGURATION > (Alpha) 1
+			// Line#  21 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Config ) 
+			// Line#  22 : ShowPrompt ( RWC_PromptControl1 , Config ) 
+			// Line#  23 : ExitEvent( )
+			// Line#  24 : End If
+			// Line#  25 : End If
+			// Line#  26 : If Var.BATCH_NO_ACTIVE = (Alpha) Y
+			// Line#  27 : Var.BATCH_EXIST = True
+			// Line#  28 : ShowPrompt ( RWC_PromptControl1 , Batch_Number ) 
+			// Line#  29 : ExitEvent( )
+			// Line#  30 : Else
+			// Line#  31 : Var.BATCH_NUMBER = 
+			// Line#  32 : End If
+			// Line#  33 : If Var.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  34 : Var.SERIAL_EXIST = True
+			// Line#  35 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  36 : ExitEvent( )
+			// Line#  37 : Else
+			// Line#  38 : Var.SERIAL_NO = 
+			// Line#  39 : End If
+			// Line#  40 : SendValidation ( v_Item_In_Stock ) 
+			// Line#  41 : Var.STATUS = Mvr.v_Item_In_Stock.STATUS
+			// Line#  42 : If Var.STATUS <> (Alpha) Y
+			// Line#  43 : SetHistoryTextEx ( RWC_PromptControl1 , From_Location , @On Hand , 0 , True ) 
+			// Line#  44 : SetHistoryTextEx ( RWC_PromptControl1 , From_Location , @Location , Var.LOCATION , False ) 
+			// Line#  45 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
+			// Line#  46 : ExitEvent( )
+			// Line#  47 : End If
+			// Line#  48 : SetHistoryTextEx ( RWC_PromptControl1 , From_Location , @On Hand , Mvr.v_Item_In_Stock.AVAILABLE_PHYSICAL , True ) 
+			// Line#  49 : SetHistoryTextEx ( RWC_PromptControl1 , From_Location , @Location , Var.LOCATION , False ) 
+			// Line#  50 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -416,14 +378,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvCount","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -558,14 +520,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvCount","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -609,75 +571,46 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SIZE","");
-			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 4;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
-			RWC_PromptControl1.ShowPrompt("Color");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 11;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
-			RWC_PromptControl1.ShowPrompt("Config");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","BATCH_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Batch_Number");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","BATCH_NUMBER","");
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SERIAL_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Serial_No");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SERIAL_NO","");
-			
-			}
-			CurrentLine= 30;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
-			VariableManager.Instance.SetVariable("Var.frmInvCount","STATUS","");
-			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
-			{
-			
-			RWC_PromptControl1.SetHistoryText("Size",ResourceMgr.GetCDTString("On Hand"),"",true);
-			RWC_PromptControl1.SetHistoryText("Size",ResourceMgr.GetCDTString("Size"),cdt.VariableManager.getLocalVariable("Size"),false);
-			RWC_PromptControl1.ShowPrompt("QTY");
-			return;
-			
-			}
-			RWC_PromptControl1.SetHistoryText("Size",ResourceMgr.GetCDTString("On Hand"),"0",true);
-			RWC_PromptControl1.SetHistoryText("Size",ResourceMgr.GetCDTString("Size"),cdt.VariableManager.getLocalVariable("Size"),false);
-			RWC_PromptControl1.ShowPrompt("QTY");
+			// Line#  1 : Var.SIZE = Dsv.RWC_SIZE_DATASET.INVENTSIZEID
+			// Line#  2 : If Var.COLOR_ACTIVE = (Alpha) Y
+			// Line#  3 : If Var.QTY_OF_COLOR > (Alpha) 1
+			// Line#  4 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Color ) 
+			// Line#  5 : ShowPrompt ( RWC_PromptControl1 , Color ) 
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : End If
+			// Line#  8 : End If
+			// Line#  9 : If Var.CONFIGURATION_ACTIVE = (Alpha) Y
+			// Line#  10 : If Var.QTY_OF_CONFIGURATION > (Alpha) 1
+			// Line#  11 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Config ) 
+			// Line#  12 : ShowPrompt ( RWC_PromptControl1 , Config ) 
+			// Line#  13 : ExitEvent( )
+			// Line#  14 : End If
+			// Line#  15 : End If
+			// Line#  16 : If Var.BATCH_NO_ACTIVE = (Alpha) Y
+			// Line#  17 : Var.BATCH_EXIST = True
+			// Line#  18 : ShowPrompt ( RWC_PromptControl1 , Batch_Number ) 
+			// Line#  19 : ExitEvent( )
+			// Line#  20 : Else
+			// Line#  21 : Var.BATCH_NUMBER = 
+			// Line#  22 : End If
+			// Line#  23 : If Var.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  24 : Var.SERIAL_EXIST = True
+			// Line#  25 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  26 : ExitEvent( )
+			// Line#  27 : Else
+			// Line#  28 : Var.SERIAL_NO = 
+			// Line#  29 : End If
+			// Line#  30 : SendValidation ( v_Item_In_Stock ) 
+			// Line#  31 : Var.STATUS = Mvr.v_Item_In_Stock.STATUS
+			// Line#  32 : If Var.STATUS <> (Alpha) Y
+			// Line#  33 : SetHistoryTextEx ( RWC_PromptControl1 , Size , @On Hand , Mvr.v_Item_In_Stock.AVAILABLE_PHYSICAL , True ) 
+			// Line#  34 : SetHistoryTextEx ( RWC_PromptControl1 , Size , @Size , Var.Size , False ) 
+			// Line#  35 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
+			// Line#  36 : ExitEvent( )
+			// Line#  37 : End If
+			// Line#  38 : SetHistoryTextEx ( RWC_PromptControl1 , Size , @On Hand , 0 , True ) 
+			// Line#  39 : SetHistoryTextEx ( RWC_PromptControl1 , Size , @Size , Var.Size , False ) 
+			// Line#  40 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -688,14 +621,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvCount","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -753,62 +686,39 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","COLOR","");
-			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 4;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
-			RWC_PromptControl1.ShowPrompt("Config");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","BATCH_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Batch_Number");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","BATCH_NUMBER","");
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SERIAL_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Serial_No");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SERIAL_NO","");
-			
-			}
-			CurrentLine= 23;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
-			VariableManager.Instance.SetVariable("Var.frmInvCount","STATUS","");
-			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
-			{
-			
-			RWC_PromptControl1.SetHistoryText("Color",ResourceMgr.GetCDTString("On Hand"),"0",true);
-			RWC_PromptControl1.SetHistoryText("Color",ResourceMgr.GetCDTString("Color"),cdt.VariableManager.getLocalVariable("COLOR"),false);
-			RWC_PromptControl1.ShowPrompt("QTY");
-			return;
-			
-			}
-			RWC_PromptControl1.SetHistoryText("Color",ResourceMgr.GetCDTString("On Hand"),"",true);
-			RWC_PromptControl1.SetHistoryText("Color",ResourceMgr.GetCDTString("Color"),cdt.VariableManager.getLocalVariable("COLOR"),false);
-			RWC_PromptControl1.ShowPrompt("QTY");
+			// Line#  1 : Var.COLOR = Dsv.RWC_COLOR_DATASET.INVENTCOLORID
+			// Line#  2 : If Var.CONFIGURATION_ACTIVE = (Alpha) Y
+			// Line#  3 : If Var.QTY_OF_CONFIGURATION > (Alpha) 1
+			// Line#  4 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Config ) 
+			// Line#  5 : ShowPrompt ( RWC_PromptControl1 , Config ) 
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : End If
+			// Line#  8 : End If
+			// Line#  9 : If Var.BATCH_NO_ACTIVE = (Alpha) Y
+			// Line#  10 : Var.BATCH_EXIST = True
+			// Line#  11 : ShowPrompt ( RWC_PromptControl1 , Batch_Number ) 
+			// Line#  12 : ExitEvent( )
+			// Line#  13 : Else
+			// Line#  14 : Var.BATCH_NUMBER = 
+			// Line#  15 : End If
+			// Line#  16 : If Var.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  17 : Var.SERIAL_EXIST = True
+			// Line#  18 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  19 : ExitEvent( )
+			// Line#  20 : Else
+			// Line#  21 : Var.SERIAL_NO = 
+			// Line#  22 : End If
+			// Line#  23 : SendValidation ( v_Item_In_Stock ) 
+			// Line#  24 : Var.STATUS = Mvr.v_Item_In_Stock.STATUS
+			// Line#  25 : If Var.STATUS <> (Alpha) Y
+			// Line#  26 : SetHistoryTextEx ( RWC_PromptControl1 , Color , @On Hand , 0 , True ) 
+			// Line#  27 : SetHistoryTextEx ( RWC_PromptControl1 , Color , @Color , Var.COLOR , False ) 
+			// Line#  28 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
+			// Line#  29 : ExitEvent( )
+			// Line#  30 : End If
+			// Line#  31 : SetHistoryTextEx ( RWC_PromptControl1 , Color , @On Hand , Mvr.v_Item_In_Stock.AVAILABLE_PHYSICAL , True ) 
+			// Line#  32 : SetHistoryTextEx ( RWC_PromptControl1 , Color , @Color , Var.COLOR , False ) 
+			// Line#  33 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -819,14 +729,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvCount","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -884,49 +794,32 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","CONFIGURATION","");
-			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","BATCH_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Batch_Number");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","BATCH_NUMBER","");
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SERIAL_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Serial_No");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SERIAL_NO","");
-			
-			}
-			CurrentLine= 16;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
-			VariableManager.Instance.SetVariable("Var.frmInvCount","STATUS","");
-			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
-			{
-			
-			RWC_PromptControl1.SetHistoryText("Config",ResourceMgr.GetCDTString("On Hand"),"0",true);
-			RWC_PromptControl1.SetHistoryText("Config",ResourceMgr.GetCDTString("Config"),cdt.VariableManager.getLocalVariable("CONFIGURATION"),false);
-			RWC_PromptControl1.ShowPrompt("QTY");
-			return;
-			
-			}
-			RWC_PromptControl1.SetHistoryText("Config",ResourceMgr.GetCDTString("On Hand"),"",true);
-			RWC_PromptControl1.SetHistoryText("Config",ResourceMgr.GetCDTString("Config"),cdt.VariableManager.getLocalVariable("CONFIGURATION"),false);
-			RWC_PromptControl1.ShowPrompt("QTY");
+			// Line#  1 : Var.CONFIGURATION = Dsv.RWC_CONFIG_DATASET.CONFIGID
+			// Line#  2 : If Var.BATCH_NO_ACTIVE = (Alpha) Y
+			// Line#  3 : Var.BATCH_EXIST = True
+			// Line#  4 : ShowPrompt ( RWC_PromptControl1 , Batch_Number ) 
+			// Line#  5 : ExitEvent( )
+			// Line#  6 : Else
+			// Line#  7 : Var.BATCH_NUMBER = 
+			// Line#  8 : End If
+			// Line#  9 : If Var.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  10 : Var.SERIAL_EXIST = True
+			// Line#  11 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  12 : ExitEvent( )
+			// Line#  13 : Else
+			// Line#  14 : Var.SERIAL_NO = 
+			// Line#  15 : End If
+			// Line#  16 : SendValidation ( v_Item_In_Stock ) 
+			// Line#  17 : Var.STATUS = Mvr.v_Item_In_Stock.STATUS
+			// Line#  18 : If Var.STATUS <> (Alpha) Y
+			// Line#  19 : SetHistoryTextEx ( RWC_PromptControl1 , Config , @On Hand , 0 , True ) 
+			// Line#  20 : SetHistoryTextEx ( RWC_PromptControl1 , Config , @Config , Var.CONFIGURATION , False ) 
+			// Line#  21 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
+			// Line#  22 : ExitEvent( )
+			// Line#  23 : End If
+			// Line#  24 : SetHistoryTextEx ( RWC_PromptControl1 , Config , @On Hand , Mvr.v_Item_In_Stock.AVAILABLE_PHYSICAL , True ) 
+			// Line#  25 : SetHistoryTextEx ( RWC_PromptControl1 , Config , @Config , Var.CONFIGURATION , False ) 
+			// Line#  26 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -937,14 +830,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvCount","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -999,34 +892,24 @@
 			
 		try{
 			
-			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SERIAL_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Serial_No");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SERIAL_NO","");
-			
-			}
-			CurrentLine= 8;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
-			VariableManager.Instance.SetVariable("Var.frmInvCount","STATUS","");
-			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
-			{
-			
-			RWC_PromptControl1.SetHistoryText("Batch_Number",ResourceMgr.GetCDTString("On Hand"),"0",true);
-			RWC_PromptControl1.SetHistoryText("Batch_Number",ResourceMgr.GetCDTString("Batch Number"),cdt.VariableManager.getLocalVariable("BATCH_NUMBER"),false);
-			RWC_PromptControl1.ShowPrompt("QTY");
-			return;
-			
-			}
-			RWC_PromptControl1.SetHistoryText("Batch_Number",ResourceMgr.GetCDTString("On Hand"),"",true);
-			RWC_PromptControl1.SetHistoryText("Batch_Number",ResourceMgr.GetCDTString("Batch Number"),cdt.VariableManager.getLocalVariable("BATCH_NUMBER"),false);
-			RWC_PromptControl1.ShowPrompt("QTY");
+			// Line#  1 : If Var.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  2 : Var.SERIAL_EXIST = True
+			// Line#  3 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  4 : ExitEvent( )
+			// Line#  5 : Else
+			// Line#  6 : Var.SERIAL_NO = 
+			// Line#  7 : End If
+			// Line#  8 : SendValidation ( v_Item_In_Stock ) 
+			// Line#  9 : Var.STATUS = Mvr.v_Item_In_Stock.STATUS
+			// Line#  10 : If Var.STATUS <> (Alpha) Y
+			// Line#  11 : SetHistoryTextEx ( RWC_PromptControl1 , Batch_Number , @On Hand , 0 , True ) 
+			// Line#  12 : SetHistoryTextEx ( RWC_PromptControl1 , Batch_Number , @Batch Number , Var.BATCH_NUMBER , False ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
+			// Line#  14 : ExitEvent( )
+			// Line#  15 : End If
+			// Line#  16 : SetHistoryTextEx ( RWC_PromptControl1 , Batch_Number , @On Hand , Mvr.v_Item_In_Stock.AVAILABLE_PHYSICAL , True ) 
+			// Line#  17 : SetHistoryTextEx ( RWC_PromptControl1 , Batch_Number , @Batch Number , Var.BATCH_NUMBER , False ) 
+			// Line#  18 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1037,14 +920,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvCount","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1088,18 +971,15 @@
 			
 		try{
 			
-			CurrentLine= 1;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
-			VariableManager.Instance.SetVariable("Var.frmInvCount","STATUS","");
-			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
-			{
-			
-			RWC_PromptControl1.SetHistoryText("Serial_No",ResourceMgr.GetCDTString("On Hand"),"0",true);
-			RWC_PromptControl1.SetHistoryText("Serial_No",ResourceMgr.GetCDTString("Serial"),cdt.VariableManager.getLocalVariable("SERIAL_NO"),false);
-			return;
-			
-			}
-			RWC_PromptControl1.SetHistoryText("Serial_No",ResourceMgr.GetCDTString("On Hand"),"",true);
-			RWC_PromptControl1.SetHistoryText("Serial_No",ResourceMgr.GetCDTString("Serial"),cdt.VariableManager.getLocalVariable("SERIAL_NO"),false);
+			// Line#  1 : SendValidation ( v_Item_In_Stock ) 
+			// Line#  2 : Var.STATUS = Mvr.v_Item_In_Stock.STATUS
+			// Line#  3 : If Var.STATUS <> (Alpha) Y
+			// Line#  4 : SetHistoryTextEx ( RWC_PromptControl1 , Serial_No , @On Hand , 0 , True ) 
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Serial_No , @Serial , Var.SERIAL_NO , False ) 
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : End If
+			// Line#  8 : SetHistoryTextEx ( RWC_PromptControl1 , Serial_No , @On Hand , Mvr.v_Item_In_Stock.AVAILABLE_PHYSICAL , True ) 
+			// Line#  9 : SetHistoryTextEx ( RWC_PromptControl1 , Serial_No , @Serial , Var.SERIAL_NO , False ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1110,14 +990,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvCount","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1161,29 +1041,20 @@
 			
 		try{
 			
-			if(VariableManager.Instance.GetVariableFloat("Var.frmInvCount","COUNTED") < 0)
-			{
-			
-			RWC_PromptControl1.IsValid(false);
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Counted quantiy must be greather than or equal to 0."),2);
-			cancel = true;
-			return;
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(VariableManager.Instance.GetVariableFloat("Var.frmInvCount","COUNTED") > 1)
-			{
-			
-			RWC_PromptControl1.IsValid(false);
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Counted quantiy must be 1 or 0."),2);
-			cancel = true;
-			return;
-			
-			}
-			
-			}
+			// Line#  1 : If Var.COUNTED < (Numeric) 0
+			// Line#  2 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  3 : StatusWindow ( @Info , @Counted quantiy must be greather than or equal to 0. , 2 ) 
+			// Line#  4 : CancelDefault( )
+			// Line#  5 : ExitEvent( )
+			// Line#  6 : End If
+			// Line#  7 : If Var.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  8 : If Var.COUNTED > (Numeric) 1
+			// Line#  9 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  10 : StatusWindow ( @Info , @Counted quantiy must be 1 or 0. , 2 ) 
+			// Line#  11 : CancelDefault( )
+			// Line#  12 : ExitEvent( )
+			// Line#  13 : End If
+			// Line#  14 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1194,14 +1065,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvCount","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1245,34 +1116,24 @@
 			
 		try{
 			
-			if(cdt.VariableManager.getLocalVariable("CONFIRM").CompareTo("Y") == 0)
-			{
-			
-			CurrentLine= 2;NetManager.Instance.SendTransaction("t_Counting_Journal",GetVariableNameSpace());
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Success"),ResourceMgr.GetCDTString("Transaction Sent!"),2);
-			RWC_PromptControl1.ReturnToPrompt("PART",true,true);
-			}
-			else if(cdt.VariableManager.getLocalVariable("CONFIRM").ToUpper().CompareTo("N".ToUpper()) == 0)
-			{
-			
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvCount","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			RWC_PromptControl1.ShowPrompt("PART");
-			UpdateData( false );
-			
-			}
-			else
-			{
-			
-			ClientApplication.Instance.ShowStatusBox("Error","Answer must be Y or N.",2);
-			RWC_PromptControl1.IsValid(false);
-			cancel = true;
-			return;
-			
-			}
+			// Line#  1 : If Var.CONFIRM = Y
+			// Line#  2 : SendTransaction ( t_Counting_Journal ) 
+			// Line#  3 : StatusWindow ( @Success , @Transaction Sent! , 2 ) 
+			// Line#  4 : ReturnToPrompt ( RWC_PromptControl1 , PART , True , True ) 
+			// Line#  5 : Else If Var.CONFIRM = (Alpha) N
+			// Line#  6 : ResetForm( )
+			// Line#  7 : Var.SITE = Gvr.SITE
+			// Line#  8 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  9 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  10 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  11 : ShowPrompt ( RWC_PromptControl1 , PART ) 
+			// Line#  12 : UpdateData ( Get ) 
+			// Line#  13 : Else
+			// Line#  14 : StatusWindow ( Error , Answer must be Y or N. , 2 ) 
+			// Line#  15 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  16 : CancelDefault( )
+			// Line#  17 : ExitEvent( )
+			// Line#  18 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1283,14 +1144,14 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvCount","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Site",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Site , @Site , Var.SITE , False ) 
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);

@@ -14,18 +14,15 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","QTY","");
-			CurrentLine= 2;RWC_PromptControl1.ReceiveDataSetFromQueue("Route_Details");
-			VariableManager.Instance.SetVariableInteger("Var.frmSalesPickingRoute","ROWCNT",RWC_PromptControl1.GetRowCount("Route_Details"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmSalesPickingRoute","ROWCNT") < 1)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Error No Route Lines!"),2);
-			cancel = true;
-			return;
-			
-			}
-			RWC_PromptControl1.ShowPrompt("Route_Details");
+			// Line#  1 : Var.QTY = 
+			// Line#  2 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Route_Details ) 
+			// Line#  3 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , Route_Details ) 
+			// Line#  4 : If Var.ROWCNT < (Numeric) 1
+			// Line#  5 : StatusWindow ( @Info , @Error No Route Lines! , 2 ) 
+			// Line#  6 : CancelDefault( )
+			// Line#  7 : ExitEvent( )
+			// Line#  8 : End If
+			// Line#  9 : ShowPrompt ( RWC_PromptControl1 , Route_Details ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -36,19 +33,16 @@
 		try{
 			
 			
-			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","QTY","");
-			CurrentLine= 2;RWC_PromptControl1.ReceiveDataSetFromQueue("Route_Overview");
-			VariableManager.Instance.SetVariableInteger("Var.frmSalesPickingRoute","ROWCNT",RWC_PromptControl1.GetRowCount("Route_Overview"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmSalesPickingRoute","ROWCNT") < 1)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No Routes Found!"),2);
-			
-			return;
-			
-			}
-			RWC_PromptControl1.SetHistoryText("Route","",true);
-			RWC_PromptControl1.ShowPrompt("Route_Overview");
+			// Line#  1 : Var.QTY = 
+			// Line#  2 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Route_Overview ) 
+			// Line#  3 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , Route_Overview ) 
+			// Line#  4 : If Var.ROWCNT < (Numeric) 1
+			// Line#  5 : StatusWindow ( @Info , @No Routes Found! , 2 ) 
+			// Line#  6 : CancelDefault( )
+			// Line#  7 : ExitEvent( )
+			// Line#  8 : End If
+			// Line#  9 : SetHistoryText ( RWC_PromptControl1 , Route ,  , True ) 
+			// Line#  10 : ShowPrompt ( RWC_PromptControl1 , Route_Overview ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -92,19 +86,16 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","ROUTE_ID","");
-			RWC_PromptControl1.SetHistoryText("Route_Overview",ResourceMgr.GetCDTString("Route Id"),cdt.VariableManager.getLocalVariable("ROUTE_ID"),true);
-			CurrentLine= 3;RWC_PromptControl1.ReceiveDataSetFromQueue("Route_Details");
-			VariableManager.Instance.SetVariableInteger("Var.frmSalesPickingRoute","ROWCNT",RWC_PromptControl1.GetRowCount("Route_Details"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmSalesPickingRoute","ROWCNT") < 1)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Error No Route Lines!"),2);
-			cancel = true;
-			return;
-			
-			}
-			RWC_PromptControl1.ShowPrompt("Route_Details");
+			// Line#  1 : Var.ROUTE_ID = Dsv.RWC_Sales_Routes.ROUTEID
+			// Line#  2 : SetHistoryTextEx ( RWC_PromptControl1 , Route_Overview , @Route Id , Var.ROUTE_ID , True ) 
+			// Line#  3 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Route_Details ) 
+			// Line#  4 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , Route_Details ) 
+			// Line#  5 : If Var.ROWCNT < (Numeric) 1
+			// Line#  6 : StatusWindow ( @Info , @Error No Route Lines! , 2 ) 
+			// Line#  7 : CancelDefault( )
+			// Line#  8 : ExitEvent( )
+			// Line#  9 : End If
+			// Line#  10 : ShowPrompt ( RWC_PromptControl1 , Route_Details ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -162,58 +153,43 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","ORDER_ID","");
-			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","Status","");
-			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","RequestedQTY","");
-			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","ITEM_ID","");
-			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","WAREHOUSE","");
-			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","SITE","");
-			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","LOCATION","");
-			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","CONFIGURATION","");
-			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","COLOR","");
-			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","SIZE","");
-			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","SERIAL_NO","");
-			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","BATCH_NUMBER","");
-			RWC_PromptControl1.SetHistoryText("Route_Details",ResourceMgr.GetCDTString("Requested Quantity"),cdt.VariableManager.getLocalVariable("RequestedQTY"),true);
-			RWC_PromptControl1.SetHistoryText("Route_Details",ResourceMgr.GetCDTString("Item Number"),"",false);
-			RWC_PromptControl1.SetHistoryText("Route_Details",ResourceMgr.GetCDTString("Order No"),cdt.VariableManager.getLocalVariable("ORDER_ID"),false);
-			if(cdt.VariableManager.getLocalVariable("Status").ToUpper().CompareTo("Picked".ToUpper()) == 0)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Item been picked!"),2);
-			cancel = true;
-			return;
-			}
-			else if(cdt.VariableManager.getLocalVariable("Status").ToUpper().CompareTo("Staged".ToUpper()) == 0)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Item been picked!"),2);
-			cancel = true;
-			return;
-			}
-			else if(cdt.VariableManager.getLocalVariable("Status").ToUpper().CompareTo("Loaded".ToUpper()) == 0)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Item been picked!"),2);
-			cancel = true;
-			return;
-			}
-			else if(cdt.VariableManager.getLocalVariable("Status").ToUpper().CompareTo("Complete".ToUpper()) == 0)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Item been picked!"),2);
-			cancel = true;
-			return;
-			}
-			else if(cdt.VariableManager.getLocalVariable("Status").ToUpper().CompareTo("Cancelled".ToUpper()) == 0)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Item been Cancelled!"),2);
-			cancel = true;
-			return;
-			
-			}
-			RWC_PromptControl1.ShowPrompt("QTY");
+			// Line#  1 : Var.ORDER_ID = Dsv.RWC_Sales_Route_Details.INVENTORY_ORDER
+			// Line#  2 : Var.Status = Dsv.RWC_Sales_Route_Details.HANDLING_STATUS
+			// Line#  3 : Var.RequestedQTY = Dsv.RWC_Sales_Route_Details.REQUESTED_QUANTITY
+			// Line#  4 : Var.ITEM_ID = Dsv.RWC_Sales_Route_Details.ITEM_NUMBER
+			// Line#  5 : Var.WAREHOUSE = Dsv.RWC_Sales_Route_Details.WAREHOUSE
+			// Line#  6 : Var.SITE = Dsv.RWC_Sales_Route_Details.SITE
+			// Line#  7 : Var.LOCATION = Dsv.RWC_Sales_Route_Details.LOCATION
+			// Line#  8 : Var.CONFIGURATION = Dsv.RWC_Sales_Route_Details.CONFIGURATION
+			// Line#  9 : Var.COLOR = Dsv.RWC_Sales_Route_Details.COLOR
+			// Line#  10 : Var.SIZE = Dsv.RWC_ProductionPickingList.INVENTSIZEID
+			// Line#  11 : Var.SERIAL_NO = Dsv.RWC_Sales_Route_Details.SERIAL_NO
+			// Line#  12 : Var.BATCH_NUMBER = Dsv.RWC_Sales_Route_Details.BATCH_NUMBER
+			// Line#  13 : SetHistoryTextEx ( RWC_PromptControl1 , Route_Details , @Requested Quantity , Var.RequestedQTY , True ) 
+			// Line#  14 : SetHistoryTextEx ( RWC_PromptControl1 , Route_Details , @Item Number , Dsv.RWC_Sales_Route_Details.ITEM_NUMBER , False ) 
+			// Line#  15 : SetHistoryTextEx ( RWC_PromptControl1 , Route_Details , @Order No , Var.ORDER_ID , False ) 
+			// Line#  16 : If Var.Status = (Alpha) Picked
+			// Line#  17 : StatusWindow ( @Info , @Item been picked! , 2 ) 
+			// Line#  18 : CancelDefault( )
+			// Line#  19 : ExitEvent( )
+			// Line#  20 : Else If Var.Status = (Alpha) Staged
+			// Line#  21 : StatusWindow ( @Info , @Item been picked! , 2 ) 
+			// Line#  22 : CancelDefault( )
+			// Line#  23 : ExitEvent( )
+			// Line#  24 : Else If Var.Status = (Alpha) Loaded
+			// Line#  25 : StatusWindow ( @Info , @Item been picked! , 2 ) 
+			// Line#  26 : CancelDefault( )
+			// Line#  27 : ExitEvent( )
+			// Line#  28 : Else If Var.Status = (Alpha) Complete
+			// Line#  29 : StatusWindow ( @Info , @Item been picked! , 2 ) 
+			// Line#  30 : CancelDefault( )
+			// Line#  31 : ExitEvent( )
+			// Line#  32 : Else If Var.Status = (Alpha) Cancelled
+			// Line#  33 : StatusWindow ( @Info , @Item been Cancelled! , 2 ) 
+			// Line#  34 : CancelDefault( )
+			// Line#  35 : ExitEvent( )
+			// Line#  36 : End If
+			// Line#  37 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -300,41 +276,29 @@
 			
 		try{
 			
-			if(VariableManager.Instance.GetVariableFloat("Var.frmSalesPickingRoute","QTY") <= 0)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Quantity must be greater than 0"),2);
-			RWC_PromptControl1.IsValid(false);
-			cancel = true;
-			return;
-			
-			}
-			if(VariableManager.Instance.GetVariableFloat("Mvr.v_Item_In_Stock","AVAILABELE_WITH_RESERVE") <= 0)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No quantity available"),2);
-			cancel = true;
-			return;
-			
-			}
-			if(VariableManager.Instance.GetVariableFloat("Var.frmSalesPickingRoute","RequestedQTY") < VariableManager.Instance.GetVariableFloat("Var.frmSalesPickingRoute","QTY"))
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Quantity must be less or equal to the request quantiy!"),2);
-			cancel = true;
-			return;
-			}
-			else if(VariableManager.Instance.GetVariableFloat("Var.frmSalesPickingRoute","QTY") > VariableManager.Instance.GetVariableFloat("Mvr.v_Item_In_Stock","AVAILABELE_WITH_RESERVE"))
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","PRINT_QTY",ResourceMgr.GetCDTString("Quantity must be less than available quantity {Mvr.v_Item_In_Stock.AVAILABELE_WITH_RESERVE}"));
-			VariableManager.Instance.SetVariable("Var.frmSalesPickingRoute","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("PRINT_QTY")));
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),cdt.VariableManager.getLocalVariable("PRINT_DISP"),2);
-			RWC_PromptControl1.IsValid(false);
-			cancel = true;
-			return;
-			
-			}
+			// Line#  1 : If Var.QTY <= (Numeric) 0
+			// Line#  2 : StatusWindow ( @Info , @Quantity must be greater than 0 , 2 ) 
+			// Line#  3 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  4 : CancelDefault( )
+			// Line#  5 : ExitEvent( )
+			// Line#  6 : End If
+			// Line#  7 : If Mvr.v_Item_In_Stock.AVAILABELE_WITH_RESERVE <= (Numeric) 0
+			// Line#  8 : StatusWindow ( @Info , @No quantity available , 2 ) 
+			// Line#  9 : CancelDefault( )
+			// Line#  10 : ExitEvent( )
+			// Line#  11 : End If
+			// Line#  12 : If Var.RequestedQTY < (Numeric) Var.QTY
+			// Line#  13 : StatusWindow ( @Info , @Quantity must be less or equal to the request quantiy! , 2 ) 
+			// Line#  14 : CancelDefault( )
+			// Line#  15 : ExitEvent( )
+			// Line#  16 : Else If Var.QTY > (Numeric) Mvr.v_Item_In_Stock.AVAILABELE_WITH_RESERVE
+			// Line#  17 : Var.PRINT_QTY = @Quantity must be less than available quantity {Mvr.v_Item_In_Stock.AVAILABELE_WITH_RESERVE}
+			// Line#  18 : Var.PRINT_DISP = BuildTemplateString ( Var.PRINT_QTY ) 
+			// Line#  19 : StatusWindow ( @Info , Var.PRINT_DISP , 2 ) 
+			// Line#  20 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  21 : CancelDefault( )
+			// Line#  22 : ExitEvent( )
+			// Line#  23 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -378,30 +342,20 @@
 			
 		try{
 			
-			if(cdt.VariableManager.getLocalVariable("CONFIRM").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			CurrentLine= 2;NetManager.Instance.SendTransaction("t_Sales_Pick_Lines",GetVariableNameSpace());
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Success"),ResourceMgr.GetCDTString("Transaction Sent!"),2);
-			RWC_PromptControl1.ReturnToPrompt("Route",true,true);
-			}
-			else if(cdt.VariableManager.getLocalVariable("CONFIRM").ToUpper().CompareTo("N".ToUpper()) == 0)
-			{
-			
-			ResetForm( );
-			UpdateData( false );
-			RWC_PromptControl1.ReturnToPrompt("Route",true,true);
-			
-			}
-			else
-			{
-			
-			ClientApplication.Instance.ShowStatusBox("Error","Answer must be Y or N.",2);
-			RWC_PromptControl1.IsValid(false);
-			cancel = true;
-			return;
-			
-			}
+			// Line#  1 : If Var.CONFIRM = (Alpha) Y
+			// Line#  2 : SendTransaction ( t_Sales_Pick_Lines ) 
+			// Line#  3 : StatusWindow ( @Success , @Transaction Sent! , 2 ) 
+			// Line#  4 : ReturnToPrompt ( RWC_PromptControl1 , Route , True , True ) 
+			// Line#  5 : Else If Var.CONFIRM = (Alpha) N
+			// Line#  6 : ResetForm( )
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ReturnToPrompt ( RWC_PromptControl1 , Route , True , True ) 
+			// Line#  9 : Else
+			// Line#  10 : StatusWindow ( Error , Answer must be Y or N. , 2 ) 
+			// Line#  11 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  12 : CancelDefault( )
+			// Line#  13 : ExitEvent( )
+			// Line#  14 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);

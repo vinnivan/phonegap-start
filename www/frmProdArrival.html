@@ -14,19 +14,16 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmProdArrival","QTY","");
-			VariableManager.Instance.SetVariable("Var.frmProdArrival","LOCATION","");
-			CurrentLine= 3;RWC_PromptControl1.ReceiveDataSetFromQueue("Prod_Arrival_Details");
-			VariableManager.Instance.SetVariableInteger("Var.frmProdArrival","ROWCNT",RWC_PromptControl1.GetRowCount("Prod_Arrival_Details"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmProdArrival","ROWCNT") < 1)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Production list not found"),2);
-			cancel = true;
-			return;
-			
-			}
-			RWC_PromptControl1.ShowPrompt("Prod_Arrival_Details");
+			// Line#  1 : Var.QTY = 
+			// Line#  2 : Var.LOCATION = 
+			// Line#  3 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Prod_Arrival_Details ) 
+			// Line#  4 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , Prod_Arrival_Details ) 
+			// Line#  5 : If Var.ROWCNT < (Numeric) 1
+			// Line#  6 : StatusWindow ( @Info , @Production list not found , 2 ) 
+			// Line#  7 : CancelDefault( )
+			// Line#  8 : ExitEvent( )
+			// Line#  9 : End If
+			// Line#  10 : ShowPrompt ( RWC_PromptControl1 , Prod_Arrival_Details ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -37,17 +34,14 @@
 		try{
 			
 			
-			CurrentLine= 1;RWC_PromptControl1.ReceiveDataSetFromQueue("Prod_Arrival_Overview");
-			VariableManager.Instance.SetVariableInteger("Var.frmProdArrival","ROWCNT",RWC_PromptControl1.GetRowCount("Prod_Arrival_Overview"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmProdArrival","ROWCNT") < 1)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("No Production Order Found"),2);
-			CloseForm( );
-			
-			}
-			RWC_PromptControl1.SetHistoryText("PO_Number","",true);
-			RWC_PromptControl1.ShowPrompt("Prod_Arrival_Overview");
+			// Line#  1 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Prod_Arrival_Overview ) 
+			// Line#  2 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , Prod_Arrival_Overview ) 
+			// Line#  3 : If Var.ROWCNT < (Numeric) 1
+			// Line#  4 : StatusWindow ( @Info , @No Production Order Found , 2 ) 
+			// Line#  5 : CloseForm( )
+			// Line#  6 : End If
+			// Line#  7 : SetHistoryText ( RWC_PromptControl1 , PO_Number ,  , True ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , Prod_Arrival_Overview ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -91,19 +85,16 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmProdArrival","PRODUCTIONORDER","");
-			RWC_PromptControl1.SetHistoryText("Prod_Arrival_Overview",ResourceMgr.GetCDTString("Production Order"),cdt.VariableManager.getLocalVariable("PRODUCTIONORDER"),true);
-			CurrentLine= 3;RWC_PromptControl1.ReceiveDataSetFromQueue("Prod_Arrival_Details");
-			VariableManager.Instance.SetVariableInteger("Var.frmProdArrival","ROWCNT",RWC_PromptControl1.GetRowCount("Prod_Arrival_Details"));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmProdArrival","ROWCNT") < 1)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Error Production Records Not Found"),2);
-			cancel = true;
-			return;
-			
-			}
-			RWC_PromptControl1.ShowPrompt("Prod_Arrival_Details");
+			// Line#  1 : Var.PRODUCTIONORDER = Dsv.RWC_ARRIVAL_OVERVIEW_DATASET.NUMBER
+			// Line#  2 : SetHistoryTextEx ( RWC_PromptControl1 , Prod_Arrival_Overview , @Production Order , Var.PRODUCTIONORDER , True ) 
+			// Line#  3 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Prod_Arrival_Details ) 
+			// Line#  4 : Var.ROWCNT = ListPromptGetRowCount ( RWC_PromptControl1 , Prod_Arrival_Details ) 
+			// Line#  5 : If Var.ROWCNT < (Numeric) 1
+			// Line#  6 : StatusWindow ( @Info , @Error Production Records Not Found , 2 ) 
+			// Line#  7 : CancelDefault( )
+			// Line#  8 : ExitEvent( )
+			// Line#  9 : End If
+			// Line#  10 : ShowPrompt ( RWC_PromptControl1 , Prod_Arrival_Details ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -187,12 +178,12 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmProdArrival","PRODUCTIONTRANSID","");
-			VariableManager.Instance.SetVariable("Var.frmProdArrival","Max_QTY","");
-			RWC_PromptControl1.SetHistoryText("Prod_Arrival_Details",ResourceMgr.GetCDTString("Incoming Quantity"),cdt.VariableManager.getLocalVariable("Max_QTY"),true);
-			VariableManager.Instance.SetVariable("Var.frmProdArrival","PRODUCTIONORDER","");
-			RWC_PromptControl1.SetHistoryText("Prod_Arrival_Details",ResourceMgr.GetCDTString("Item Name"),"",false);
-			RWC_PromptControl1.SetHistoryText("Prod_Arrival_Details",ResourceMgr.GetCDTString("Item Id"),"",false);
+			// Line#  1 : Var.PRODUCTIONTRANSID = Dsv.RWC_Production_Details.PRODUCTION_INVENTORY_TRANSACTION_NUMBER
+			// Line#  2 : Var.Max_QTY = Dsv.RWC_Production_Details.QUANTITY
+			// Line#  3 : SetHistoryTextEx ( RWC_PromptControl1 , Prod_Arrival_Details , @Incoming Quantity , Var.Max_QTY , True ) 
+			// Line#  4 : Var.PRODUCTIONORDER = Dsv.RWC_Production_Details.PRODUCTION_NUMBER
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , Prod_Arrival_Details , @Item Name , Dsv.RWC_Production_Details.ITEM_NAME , False ) 
+			// Line#  6 : SetHistoryTextEx ( RWC_PromptControl1 , Prod_Arrival_Details , @Item Id , Dsv.RWC_Production_Details.ITEM_NUMBER , False ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -282,28 +273,22 @@
 			
 		try{
 			
-			if(VariableManager.Instance.GetVariableFloat("Var.frmProdArrival","QTY") <= 0)
-			{
-			
-			RWC_PromptControl1.IsValid(false);
-			cancel = true;
-			return;
-			}
-			else if(VariableManager.Instance.GetVariableFloat("Var.frmProdArrival","QTY") > VariableManager.Instance.GetVariableFloat("Var.frmProdArrival","Max_QTY"))
-			{
-			
-			RWC_PromptControl1.IsValid(false);
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Quantity must be less or equal to incoming quantity"),2);
-			cancel = true;
-			return;
-			
-			}
-			VariableManager.Instance.SetVariable("Var.frmProdArrival","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmProdArrival","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("Quantity",ResourceMgr.GetCDTString("Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("Quantity",ResourceMgr.GetCDTString("Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			RWC_PromptControl1.SetHistoryText("Quantity",ResourceMgr.GetCDTString("Quantity"),cdt.VariableManager.getLocalVariable("QTY"),false);
-			RWC_PromptControl1.ShowPrompt("CONFIRM");
+			// Line#  1 : If Var.QTY <= (Numeric) 0
+			// Line#  2 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  3 : CancelDefault( )
+			// Line#  4 : ExitEvent( )
+			// Line#  5 : Else If Var.QTY > (Numeric) Var.Max_QTY
+			// Line#  6 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  7 : StatusWindow ( @Info , @Quantity must be less or equal to incoming quantity , 2 ) 
+			// Line#  8 : CancelDefault( )
+			// Line#  9 : ExitEvent( )
+			// Line#  10 : End If
+			// Line#  11 : Var.SITE = Gvr.SITE
+			// Line#  12 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  13 : SetHistoryTextEx ( RWC_PromptControl1 , Quantity , @Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  14 : SetHistoryTextEx ( RWC_PromptControl1 , Quantity , @Site , Var.SITE , False ) 
+			// Line#  15 : SetHistoryTextEx ( RWC_PromptControl1 , Quantity , @Quantity , Var.QTY , False ) 
+			// Line#  16 : ShowPrompt ( RWC_PromptControl1 , CONFIRM ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -347,30 +332,20 @@
 			
 		try{
 			
-			if(cdt.VariableManager.getLocalVariable("CONFIRM").CompareTo("Y") == 0)
-			{
-			
-			CurrentLine= 2;NetManager.Instance.SendTransaction("t_Production_Order_Arrival",GetVariableNameSpace());
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Success"),ResourceMgr.GetCDTString("Transaction Sent!"),2);
-			RWC_PromptControl1.ReturnToPrompt("PO_Number",true,true);
-			}
-			else if(cdt.VariableManager.getLocalVariable("CONFIRM").ToUpper().CompareTo("N".ToUpper()) == 0)
-			{
-			
-			ResetForm( );
-			UpdateData( false );
-			RWC_PromptControl1.ReturnToPrompt("From_Location",true,true);
-			
-			}
-			else
-			{
-			
-			ClientApplication.Instance.ShowStatusBox("Error","Answer must be Y or N.",2);
-			RWC_PromptControl1.IsValid(false);
-			cancel = true;
-			return;
-			
-			}
+			// Line#  1 : If Var.CONFIRM = Y
+			// Line#  2 : SendTransaction ( t_Production_Order_Arrival ) 
+			// Line#  3 : StatusWindow ( @Success , @Transaction Sent! , 2 ) 
+			// Line#  4 : ReturnToPrompt ( RWC_PromptControl1 , PO_Number , True , True ) 
+			// Line#  5 : Else If Var.CONFIRM = (Alpha) N
+			// Line#  6 : ResetForm( )
+			// Line#  7 : UpdateData ( Get ) 
+			// Line#  8 : ReturnToPrompt ( RWC_PromptControl1 , From_Location , True , True ) 
+			// Line#  9 : Else
+			// Line#  10 : StatusWindow ( Error , Answer must be Y or N. , 2 ) 
+			// Line#  11 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  12 : CancelDefault( )
+			// Line#  13 : ExitEvent( )
+			// Line#  14 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);

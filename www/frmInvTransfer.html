@@ -15,7 +15,7 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
+			// Line#  1 : Var.FROM_SITE = Var.SITE
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -26,19 +26,19 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.TO_SITE_AGAIN = False
+			// Line#  4 : Var.SITE = Gvr.SITE
+			// Line#  5 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  6 : Var.FROM_SITE = Var.SITE
+			// Line#  7 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  8 : Var.TO_SITE = Var.SITE
+			// Line#  9 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  10 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  11 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  12 : UpdateData ( Get ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -82,7 +82,7 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
+			// Line#  1 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -93,19 +93,19 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.TO_SITE_AGAIN = False
+			// Line#  4 : Var.SITE = Gvr.SITE
+			// Line#  5 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  6 : Var.FROM_SITE = Var.SITE
+			// Line#  7 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  8 : Var.TO_SITE = Var.SITE
+			// Line#  9 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  10 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  11 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  12 : UpdateData ( Get ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -149,112 +149,74 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_NO","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_NUMBER","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","LOCATION","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","QTY","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getLocalVariable("FROM_SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","COLOR","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SIZE","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","CONFIGURATION","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","STATUS","");
-			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
-			{
-			
-			RWC_PromptControl1.IsValid(false);
-			cancel = true;
-			return;
-			
-			}
-			RWC_PromptControl1.SetHistoryText("ITEM",ResourceMgr.GetCDTString("ITEM ID"),cdt.VariableManager.getLocalVariable("ITEM_ID"),true);
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","PRODUCT","");
-			CurrentLine= 18;NetManager.Instance.SendValidation("v_Dimension_Group",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","LOCATION_ACTIVE","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","PALLET_ID_ACTIVE","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SIZE_ACTIVE","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","QTY_OF_SIZE","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","COLOR_ACTIVE","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","QTY_OF_COLOR","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","CONFIGURATION_ACTIVE","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","QTY_OF_CONFIGURATION","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_NO_ACTIVE","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_NO_ACTIVE","");
-			if(cdt.VariableManager.getLocalVariable("LOCATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			RWC_PromptControl1.ShowPrompt("From_Location");
-			return;
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("SIZE_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_SIZE").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 35;RWC_PromptControl1.ReceiveDataSetFromQueue("Size");
-			RWC_PromptControl1.ShowPrompt("Size");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 42;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
-			RWC_PromptControl1.ShowPrompt("Color");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 49;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
-			RWC_PromptControl1.ShowPrompt("Config");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Batch_Number");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_NUMBER","");
-			
-			}
-			if("".ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Serial_No");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_NO","");
-			
-			}
-			RWC_PromptControl1.ShowPrompt("QTY");
+			// Line#  1 : Var.SERIAL_NO = 
+			// Line#  2 : Var.BATCH_NUMBER = 
+			// Line#  3 : Var.LOCATION = 
+			// Line#  4 : Var.QTY = 
+			// Line#  5 : Var.SITE = Var.FROM_SITE
+			// Line#  6 : Var.WAREHOUSE = Var.FROM_WAREHOUSE
+			// Line#  7 : Var.COLOR = Mvr.v_Item.STANDARDINVENTCOLORID
+			// Line#  8 : Var.SIZE = Mvr.v_Item.STANDARDINVENTSIZEID
+			// Line#  9 : Var.CONFIGURATION = Mvr.v_Item.STANDARDCONFIGID
+			// Line#  10 : Var.STATUS = Mvr.v_Item.STATUS
+			// Line#  11 : If Var.STATUS <> (Alpha) Y
+			// Line#  12 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  13 : CancelDefault( )
+			// Line#  14 : ExitEvent( )
+			// Line#  15 : End If
+			// Line#  16 : SetHistoryTextEx ( RWC_PromptControl1 , ITEM , @ITEM ID , Var.ITEM_ID , True ) 
+			// Line#  17 : Var.PRODUCT = Mvr.v_Item.PRODUCT
+			// Line#  18 : SendValidation ( v_Dimension_Group ) 
+			// Line#  19 : Var.LOCATION_ACTIVE = Mvr.v_Dimension_Group.LOCATION_ACTIVE
+			// Line#  20 : Var.PALLET_ID_ACTIVE = Mvr.v_Dimension_Group.PALLET_ID_ACTIVE
+			// Line#  21 : Var.SIZE_ACTIVE = Mvr.v_Dimension_Group.SIZE_ACTIVE
+			// Line#  22 : Var.QTY_OF_SIZE = Mvr.v_Dimension_Group.QTY_OF_SIZE
+			// Line#  23 : Var.COLOR_ACTIVE = Mvr.v_Dimension_Group.COLOR_ACTIVE
+			// Line#  24 : Var.QTY_OF_COLOR = Mvr.v_Dimension_Group.QTY_OF_COLOR
+			// Line#  25 : Var.CONFIGURATION_ACTIVE = Mvr.v_Dimension_Group.CONFIGURATION_ACTIVE
+			// Line#  26 : Var.QTY_OF_CONFIGURATION = Mvr.v_Dimension_Group.QTY_OF_CONFIGURATION
+			// Line#  27 : Var.BATCH_NO_ACTIVE = Mvr.v_Dimension_Group.BATCH_NO_ACTIVE
+			// Line#  28 : Var.SERIAL_NO_ACTIVE = Mvr.v_Dimension_Group.SERIAL_NO_ACTIVE
+			// Line#  29 : If Var.LOCATION_ACTIVE = (Alpha) Y
+			// Line#  30 : ShowPrompt ( RWC_PromptControl1 , From_Location ) 
+			// Line#  31 : ExitEvent( )
+			// Line#  32 : End If
+			// Line#  33 : If Var.SIZE_ACTIVE = (Alpha) Y
+			// Line#  34 : If Var.QTY_OF_SIZE > (Alpha) 1
+			// Line#  35 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Size ) 
+			// Line#  36 : ShowPrompt ( RWC_PromptControl1 , Size ) 
+			// Line#  37 : ExitEvent( )
+			// Line#  38 : End If
+			// Line#  39 : End If
+			// Line#  40 : If Var.COLOR_ACTIVE = (Alpha) Y
+			// Line#  41 : If Var.QTY_OF_COLOR > (Alpha) 1
+			// Line#  42 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Color ) 
+			// Line#  43 : ShowPrompt ( RWC_PromptControl1 , Color ) 
+			// Line#  44 : ExitEvent( )
+			// Line#  45 : End If
+			// Line#  46 : End If
+			// Line#  47 : If Var.CONFIGURATION_ACTIVE = (Alpha) Y
+			// Line#  48 : If Var.QTY_OF_CONFIGURATION > (Alpha) 1
+			// Line#  49 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Config ) 
+			// Line#  50 : ShowPrompt ( RWC_PromptControl1 , Config ) 
+			// Line#  51 : ExitEvent( )
+			// Line#  52 : End If
+			// Line#  53 : End If
+			// Line#  54 : If Var.BATCH_NO_ACTIVE = (Alpha) Y
+			// Line#  55 : Var.BATCH_EXIST = True
+			// Line#  56 : ShowPrompt ( RWC_PromptControl1 , Batch_Number ) 
+			// Line#  57 : ExitEvent( )
+			// Line#  58 : Else
+			// Line#  59 : Var.BATCH_NUMBER = 
+			// Line#  60 : End If
+			// Line#  61 : If Mvr.v_Dimension_Group.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  62 : Var.SERIAL_EXIST = True
+			// Line#  63 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  64 : ExitEvent( )
+			// Line#  65 : Else
+			// Line#  66 : Var.SERIAL_NO = 
+			// Line#  67 : End If
+			// Line#  68 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -265,10 +227,10 @@
 		try{
 			
 			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","QTY","");
-			RWC_PromptControl1.ReturnToPrompt("From_Site",false,true);
+			// Line#  1 : Var.SITE = 
+			// Line#  2 : Var.WAREHOUSE = 
+			// Line#  3 : Var.QTY = 
+			// Line#  4 : ReturnToPrompt ( RWC_PromptControl1 , From_Site , False , True ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -279,19 +241,19 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.TO_SITE_AGAIN = False
+			// Line#  5 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  6 : Var.FROM_SITE = Var.SITE
+			// Line#  7 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  8 : Var.TO_SITE = Var.SITE
+			// Line#  9 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  10 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  11 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  12 : UpdateData ( Get ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -302,7 +264,7 @@
 		try{
 			
 			
-			e.Cancel = true;
+			// Line#  1 : CancelDefault( )
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -346,83 +308,48 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_LOCATION",cdt.VariableManager.getLocalVariable("LOCATION"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","LOCATION","");
-			if(cdt.VariableManager.getLocalVariable("PALLET_ID_ACTIVE").ToUpper().CompareTo("YES".ToUpper()) == 0)
-			{
-			
-			RWC_PromptControl1.ShowPrompt("FROM_PALLET");
-			return;
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("SIZE_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_SIZE").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 9;RWC_PromptControl1.ReceiveDataSetFromQueue("Size");
-			RWC_PromptControl1.ShowPrompt("Size");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 16;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
-			RWC_PromptControl1.ShowPrompt("Color");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 23;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
-			RWC_PromptControl1.ShowPrompt("Config");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Batch_Number");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_NUMBER","");
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Serial_No");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_NO","");
-			
-			}
-			RWC_PromptControl1.ShowPrompt("QTY");
+			// Line#  1 : Var.FROM_LOCATION = Var.LOCATION
+			// Line#  2 : Var.LOCATION = 
+			// Line#  3 : If Var.PALLET_ID_ACTIVE = (Alpha) YES
+			// Line#  4 : ShowPrompt ( RWC_PromptControl1 , FROM_PALLET ) 
+			// Line#  5 : ExitEvent( )
+			// Line#  6 : End If
+			// Line#  7 : If Var.SIZE_ACTIVE = (Alpha) Y
+			// Line#  8 : If Var.QTY_OF_SIZE > (Alpha) 1
+			// Line#  9 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Size ) 
+			// Line#  10 : ShowPrompt ( RWC_PromptControl1 , Size ) 
+			// Line#  11 : ExitEvent( )
+			// Line#  12 : End If
+			// Line#  13 : End If
+			// Line#  14 : If Var.COLOR_ACTIVE = (Alpha) Y
+			// Line#  15 : If Var.QTY_OF_COLOR > (Alpha) 1
+			// Line#  16 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Color ) 
+			// Line#  17 : ShowPrompt ( RWC_PromptControl1 , Color ) 
+			// Line#  18 : ExitEvent( )
+			// Line#  19 : End If
+			// Line#  20 : End If
+			// Line#  21 : If Var.CONFIGURATION_ACTIVE = (Alpha) Y
+			// Line#  22 : If Var.QTY_OF_CONFIGURATION > (Alpha) 1
+			// Line#  23 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Config ) 
+			// Line#  24 : ShowPrompt ( RWC_PromptControl1 , Config ) 
+			// Line#  25 : ExitEvent( )
+			// Line#  26 : End If
+			// Line#  27 : End If
+			// Line#  28 : If Var.BATCH_NO_ACTIVE = (Alpha) Y
+			// Line#  29 : Var.BATCH_EXIST = True
+			// Line#  30 : ShowPrompt ( RWC_PromptControl1 , Batch_Number ) 
+			// Line#  31 : ExitEvent( )
+			// Line#  32 : Else
+			// Line#  33 : Var.BATCH_NUMBER = 
+			// Line#  34 : End If
+			// Line#  35 : If Var.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  36 : Var.SERIAL_EXIST = True
+			// Line#  37 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  38 : ExitEvent( )
+			// Line#  39 : Else
+			// Line#  40 : Var.SERIAL_NO = 
+			// Line#  41 : End If
+			// Line#  42 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -433,19 +360,19 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.TO_SITE_AGAIN = False
+			// Line#  4 : Var.SITE = Gvr.SITE
+			// Line#  5 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  6 : Var.FROM_SITE = Var.SITE
+			// Line#  7 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  8 : Var.TO_SITE = Var.SITE
+			// Line#  9 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  10 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  11 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  12 : UpdateData ( Get ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -489,75 +416,43 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_PALLET_ID",cdt.VariableManager.getLocalVariable("PALLET_ID"));
-			if(cdt.VariableManager.getLocalVariable("SIZE_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_SIZE").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 4;RWC_PromptControl1.ReceiveDataSetFromQueue("Size");
-			RWC_PromptControl1.ShowPrompt("Size");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 11;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
-			RWC_PromptControl1.ShowPrompt("Color");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 18;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
-			RWC_PromptControl1.ShowPrompt("Config");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Batch_Number");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_NUMBER","");
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Serial_No");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_NO","");
-			
-			}
-			RWC_PromptControl1.ShowPrompt("QTY");
+			// Line#  1 : Var.FROM_PALLET_ID = Var.PALLET_ID
+			// Line#  2 : If Var.SIZE_ACTIVE = (Alpha) Y
+			// Line#  3 : If Var.QTY_OF_SIZE > (Alpha) 1
+			// Line#  4 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Size ) 
+			// Line#  5 : ShowPrompt ( RWC_PromptControl1 , Size ) 
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : End If
+			// Line#  8 : End If
+			// Line#  9 : If Var.COLOR_ACTIVE = (Alpha) Y
+			// Line#  10 : If Var.QTY_OF_COLOR > (Alpha) 1
+			// Line#  11 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Color ) 
+			// Line#  12 : ShowPrompt ( RWC_PromptControl1 , Color ) 
+			// Line#  13 : ExitEvent( )
+			// Line#  14 : End If
+			// Line#  15 : End If
+			// Line#  16 : If Var.CONFIGURATION_ACTIVE = (Alpha) Y
+			// Line#  17 : If Var.QTY_OF_CONFIGURATION > (Alpha) 1
+			// Line#  18 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Config ) 
+			// Line#  19 : ShowPrompt ( RWC_PromptControl1 , Config ) 
+			// Line#  20 : ExitEvent( )
+			// Line#  21 : End If
+			// Line#  22 : End If
+			// Line#  23 : If Var.BATCH_NO_ACTIVE = (Alpha) Y
+			// Line#  24 : Var.BATCH_EXIST = True
+			// Line#  25 : ShowPrompt ( RWC_PromptControl1 , Batch_Number ) 
+			// Line#  26 : ExitEvent( )
+			// Line#  27 : Else
+			// Line#  28 : Var.BATCH_NUMBER = 
+			// Line#  29 : End If
+			// Line#  30 : If Var.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  31 : Var.SERIAL_EXIST = True
+			// Line#  32 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  33 : ExitEvent( )
+			// Line#  34 : Else
+			// Line#  35 : Var.SERIAL_NO = 
+			// Line#  36 : End If
+			// Line#  37 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -568,19 +463,19 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.TO_SITE_AGAIN = False
+			// Line#  4 : Var.SITE = Gvr.SITE
+			// Line#  5 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  6 : Var.FROM_SITE = Var.SITE
+			// Line#  7 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  8 : Var.TO_SITE = Var.SITE
+			// Line#  9 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  10 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  11 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  12 : UpdateData ( Get ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -624,63 +519,37 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SIZE","");
-			RWC_PromptControl1.SetHistoryText("Size",ResourceMgr.GetCDTString("Size"),cdt.VariableManager.getLocalVariable("SIZE"),true);
-			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 5;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
-			RWC_PromptControl1.ShowPrompt("Color");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 12;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
-			RWC_PromptControl1.ShowPrompt("Config");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Batch_Number");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_NUMBER","");
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Serial_No");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_NO","");
-			
-			}
-			RWC_PromptControl1.ShowPrompt("QTY");
+			// Line#  1 : Var.SIZE = Dsv.RWC_SIZE_DATASET.INVENTSIZEID
+			// Line#  2 : SetHistoryTextEx ( RWC_PromptControl1 , Size , @Size , Var.SIZE , True ) 
+			// Line#  3 : If Var.COLOR_ACTIVE = (Alpha) Y
+			// Line#  4 : If Var.QTY_OF_COLOR > (Alpha) 1
+			// Line#  5 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Color ) 
+			// Line#  6 : ShowPrompt ( RWC_PromptControl1 , Color ) 
+			// Line#  7 : ExitEvent( )
+			// Line#  8 : End If
+			// Line#  9 : End If
+			// Line#  10 : If Var.CONFIGURATION_ACTIVE = (Alpha) Y
+			// Line#  11 : If Var.QTY_OF_CONFIGURATION > (Alpha) 1
+			// Line#  12 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Config ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , Config ) 
+			// Line#  14 : ExitEvent( )
+			// Line#  15 : End If
+			// Line#  16 : End If
+			// Line#  17 : If Var.BATCH_NO_ACTIVE = (Alpha) Y
+			// Line#  18 : Var.BATCH_EXIST = True
+			// Line#  19 : ShowPrompt ( RWC_PromptControl1 , Batch_Number ) 
+			// Line#  20 : ExitEvent( )
+			// Line#  21 : Else
+			// Line#  22 : Var.BATCH_NUMBER = 
+			// Line#  23 : End If
+			// Line#  24 : If Var.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  25 : Var.SERIAL_EXIST = True
+			// Line#  26 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  27 : ExitEvent( )
+			// Line#  28 : Else
+			// Line#  29 : Var.SERIAL_NO = 
+			// Line#  30 : End If
+			// Line#  31 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -691,19 +560,19 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.TO_SITE_AGAIN = False
+			// Line#  4 : Var.SITE = Gvr.SITE
+			// Line#  5 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  6 : Var.FROM_SITE = Var.SITE
+			// Line#  7 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  8 : Var.TO_SITE = Var.SITE
+			// Line#  9 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  10 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  11 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  12 : UpdateData ( Get ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -896,37 +765,23 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","CONFIGURATION","");
-			RWC_PromptControl1.SetHistoryText("Config",ResourceMgr.GetCDTString("Configuration"),cdt.VariableManager.getLocalVariable("CONFIGURATION"),true);
-			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Batch_Number");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_NUMBER","");
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Serial_No");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_NO","");
-			
-			}
-			RWC_PromptControl1.ShowPrompt("QTY");
+			// Line#  1 : Var.CONFIGURATION = Dsv.RWC_CONFIG_DATASET.CONFIGID
+			// Line#  2 : SetHistoryTextEx ( RWC_PromptControl1 , Config , @Configuration , Var.CONFIGURATION , True ) 
+			// Line#  3 : If Var.BATCH_NO_ACTIVE = (Alpha) Y
+			// Line#  4 : Var.BATCH_EXIST = True
+			// Line#  5 : ShowPrompt ( RWC_PromptControl1 , Batch_Number ) 
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : Else
+			// Line#  8 : Var.BATCH_NUMBER = 
+			// Line#  9 : End If
+			// Line#  10 : If Var.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  11 : Var.SERIAL_EXIST = True
+			// Line#  12 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  13 : ExitEvent( )
+			// Line#  14 : Else
+			// Line#  15 : Var.SERIAL_NO = 
+			// Line#  16 : End If
+			// Line#  17 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -937,19 +792,19 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.TO_SITE_AGAIN = False
+			// Line#  4 : Var.SITE = Gvr.SITE
+			// Line#  5 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  6 : Var.FROM_SITE = Var.SITE
+			// Line#  7 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  8 : Var.TO_SITE = Var.SITE
+			// Line#  9 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  10 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  11 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  12 : UpdateData ( Get ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1004,21 +859,14 @@
 			
 		try{
 			
-			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Serial_No");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_NO","");
-			
-			}
-			RWC_PromptControl1.ShowPrompt("QTY");
+			// Line#  1 : If Var.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  2 : Var.SERIAL_EXIST = True
+			// Line#  3 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  4 : ExitEvent( )
+			// Line#  5 : Else
+			// Line#  6 : Var.SERIAL_NO = 
+			// Line#  7 : End If
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1029,19 +877,19 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.TO_SITE_AGAIN = False
+			// Line#  4 : Var.SITE = Gvr.SITE
+			// Line#  5 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  6 : Var.FROM_SITE = Var.SITE
+			// Line#  7 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  8 : Var.TO_SITE = Var.SITE
+			// Line#  9 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  10 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  11 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  12 : UpdateData ( Get ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1085,35 +933,23 @@
 			
 		try{
 			
-			CurrentLine= 1;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","QTY","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","STATUS","");
-			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0
-			 && 
-			VariableManager.Instance.GetVariableFloat("Var.frmInvTransfer","QTY") == 0)
-			{
-			
-			RWC_PromptControl1.IsValid(false);
-			cancel = true;
-			return;
-			
-			}
-			RWC_PromptControl1.SetHistoryText("Serial_No",ResourceMgr.GetCDTString("Quantity"),cdt.VariableManager.getLocalVariable("QTY"),true);
-			RWC_PromptControl1.SetHistoryText("Serial_No",ResourceMgr.GetCDTString("Serial Number"),cdt.VariableManager.getLocalVariable("SERIAL_NO"),false);
-			if(cdt.VariableManager.getLocalVariable("LOCATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			RWC_PromptControl1.ShowPrompt("To_Location");
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE","");
-			RWC_PromptControl1.ShowPrompt("To_Site");
-			
-			}
+			// Line#  1 : SendValidation ( v_Item_In_Stock ) 
+			// Line#  2 : Var.QTY = Mvr.v_Item_In_Stock.AVAILABLE_PHYSICAL
+			// Line#  3 : Var.STATUS = Mvr.v_Item_In_Stock.STATUS
+			// Line#  4 : If Var.STATUS <> (Alpha) Y And Var.QTY = (Numeric) 0
+			// Line#  5 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  6 : CancelDefault( )
+			// Line#  7 : ExitEvent( )
+			// Line#  8 : End If
+			// Line#  9 : SetHistoryTextEx ( RWC_PromptControl1 , Serial_No , @Quantity , Var.QTY , True ) 
+			// Line#  10 : SetHistoryTextEx ( RWC_PromptControl1 , Serial_No , @Serial Number , Var.SERIAL_NO , False ) 
+			// Line#  11 : If Var.LOCATION_ACTIVE = (Alpha) Y
+			// Line#  12 : ShowPrompt ( RWC_PromptControl1 , To_Location ) 
+			// Line#  13 : Else
+			// Line#  14 : Var.WAREHOUSE = 
+			// Line#  15 : Var.SITE = 
+			// Line#  16 : ShowPrompt ( RWC_PromptControl1 , To_Site ) 
+			// Line#  17 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1124,19 +960,19 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.TO_SITE_AGAIN = False
+			// Line#  4 : Var.SITE = Gvr.SITE
+			// Line#  5 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  6 : Var.FROM_SITE = Var.SITE
+			// Line#  7 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  8 : Var.TO_SITE = Var.SITE
+			// Line#  9 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  10 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  11 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  12 : UpdateData ( Get ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1180,54 +1016,38 @@
 			
 		try{
 			
-			CurrentLine= 1;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","STATUS","");
-			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
-			{
-			
-			RWC_PromptControl1.IsValid(false);
-			cancel = true;
-			return;
-			
-			}
-			if(VariableManager.Instance.GetVariableFloat("Var.frmInvTransfer","QTY") <= 0)
-			{
-			
-			RWC_PromptControl1.IsValid(false);
-			cancel = true;
-			return;
-			}
-			else if(VariableManager.Instance.GetVariableFloat("Var.frmInvTransfer","QTY") > VariableManager.Instance.GetVariableFloat("Mvr.v_Item_In_Stock","AVAILABLE_PHYSICAL"))
-			{
-			
-			RWC_PromptControl1.IsValid(false);
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","QTY_INFO",ResourceMgr.GetCDTString("Quantity must be less or equal to {Mvr.v_Item_In_Stock.AVAILABLE_PHYSICAL}"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","PRINT_DISP",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocalVariable("QTY_INFO")));
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),cdt.VariableManager.getLocalVariable("PRINT_DISP"),2);
-			cancel = true;
-			return;
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("LOCATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","LOCATION","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("FROM_SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("QTY",ResourceMgr.GetCDTString("To Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("QTY",ResourceMgr.GetCDTString("To Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			RWC_PromptControl1.SetHistoryText("QTY",ResourceMgr.GetCDTString("Quantity"),cdt.VariableManager.getLocalVariable("QTY"),false);
-			RWC_PromptControl1.ShowPrompt("To_Location");
-			return;
-			
-			}
-			else
-			{
-			
-			RWC_PromptControl1.ShowPrompt("To_Site");
-			return;
-			
-			}
+			// Line#  1 : SendValidation ( v_Item_In_Stock ) 
+			// Line#  2 : Var.STATUS = Mvr.v_Item_In_Stock.STATUS
+			// Line#  3 : If Var.STATUS <> (Alpha) Y
+			// Line#  4 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  5 : CancelDefault( )
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : End If
+			// Line#  8 : If Var.QTY <= (Numeric) 0
+			// Line#  9 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  10 : CancelDefault( )
+			// Line#  11 : ExitEvent( )
+			// Line#  12 : Else If Var.QTY > (Numeric) Mvr.v_Item_In_Stock.AVAILABLE_PHYSICAL
+			// Line#  13 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  14 : Var.QTY_INFO = @Quantity must be less or equal to {Mvr.v_Item_In_Stock.AVAILABLE_PHYSICAL}
+			// Line#  15 : Var.PRINT_DISP = BuildTemplateString ( Var.QTY_INFO ) 
+			// Line#  16 : StatusWindow ( @Info , Var.PRINT_DISP , 2 ) 
+			// Line#  17 : CancelDefault( )
+			// Line#  18 : ExitEvent( )
+			// Line#  19 : End If
+			// Line#  20 : If Var.LOCATION_ACTIVE = (Alpha) Y
+			// Line#  21 : Var.LOCATION = 
+			// Line#  22 : Var.TO_SITE = Var.FROM_SITE
+			// Line#  23 : Var.TO_WAREHOUSE = Var.FROM_WAREHOUSE
+			// Line#  24 : SetHistoryTextEx ( RWC_PromptControl1 , QTY , @To Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  25 : SetHistoryTextEx ( RWC_PromptControl1 , QTY , @To Site , Var.SITE , False ) 
+			// Line#  26 : SetHistoryTextEx ( RWC_PromptControl1 , QTY , @Quantity , Var.QTY , False ) 
+			// Line#  27 : ShowPrompt ( RWC_PromptControl1 , To_Location ) 
+			// Line#  28 : ExitEvent( )
+			// Line#  29 : Else
+			// Line#  30 : ShowPrompt ( RWC_PromptControl1 , To_Site ) 
+			// Line#  31 : ExitEvent( )
+			// Line#  32 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1238,19 +1058,19 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.TO_SITE_AGAIN = False
+			// Line#  4 : Var.SITE = Gvr.SITE
+			// Line#  5 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  6 : Var.FROM_SITE = Var.SITE
+			// Line#  7 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  8 : Var.TO_SITE = Var.SITE
+			// Line#  9 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  10 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  11 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  12 : UpdateData ( Get ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1294,24 +1114,18 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_LOCATION",cdt.VariableManager.getLocalVariable("LOCATION"));
-			if(cdt.VariableManager.getLocalVariable("TO_LOCATION").ToUpper().CompareTo(cdt.VariableManager.getLocalVariable("FROM_LOCATION").ToUpper()) == 0)
-			{
-			
-			RWC_PromptControl1.IsValid(false);
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("To Location must be different than From Location"),2);
-			cancel = true;
-			return;
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("PALLET_ID_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			RWC_PromptControl1.ShowPrompt("TO_PALLET");
-			return;
-			
-			}
-			RWC_PromptControl1.ShowPrompt("Confirm");
+			// Line#  1 : Var.TO_LOCATION = Var.LOCATION
+			// Line#  2 : If Var.TO_LOCATION = (Alpha) Var.FROM_LOCATION
+			// Line#  3 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  4 : StatusWindow ( @Info , @To Location must be different than From Location , 2 ) 
+			// Line#  5 : CancelDefault( )
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : End If
+			// Line#  8 : If Var.PALLET_ID_ACTIVE = (Alpha) Y
+			// Line#  9 : ShowPrompt ( RWC_PromptControl1 , TO_PALLET ) 
+			// Line#  10 : ExitEvent( )
+			// Line#  11 : End If
+			// Line#  12 : ShowPrompt ( RWC_PromptControl1 , Confirm ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1322,11 +1136,11 @@
 		try{
 			
 			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE","");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE","");
-			RWC_PromptControl1.SetHistoryText("To_Location","","",true);
-			RWC_PromptControl1.SetHistoryText("QTY",ResourceMgr.GetCDTString("Quantity"),cdt.VariableManager.getLocalVariable("QTY"),true);
-			RWC_PromptControl1.ShowPrompt("To_Site");
+			// Line#  1 : Var.SITE = 
+			// Line#  2 : Var.WAREHOUSE = 
+			// Line#  3 : SetHistoryTextEx ( RWC_PromptControl1 , To_Location ,  ,  , True ) 
+			// Line#  4 : SetHistoryTextEx ( RWC_PromptControl1 , QTY , @Quantity , Var.QTY , True ) 
+			// Line#  5 : ShowPrompt ( RWC_PromptControl1 , To_Site ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1337,19 +1151,19 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.TO_SITE_AGAIN = False
+			// Line#  5 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  6 : Var.FROM_SITE = Var.SITE
+			// Line#  7 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  8 : Var.TO_SITE = Var.SITE
+			// Line#  9 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  10 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  11 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  12 : UpdateData ( Get ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1393,41 +1207,31 @@
 			
 		try{
 			
-			if(cdt.VariableManager.getLocalVariable("CONFIRM").CompareTo("Y") == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			CurrentLine= 3;NetManager.Instance.SendTransaction("t_Transfer_Journal",GetVariableNameSpace());
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Success"),ResourceMgr.GetCDTString("Transaction Sent!"),2);
-			RWC_PromptControl1.ReturnToPrompt("PART",true,true);
-			}
-			else if(cdt.VariableManager.getLocalVariable("CONFIRM").ToUpper().CompareTo("N".ToUpper()) == 0)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Cancelled"),ResourceMgr.GetCDTString("Transaction cancelled !!"),2);
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
-			
-			}
-			else
-			{
-			
-			ClientApplication.Instance.ShowStatusBox("Error","Answer must be Y or N.",2);
-			RWC_PromptControl1.IsValid(false);
-			cancel = true;
-			return;
-			
-			}
+			// Line#  1 : If Var.CONFIRM = Y
+			// Line#  2 : Var.TO_SITE_AGAIN = False
+			// Line#  3 : SendTransaction ( t_Transfer_Journal ) 
+			// Line#  4 : StatusWindow ( @Success , @Transaction Sent! , 2 ) 
+			// Line#  5 : ReturnToPrompt ( RWC_PromptControl1 , PART , True , True ) 
+			// Line#  6 : Else If Var.CONFIRM = (Alpha) N
+			// Line#  7 : StatusWindow ( @Cancelled , @Transaction cancelled !! , 2 ) 
+			// Line#  8 : ResetForm( )
+			// Line#  9 : Var.SITE = Gvr.SITE
+			// Line#  10 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  11 : Var.FROM_SITE = Var.SITE
+			// Line#  12 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  13 : Var.TO_SITE = Var.SITE
+			// Line#  14 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  15 : Var.TO_SITE_AGAIN = False
+			// Line#  16 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  17 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  18 : UpdateData ( Get ) 
+			// Line#  19 : ShowPrompt ( RWC_PromptControl1 , PART ) 
+			// Line#  20 : Else
+			// Line#  21 : StatusWindow ( Error , Answer must be Y or N. , 2 ) 
+			// Line#  22 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  23 : CancelDefault( )
+			// Line#  24 : ExitEvent( )
+			// Line#  25 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1438,19 +1242,19 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.SITE = Gvr.SITE
+			// Line#  4 : Var.TO_SITE_AGAIN = False
+			// Line#  5 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  6 : Var.FROM_SITE = Var.SITE
+			// Line#  7 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  8 : Var.TO_SITE = Var.SITE
+			// Line#  9 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  10 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  11 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  12 : UpdateData ( Get ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1494,40 +1298,30 @@
 			
 		try{
 			
-			if(cdt.VariableManager.getLocalVariable("CONFIRM").CompareTo("Y") == 0)
-			{
-			
-			CurrentLine= 2;NetManager.Instance.SendTransaction("t_Transfer_Journal",GetVariableNameSpace());
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Success"),ResourceMgr.GetCDTString("Transaction Sent!"),2);
-			RWC_PromptControl1.ReturnToPrompt("PART",true,true);
-			}
-			else if(cdt.VariableManager.getLocalVariable("CONFIRM").ToUpper().CompareTo("N".ToUpper()) == 0)
-			{
-			
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Cancelled"),ResourceMgr.GetCDTString("Transaction cancelled !!"),2);
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
-			
-			}
-			else
-			{
-			
-			ClientApplication.Instance.ShowStatusBox("Error","Answer must be Y or N.",2);
-			RWC_PromptControl1.IsValid(false);
-			cancel = true;
-			return;
-			
-			}
+			// Line#  1 : If Var.CONFIRM = Y
+			// Line#  2 : SendTransaction ( t_Transfer_Journal ) 
+			// Line#  3 : StatusWindow ( @Success , @Transaction Sent! , 2 ) 
+			// Line#  4 : ReturnToPrompt ( RWC_PromptControl1 , PART , True , True ) 
+			// Line#  5 : Else If Var.CONFIRM = (Alpha) N
+			// Line#  6 : StatusWindow ( @Cancelled , @Transaction cancelled !! , 2 ) 
+			// Line#  7 : ResetForm( )
+			// Line#  8 : Var.SITE = Gvr.SITE
+			// Line#  9 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  10 : Var.FROM_SITE = Var.SITE
+			// Line#  11 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  12 : Var.TO_SITE = Var.SITE
+			// Line#  13 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  14 : Var.TO_SITE_AGAIN = False
+			// Line#  15 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  16 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  17 : UpdateData ( Get ) 
+			// Line#  18 : ShowPrompt ( RWC_PromptControl1 , PART ) 
+			// Line#  19 : Else
+			// Line#  20 : StatusWindow ( Error , Answer must be Y or N. , 2 ) 
+			// Line#  21 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  22 : CancelDefault( )
+			// Line#  23 : ExitEvent( )
+			// Line#  24 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1538,19 +1332,19 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.TO_SITE_AGAIN = False
+			// Line#  4 : Var.SITE = Gvr.SITE
+			// Line#  5 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  6 : Var.FROM_SITE = Var.SITE
+			// Line#  7 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  8 : Var.TO_SITE = Var.SITE
+			// Line#  9 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  10 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  11 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  12 : UpdateData ( Get ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1594,17 +1388,14 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getLocalVariable("TO_SITE"));
-			CurrentLine= 2;VariableManager.Instance.SetVariableInteger("Var.frmInvTransfer","Result",NetManager.Instance.SendValidation("v_site",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmInvTransfer","Result") < 1)
-			{
-			
-			RWC_PromptControl1.IsValid(false);
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Invalid Site."),2);
-			cancel = true;
-			return;
-			
-			}
+			// Line#  1 : Var.SITE = Var.TO_SITE
+			// Line#  2 : Var.Result = SendValidation ( v_site ) 
+			// Line#  3 : If Var.Result < (Numeric) 1
+			// Line#  4 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  5 : StatusWindow ( @Info , @Invalid Site. , 2 ) 
+			// Line#  6 : CancelDefault( )
+			// Line#  7 : ExitEvent( )
+			// Line#  8 : End If
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1615,19 +1406,19 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.TO_SITE_AGAIN = False
+			// Line#  4 : Var.SITE = Gvr.SITE
+			// Line#  5 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  6 : Var.FROM_SITE = Var.SITE
+			// Line#  7 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  8 : Var.TO_SITE = Var.SITE
+			// Line#  9 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  10 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  11 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  12 : UpdateData ( Get ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1638,8 +1429,8 @@
 		try{
 			
 			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getLocalVariable("FROM_SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"));
+			// Line#  1 : Var.SITE = Var.FROM_SITE
+			// Line#  2 : Var.WAREHOUSE = Var.FROM_WAREHOUSE
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1683,40 +1474,29 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getLocalVariable("TO_WAREHOUSE"));
-			CurrentLine= 2;VariableManager.Instance.SetVariableInteger("Var.frmInvTransfer","Result",NetManager.Instance.SendValidation("v_Warehouse",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt));
-			if(VariableManager.Instance.GetVariableFloat("Var.frmInvTransfer","Result") < 1)
-			{
-			
-			RWC_PromptControl1.IsValid(false);
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("Invalid Warehouse."),2);
-			cancel = true;
-			return;
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("LOCATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) != 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("TO_WAREHOUSE").ToUpper().CompareTo(cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE").ToUpper()) == 0
-			 && 
-			cdt.VariableManager.getLocalVariable("FROM_SITE").ToUpper().CompareTo(cdt.VariableManager.getLocalVariable("TO_SITE").ToUpper()) == 0)
-			{
-			
-			RWC_PromptControl1.IsValid(false);
-			ClientApplication.Instance.ShowStatusBox(ResourceMgr.GetCDTString("Info"),ResourceMgr.GetCDTString("To and From dimension must be different"),2);
-			cancel = true;
-			return;
-			
-			}
-			RWC_PromptControl1.ShowPrompt("Confirm");
-			return;
-			
-			}
-			RWC_PromptControl1.SetHistoryText("QTY",ResourceMgr.GetCDTString("To Warehouse"),cdt.VariableManager.getLocalVariable("WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("QTY",ResourceMgr.GetCDTString("To Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			RWC_PromptControl1.SetHistoryText("QTY",ResourceMgr.GetCDTString("Quantity"),cdt.VariableManager.getLocalVariable("QTY"),false);
-			RWC_PromptControl1.ReturnToPrompt("To_Location",false,true);
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","LOCATION","");
+			// Line#  1 : Var.WAREHOUSE = Var.TO_WAREHOUSE
+			// Line#  2 : Var.Result = SendValidation ( v_Warehouse ) 
+			// Line#  3 : If Var.Result < (Numeric) 1
+			// Line#  4 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  5 : StatusWindow ( @Info , @Invalid Warehouse. , 2 ) 
+			// Line#  6 : CancelDefault( )
+			// Line#  7 : ExitEvent( )
+			// Line#  8 : End If
+			// Line#  9 : If Var.LOCATION_ACTIVE <> (Alpha) Y
+			// Line#  10 : If Var.TO_WAREHOUSE = (Alpha) Var.FROM_WAREHOUSE And Var.FROM_SITE = (Alpha) Var.TO_SITE
+			// Line#  11 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  12 : StatusWindow ( @Info , @To and From dimension must be different , 2 ) 
+			// Line#  13 : CancelDefault( )
+			// Line#  14 : ExitEvent( )
+			// Line#  15 : End If
+			// Line#  16 : ShowPrompt ( RWC_PromptControl1 , Confirm ) 
+			// Line#  17 : ExitEvent( )
+			// Line#  18 : End If
+			// Line#  19 : SetHistoryTextEx ( RWC_PromptControl1 , QTY , @To Warehouse , Var.WAREHOUSE , True ) 
+			// Line#  20 : SetHistoryTextEx ( RWC_PromptControl1 , QTY , @To Site , Var.SITE , False ) 
+			// Line#  21 : SetHistoryTextEx ( RWC_PromptControl1 , QTY , @Quantity , Var.QTY , False ) 
+			// Line#  22 : ReturnToPrompt ( RWC_PromptControl1 , To_Location , False , True ) 
+			// Line#  23 : Var.LOCATION = 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1727,19 +1507,19 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.TO_SITE_AGAIN = False
+			// Line#  4 : Var.SITE = Gvr.SITE
+			// Line#  5 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  6 : Var.FROM_SITE = Var.SITE
+			// Line#  7 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  8 : Var.TO_SITE = Var.SITE
+			// Line#  9 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  10 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  11 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  12 : UpdateData ( Get ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
