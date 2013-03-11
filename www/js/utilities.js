@@ -16,13 +16,23 @@ var showMenu = function () {
 };
 
 var showScanner = function () {
-    window.plugins.barcodeScanner.scan(function (result) {
+
+    var scanner = window.PhoneGap.require("cordova/plugin/BarcodeScanner");
+    scanner.scan(function (result) {
         cdt.Application.getCurrentViewModel().promptControl.onScan(result.text, result.cancelled);
     }, function (error) {
         alert("Scanning failed: " + error);
         cdt.Application.getCurrentViewModel().promptControl.onScan(result.text, true);
     }
             );
+
+    //window.plugins.barcodeScanner.scan(function (result) {
+    //    cdt.Application.getCurrentViewModel().promptControl.onScan(result.text, result.cancelled);
+    //}, function (error) {
+    //    alert("Scanning failed: " + error);
+    //    cdt.Application.getCurrentViewModel().promptControl.onScan(result.text, true);
+    //}
+    //        );
 };
 
 var showView = undefined;
