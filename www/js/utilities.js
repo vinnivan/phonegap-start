@@ -8,6 +8,7 @@ var showMenu = function () {
     var mm = $("#mainMenuContainer");
 
     if (mm.is(":visible")) {
+        //         kendo.history.navigate("#:back");
         kendo.history.navigate("logon.html");
     } else {
         kendo.history.navigate("#main");
@@ -28,7 +29,7 @@ var showView = undefined;
 
 var menuItemSelected = function (e) {
 
-    alert("Menu Item Selected:" + e.dataItem.view);
+    // alert("Menu Item Selected:" + e.dataItem.view);
     // Get History Cleared
     showView = e.dataItem.view;
     kendo.history.navigate("#:back");
@@ -43,16 +44,16 @@ $(window).bind("hashchange", function (e) {
 
     var main = $("#" + cdt.Application.getCurrentViewModel().viewId);
 
-    alert("ViewChanged:" + url + "\r\current:" + cdt.Application.getCurrentViewModel().viewId);
+    // alert("ViewChanged:" + url + "\r\current:" + cdt.Application.getCurrentViewModel().viewId);
 
     if (url == "" && cdt.Application.getCurrentViewModel().viewId !=  "main") {
         
-        alert("Abort called!");
+        // alert("Abort called!");
         return;
     }
 
     if (url == "#main") {
-        alert("Show main");
+        // alert("Show main");
         main.animate({ left: '+=300' }, 200, function () { cdt.Application.getCurrentViewModel().setIsMenuOpen(true); });
         mm.show(0);
         mm.css("left", -300);
@@ -61,11 +62,11 @@ $(window).bind("hashchange", function (e) {
 
         if (showView == undefined) {
 
-            alert("Not a menu selection");
+            // alert("Not a menu selection");
 
             if (main.css("left") != "0px") {
 
-                alert("Adjusting Menu");
+                // alert("Adjusting Menu");
 
                 main.animate({ left: '-=300' }, 400);
                 mm.animate({ left: '-=300' }, 400, function () { mm.data().kendoMobileScroller.reset(); mm.hide(0); cdt.Application.getCurrentViewModel().setIsMenuOpen(false); });
@@ -80,7 +81,7 @@ $(window).bind("hashchange", function (e) {
             //showView = undefined;
 
 
-            alert("Show new view:" + showView);
+            // alert("Show new view:" + showView);
 
             main.animate({ left: '-=300' }, 400);
             mm.animate({ left: '-=300' }, 400, function () {
