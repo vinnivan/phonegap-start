@@ -6,9 +6,9 @@
 <script>
 	var frmInvTransfer = frmInvTransfer || {};
 		frmInvTransfer.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmInvTransfer' );
-		frmInvTransfer.RWC_CONFIG_DATASET = new kendo.data.DataSource({ data: [{}] });
-		frmInvTransfer.RWC_SIZE_DATASET = new kendo.data.DataSource({ data: [{}] });
-		frmInvTransfer.RWC_COLOR_DATASET = new kendo.data.DataSource({ data: [{}] });
+		frmInvTransfer.RWC_CONFIG_DATASET = new kendo.data.DataSource({ data: [{}]  });
+		frmInvTransfer.RWC_SIZE_DATASET = new kendo.data.DataSource({ data: [{}]  });
+		frmInvTransfer.RWC_COLOR_DATASET = new kendo.data.DataSource({ data: [{}]  });
 		frmInvTransfer.RWC_PromptControl1_From_Site_ValidEvent = function(_value, _completeAction) {
 			
 			var shouldContinue = true;
@@ -630,61 +630,34 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","COLOR","");
-			RWC_PromptControl1.SetHistoryText("Color",ResourceMgr.GetCDTString("Color"),cdt.VariableManager.getLocalVariable("COLOR"),true);
-			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 5;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
-			RWC_PromptControl1.ShowPrompt("Config");
-			return;
-			}
-			else if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","CONFIGURATION","");
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","CONFIGURATION","");
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Batch_Number");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","BATCH_NUMBER","");
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_EXIST","True");
-			RWC_PromptControl1.ShowPrompt("Serial_No");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SERIAL_NO","");
-			
-			}
-			RWC_PromptControl1.ShowPrompt("QTY");
+			// Line#  1 : Var.COLOR = Dsv.RWC_COLOR_DATASET.INVENTCOLORID
+			// Line#  2 : SetHistoryTextEx ( RWC_PromptControl1 , Color , @Color , Var.COLOR , True ) 
+			// Line#  3 : If Var.CONFIGURATION_ACTIVE = (Alpha) Y
+			// Line#  4 : If Var.QTY_OF_CONFIGURATION > (Alpha) 1
+			// Line#  5 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Config ) 
+			// Line#  6 : ShowPrompt ( RWC_PromptControl1 , Config ) 
+			// Line#  7 : ExitEvent( )
+			// Line#  8 : Else If Var.QTY_OF_CONFIGURATION = (Alpha) 1
+			// Line#  9 : Var.CONFIGURATION = Mvr.v_Item.STANDARDCONFIGID
+			// Line#  10 : Else
+			// Line#  11 : Var.CONFIGURATION = 
+			// Line#  12 : End If
+			// Line#  13 : End If
+			// Line#  14 : If Var.BATCH_NO_ACTIVE = (Alpha) Y
+			// Line#  15 : Var.BATCH_EXIST = True
+			// Line#  16 : ShowPrompt ( RWC_PromptControl1 , Batch_Number ) 
+			// Line#  17 : ExitEvent( )
+			// Line#  18 : Else
+			// Line#  19 : Var.BATCH_NUMBER = 
+			// Line#  20 : End If
+			// Line#  21 : If Var.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  22 : Var.SERIAL_EXIST = True
+			// Line#  23 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  24 : ExitEvent( )
+			// Line#  25 : Else
+			// Line#  26 : Var.SERIAL_NO = 
+			// Line#  27 : End If
+			// Line#  28 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -695,19 +668,19 @@
 		try{
 			
 			
-			e.Cancel = true;
-			ResetForm( );
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE_AGAIN","False");
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","SITE",cdt.VariableManager.getGlobalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","WAREHOUSE",cdt.VariableManager.getGlobalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","FROM_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_SITE",cdt.VariableManager.getLocalVariable("SITE"));
-			VariableManager.Instance.SetVariable("Var.frmInvTransfer","TO_WAREHOUSE",cdt.VariableManager.getLocalVariable("WAREHOUSE"));
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Warehouse"),cdt.VariableManager.getLocalVariable("FROM_WAREHOUSE"),true);
-			RWC_PromptControl1.SetHistoryText("From_Site",ResourceMgr.GetCDTString("From Site"),cdt.VariableManager.getLocalVariable("SITE"),false);
-			UpdateData( false );
-			RWC_PromptControl1.ShowPrompt("PART");
+			// Line#  1 : CancelDefault( )
+			// Line#  2 : ResetForm( )
+			// Line#  3 : Var.TO_SITE_AGAIN = False
+			// Line#  4 : Var.SITE = Gvr.SITE
+			// Line#  5 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  6 : Var.FROM_SITE = Var.SITE
+			// Line#  7 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  8 : Var.TO_SITE = Var.SITE
+			// Line#  9 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  10 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  11 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  12 : UpdateData ( Get ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , PART ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
