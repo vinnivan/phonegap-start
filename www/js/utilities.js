@@ -39,10 +39,13 @@ $(window).bind("hashchange", function (e) {
     if (cdt.Application.getCurrentViewModel() == null)
         return;
 
+
+    alert("ViewChanged:" + url);
+
     var main = $("#" + cdt.Application.getCurrentViewModel().viewId);
 
     if (url == "#main") {
-        //alert(url);
+        alert("Show main");
         main.animate({ left: '+=300' }, 200, function () { cdt.Application.getCurrentViewModel().setIsMenuOpen(true); });
         mm.show(0);
         mm.css("left", -300);
@@ -50,9 +53,14 @@ $(window).bind("hashchange", function (e) {
     } else if (url == cdt.Application.getStartView()) {
 
         if (showView == undefined) {
+
+            alert("Unknown!");
+
             if (main.css("left") != "0px") {
                 main.animate({ left: '-=300' }, 400);
                 mm.animate({ left: '-=300' }, 400, function () { mm.data().kendoMobileScroller.reset(); mm.hide(0); cdt.Application.getCurrentViewModel().setIsMenuOpen(false); });
+
+                
             }
         } else {
             //main.css("left", 0);
@@ -61,6 +69,8 @@ $(window).bind("hashchange", function (e) {
             //kendo.history.navigate(showView);
             //showView = undefined;
 
+
+            alert("Show new view");
 
             main.animate({ left: '-=300' }, 400);
             mm.animate({ left: '-=300' }, 400, function () {
