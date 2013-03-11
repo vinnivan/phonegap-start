@@ -17,7 +17,15 @@ var showMenu = function () {
 
 var showScanner = function () {
 
+    alert("Show Scanner!");
+
     var scanner = window.PhoneGap.require("cordova/plugin/BarcodeScanner");
+
+    if (scanner == null) {
+
+        alert("Did not create scanner!");
+    }
+
     scanner.scan(function (result) {
         cdt.Application.getCurrentViewModel().promptControl.onScan(result.text, result.cancelled);
     }, function (error) {
