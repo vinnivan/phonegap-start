@@ -22,7 +22,7 @@
     {
         display:block;
         margin-left:auto;
-        width:40%;
+        width:30%;
         margin-right:auto;
         padding:20px;
     }
@@ -151,7 +151,6 @@
     {
         width: 300px; 
         height: 500px;
-        background-color: red;
         display:none;
     }
 
@@ -194,7 +193,7 @@
         #mainMenuContainer 
         {
             width: 300px; 
-            height: 750px;
+            height: 660px;
         }
     }
 
