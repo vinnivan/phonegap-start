@@ -1225,6 +1225,7 @@ cdt.promptControl = function (_resetCaptionId, _previousCaptionId, _abortCaption
     var abort = function () {
 
         //cdt.Diagnostics.writeLine("Prompt Control Abort");
+        reset();
         kendo.history.navigate("#:back");
     };
 
