@@ -222,7 +222,7 @@ cdt.Utilities = (function() {
 
      var hideKeyboard = function (element) {
 
-         alert("HideKeyboard");
+         //alert("HideKeyboard");
 
          element.attr('readonly', 'readonly'); // Force keyboard to hide on input field.
          element.attr('disabled', 'true'); // Force keyboard to hide on textarea field.
@@ -679,8 +679,7 @@ cdt.textControl = function (_name, _captionId) {
     var focus = function (_secondsWaited) {
         var secondsWaited = _secondsWaited;
         secondsWaited += 100;
-        cdt.Diagnostics.writeLine("checking focus:" + hasFocus);
-
+        //cdt.Diagnostics.writeLine("checking focus:" + hasFocus);
 
         if (hasFocus == false && secondsWaited < 2000) {
             uiTextControl.focus();
@@ -706,14 +705,16 @@ cdt.textControl = function (_name, _captionId) {
 
         uiTextControl.focusin(function () {
             hasFocus = true;
-            cdt.Diagnostics.writeLine("has focus");
+            //cdt.Diagnostics.writeLine("has focus");
             focusCount++;
+            //alert("Focus in");
         });
 
         uiTextControl.focusout(function () {
             hasFocus = false;
-            cdt.Diagnostics.writeLine("lost focus");
+            //cdt.Diagnostics.writeLine("lost focus");
             focusCount = 0;
+            //alert("Focus out");
         });
 
     };
@@ -954,8 +955,9 @@ cdt.promptControl = function (_resetCaptionId, _previousCaptionId, _abortCaption
             if (_success) {
 
 
+                setTimeout("cdt.Application.getCurrentViewModel().promptControl.showNextPrompt()", 100);
 
-                showNextPrompt();
+                // showNextPrompt();
             }
         });
     };
@@ -1210,7 +1212,11 @@ cdt.promptControl = function (_resetCaptionId, _previousCaptionId, _abortCaption
         // Validations are asynchronous so pass callback
         currentPrompt.validate(_scan, function (_success) {
             if (_success) {
-                showNextPrompt();
+
+
+                setTimeout("cdt.Application.getCurrentViewModel().promptControl.showNextPrompt()", 100);
+
+                // showNextPrompt();
             }
         });
 
@@ -1218,7 +1224,7 @@ cdt.promptControl = function (_resetCaptionId, _previousCaptionId, _abortCaption
 
     var abort = function () {
 
-        cdt.Diagnostics.writeLine("Prompt Control Abort");
+        //cdt.Diagnostics.writeLine("Prompt Control Abort");
         kendo.history.navigate("#:back");
     };
 

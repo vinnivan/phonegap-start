@@ -12,6 +12,7 @@
     .historyScroller
     {
         height: 200px;
+        z-index:10; /* For Android - scroller was on top of all controls*/
     }
 
     .overviewLogo
@@ -156,6 +157,7 @@
     {
         width: 300px; 
         height: 460px;
+        /*background-color: yellow;*/
         display:none;
     }
 
@@ -184,12 +186,47 @@
         }
     }
 
-    @media all and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)
+
+    @media only screen and (min-device-width: 320px) and (max-device-width: 540px) and (orientation : portrait)
+    {
+        #mainMenuContainer 
+        {
+            width: 300px; 
+            height: 400px;
+            /*background-color: purple;*/
+        }
+
+        .historyScroller
+        {
+            height: 200px;
+        }
+
+
+    }
+
+    @media only screen and (min-device-width: 320px) and (max-device-width: 540px) and (orientation : landscape)
+    {
+        #mainMenuContainer 
+        {
+            width: 300px; 
+            height: 300px;
+            /*background-color: purple;*/
+        }
+
+        .historyScroller
+        {
+            height: 150px;
+        }
+    }
+
+
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation : portrait)
     {
         #mainMenuContainer 
         {
             width: 300px; 
             height: 1000px;
+            /*background-color: green;*/
         }
 
         .historyScroller
@@ -200,12 +237,13 @@
 
     }
 
-    @media all and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)
+    @media only screen (min-device-width: 768px) and (max-device-width: 2048px) and (orientation : landscape)
     {
         #mainMenuContainer 
         {
             width: 300px; 
             height: 720px;
+            /*background-color: blue;*/
         }
 
         .historyScroller
@@ -222,6 +260,7 @@
         {
             width: 300px; 
             height: 640px;
+            /*background-color: red;*/
         }
     }
 
