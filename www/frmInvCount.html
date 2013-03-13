@@ -117,122 +117,81 @@
 			
 		try{
 			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SERIAL_NO","");
-			VariableManager.Instance.SetVariable("Var.frmInvCount","BATCH_NUMBER","");
-			VariableManager.Instance.SetVariable("Var.frmInvCount","PALLET_ID","");
-			VariableManager.Instance.SetVariable("Var.frmInvCount","LOCATION","");
-			VariableManager.Instance.SetVariable("Var.frmInvCount","QTY","");
-			VariableManager.Instance.SetVariable("Var.frmInvCount","STATUS","");
-			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
-			{
-			
-			RWC_PromptControl1.IsValid(false);
-			shouldContinue = false;
-			return;
-			
-			}
-			VariableManager.Instance.SetVariable("Var.frmInvCount","DIMENSION_ID","");
-			VariableManager.Instance.SetVariable("Var.frmInvCount","COLOR","");
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SIZE","");
-			VariableManager.Instance.SetVariable("Var.frmInvCount","CONFIGURATION","");
-			CurrentLine= 16;NetManager.Instance.SendValidation("v_Dimension_Group",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
-			VariableManager.Instance.SetVariable("Var.frmInvCount","LOCATION_ACTIVE","");
-			VariableManager.Instance.SetVariable("Var.frmInvCount","PALLET_ID_ACTIVE","");
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SIZE_ACTIVE","");
-			VariableManager.Instance.SetVariable("Var.frmInvCount","QTY_OF_SIZE","");
-			VariableManager.Instance.SetVariable("Var.frmInvCount","COLOR_ACTIVE","");
-			VariableManager.Instance.SetVariable("Var.frmInvCount","QTY_OF_COLOR","");
-			VariableManager.Instance.SetVariable("Var.frmInvCount","CONFIGURATION_ACTIVE","");
-			VariableManager.Instance.SetVariable("Var.frmInvCount","QTY_OF_CONFIGURATION","");
-			VariableManager.Instance.SetVariable("Var.frmInvCount","BATCH_NO_ACTIVE","");
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SERIAL_NO_ACTIVE","");
-			if("".ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			frmInvCount.RWC_PromptControl1.showPrompt("From_Location");
-			return;
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("SIZE_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_SIZE").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 33;RWC_PromptControl1.ReceiveDataSetFromQueue("Size");
-			frmInvCount.RWC_PromptControl1.showPrompt("Size");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 40;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
-			frmInvCount.RWC_PromptControl1.showPrompt("Color");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 47;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
-			frmInvCount.RWC_PromptControl1.showPrompt("Config");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","BATCH_EXIST","True");
-			frmInvCount.RWC_PromptControl1.showPrompt("Batch_Number");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","BATCH_NUMBER","");
-			
-			}
-			if("".ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SERIAL_EXIST","True");
-			frmInvCount.RWC_PromptControl1.showPrompt("Serial_No");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SERIAL_NO","");
-			
-			}
-			CurrentLine= 66;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
-			VariableManager.Instance.SetVariable("Var.frmInvCount","STATUS","");
-			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
-			{
-			
-			RWC_PromptControl1.IsValid(false);
-			shouldContinue = false;
-			return;
-			
-			}
-			RWC_PromptControl1.SetHistoryText("PART",ResourceMgr.GetCDTString("On Hand"),"",true);
-			RWC_PromptControl1.SetHistoryText("PART",ResourceMgr.GetCDTString("ITEM ID"),cdt.VariableManager.getLocalVariable("ITEM_ID"),false);
-			frmInvCount.RWC_PromptControl1.showPrompt("QTY");
+			// Line#  1 : Var.SERIAL_NO = 
+			// Line#  2 : Var.BATCH_NUMBER = 
+			// Line#  3 : Var.PALLET_ID = 
+			// Line#  4 : Var.LOCATION = 
+			// Line#  5 : Var.QTY = 
+			// Line#  6 : Var.STATUS = Mvr.v_Item.STATUS
+			// Line#  7 : If Var.STATUS <> (Alpha) Y
+			// Line#  8 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  9 : CancelDefault( )
+			// Line#  10 : ExitEvent( )
+			// Line#  11 : End If
+			// Line#  12 : Var.DIMENSION_ID = Mvr.v_Item.DIMGROUPID
+			// Line#  13 : Var.COLOR = Mvr.v_Item.STANDARDINVENTCOLORID
+			// Line#  14 : Var.SIZE = Mvr.v_Item.STANDARDINVENTSIZEID
+			// Line#  15 : Var.CONFIGURATION = Mvr.v_Item.STANDARDCONFIGID
+			// Line#  16 : SendValidation ( v_Dimension_Group ) 
+			// Line#  17 : Var.LOCATION_ACTIVE = Mvr.v_Dimension_Group.LOCATION_ACTIVE
+			// Line#  18 : Var.PALLET_ID_ACTIVE = Mvr.v_Dimension_Group.PALLET_ID_ACTIVE
+			// Line#  19 : Var.SIZE_ACTIVE = Mvr.v_Dimension_Group.SIZE_ACTIVE
+			// Line#  20 : Var.QTY_OF_SIZE = Mvr.v_Dimension_Group.QTY_OF_SIZE
+			// Line#  21 : Var.COLOR_ACTIVE = Mvr.v_Dimension_Group.COLOR_ACTIVE
+			// Line#  22 : Var.QTY_OF_COLOR = Mvr.v_Dimension_Group.QTY_OF_COLOR
+			// Line#  23 : Var.CONFIGURATION_ACTIVE = Mvr.v_Dimension_Group.CONFIGURATION_ACTIVE
+			// Line#  24 : Var.QTY_OF_CONFIGURATION = Mvr.v_Dimension_Group.QTY_OF_CONFIGURATION
+			// Line#  25 : Var.BATCH_NO_ACTIVE = Mvr.v_Dimension_Group.BATCH_NO_ACTIVE
+			// Line#  26 : Var.SERIAL_NO_ACTIVE = Mvr.v_Dimension_Group.SERIAL_NO_ACTIVE
+			// Line#  27 : If Mvr.v_Dimension_Group.LOCATION_ACTIVE = (Alpha) Y
+			// Line#  28 : ShowPrompt ( RWC_PromptControl1 , From_Location ) 
+			// Line#  29 : ExitEvent( )
+			// Line#  30 : End If
+			// Line#  31 : If Var.SIZE_ACTIVE = (Alpha) Y
+			// Line#  32 : If Var.QTY_OF_SIZE > (Alpha) 1
+			// Line#  33 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Size ) 
+			// Line#  34 : ShowPrompt ( RWC_PromptControl1 , Size ) 
+			// Line#  35 : ExitEvent( )
+			// Line#  36 : End If
+			// Line#  37 : End If
+			// Line#  38 : If Var.COLOR_ACTIVE = (Alpha) Y
+			// Line#  39 : If Var.QTY_OF_COLOR > (Alpha) 1
+			// Line#  40 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Color ) 
+			// Line#  41 : ShowPrompt ( RWC_PromptControl1 , Color ) 
+			// Line#  42 : ExitEvent( )
+			// Line#  43 : End If
+			// Line#  44 : End If
+			// Line#  45 : If Var.CONFIGURATION_ACTIVE = (Alpha) Y
+			// Line#  46 : If Var.QTY_OF_CONFIGURATION > (Alpha) 1
+			// Line#  47 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Config ) 
+			// Line#  48 : ShowPrompt ( RWC_PromptControl1 , Config ) 
+			// Line#  49 : ExitEvent( )
+			// Line#  50 : End If
+			// Line#  51 : End If
+			// Line#  52 : If Var.BATCH_NO_ACTIVE = (Alpha) Y
+			// Line#  53 : Var.BATCH_EXIST = True
+			// Line#  54 : ShowPrompt ( RWC_PromptControl1 , Batch_Number ) 
+			// Line#  55 : ExitEvent( )
+			// Line#  56 : Else
+			// Line#  57 : Var.BATCH_NUMBER = 
+			// Line#  58 : End If
+			// Line#  59 : If Mvr.v_Dimension_Group.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  60 : Var.SERIAL_EXIST = True
+			// Line#  61 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  62 : ExitEvent( )
+			// Line#  63 : Else
+			// Line#  64 : Var.SERIAL_NO = 
+			// Line#  65 : End If
+			// Line#  66 : SendValidation ( v_Item_In_Stock ) 
+			// Line#  67 : Var.STATUS = Mvr.v_Item_In_Stock.STATUS
+			// Line#  68 : If Var.STATUS <> (Alpha) Y
+			// Line#  69 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  70 : CancelDefault( )
+			// Line#  71 : ExitEvent( )
+			// Line#  72 : End If
+			// Line#  73 : SetHistoryTextEx ( RWC_PromptControl1 , PART , @On Hand , Mvr.v_Item_In_Stock.AVAILABLE_PHYSICAL , True ) 
+			// Line#  74 : SetHistoryTextEx ( RWC_PromptControl1 , PART , @ITEM ID , Var.ITEM_ID , False ) 
+			// Line#  75 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -429,87 +388,52 @@
 			
 		try{
 			
-			if(cdt.VariableManager.getLocalVariable("SIZE_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_SIZE").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 3;RWC_PromptControl1.ReceiveDataSetFromQueue("Size");
-			frmInvCount.RWC_PromptControl1.showPrompt("Size");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("COLOR_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_COLOR").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 10;RWC_PromptControl1.ReceiveDataSetFromQueue("Color");
-			frmInvCount.RWC_PromptControl1.showPrompt("Color");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("CONFIGURATION_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			if(cdt.VariableManager.getLocalVariable("QTY_OF_CONFIGURATION").ToUpper().CompareTo("1".ToUpper()) > 0)
-			{
-			
-			CurrentLine= 17;RWC_PromptControl1.ReceiveDataSetFromQueue("Config");
-			frmInvCount.RWC_PromptControl1.showPrompt("Config");
-			return;
-			
-			}
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("BATCH_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","BATCH_EXIST","True");
-			frmInvCount.RWC_PromptControl1.showPrompt("Batch_Number");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","BATCH_NUMBER","");
-			
-			}
-			if(cdt.VariableManager.getLocalVariable("SERIAL_NO_ACTIVE").ToUpper().CompareTo("Y".ToUpper()) == 0)
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SERIAL_EXIST","True");
-			frmInvCount.RWC_PromptControl1.showPrompt("Serial_No");
-			return;
-			
-			}
-			else
-			{
-			
-			VariableManager.Instance.SetVariable("Var.frmInvCount","SERIAL_NO","");
-			
-			}
-			CurrentLine= 36;NetManager.Instance.SendValidation("v_Item_In_Stock",GetVariableNameSpace(),ValidationAction.ReturnToPrompt,ValidationAction.ReturnToPrompt);
-			VariableManager.Instance.SetVariable("Var.frmInvCount","STATUS","");
-			if(cdt.VariableManager.getLocalVariable("STATUS").ToUpper().CompareTo("Y".ToUpper()) != 0)
-			{
-			
-			RWC_PromptControl1.SetHistoryText("Pallet",ResourceMgr.GetCDTString("On Hand"),"0",true);
-			RWC_PromptControl1.SetHistoryText("Pallet",ResourceMgr.GetCDTString("Pallet Id"),cdt.VariableManager.getLocalVariable("PALLET_ID"),false);
-			frmInvCount.RWC_PromptControl1.showPrompt("QTY");
-			return;
-			
-			}
-			RWC_PromptControl1.SetHistoryText("Pallet",ResourceMgr.GetCDTString("On Hand"),"",true);
-			RWC_PromptControl1.SetHistoryText("Pallet",ResourceMgr.GetCDTString("Pallet Id"),cdt.VariableManager.getLocalVariable("PALLET_ID"),false);
-			frmInvCount.RWC_PromptControl1.showPrompt("QTY");
+			// Line#  1 : If Var.SIZE_ACTIVE = (Alpha) Y
+			// Line#  2 : If Var.QTY_OF_SIZE > (Alpha) 1
+			// Line#  3 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Size ) 
+			// Line#  4 : ShowPrompt ( RWC_PromptControl1 , Size ) 
+			// Line#  5 : ExitEvent( )
+			// Line#  6 : End If
+			// Line#  7 : End If
+			// Line#  8 : If Var.COLOR_ACTIVE = (Alpha) Y
+			// Line#  9 : If Var.QTY_OF_COLOR > (Alpha) 1
+			// Line#  10 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Color ) 
+			// Line#  11 : ShowPrompt ( RWC_PromptControl1 , Color ) 
+			// Line#  12 : ExitEvent( )
+			// Line#  13 : End If
+			// Line#  14 : End If
+			// Line#  15 : If Var.CONFIGURATION_ACTIVE = (Alpha) Y
+			// Line#  16 : If Var.QTY_OF_CONFIGURATION > (Alpha) 1
+			// Line#  17 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Config ) 
+			// Line#  18 : ShowPrompt ( RWC_PromptControl1 , Config ) 
+			// Line#  19 : ExitEvent( )
+			// Line#  20 : End If
+			// Line#  21 : End If
+			// Line#  22 : If Var.BATCH_NO_ACTIVE = (Alpha) Y
+			// Line#  23 : Var.BATCH_EXIST = True
+			// Line#  24 : ShowPrompt ( RWC_PromptControl1 , Batch_Number ) 
+			// Line#  25 : ExitEvent( )
+			// Line#  26 : Else
+			// Line#  27 : Var.BATCH_NUMBER = 
+			// Line#  28 : End If
+			// Line#  29 : If Var.SERIAL_NO_ACTIVE = (Alpha) Y
+			// Line#  30 : Var.SERIAL_EXIST = True
+			// Line#  31 : ShowPrompt ( RWC_PromptControl1 , Serial_No ) 
+			// Line#  32 : ExitEvent( )
+			// Line#  33 : Else
+			// Line#  34 : Var.SERIAL_NO = 
+			// Line#  35 : End If
+			// Line#  36 : SendValidation ( v_Item_In_Stock ) 
+			// Line#  37 : Var.STATUS = Mvr.v_Item_In_Stock.STATUS
+			// Line#  38 : If Var.STATUS <> (Alpha) Y
+			// Line#  39 : SetHistoryTextEx ( RWC_PromptControl1 , Pallet , @On Hand , 0 , True ) 
+			// Line#  40 : SetHistoryTextEx ( RWC_PromptControl1 , Pallet , @Pallet Id , Var.PALLET_ID , False ) 
+			// Line#  41 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
+			// Line#  42 : ExitEvent( )
+			// Line#  43 : End If
+			// Line#  44 : SetHistoryTextEx ( RWC_PromptControl1 , Pallet , @On Hand , Mvr.v_Item_In_Stock.AVAILABLE_PHYSICAL , True ) 
+			// Line#  45 : SetHistoryTextEx ( RWC_PromptControl1 , Pallet , @Pallet Id , Var.PALLET_ID , False ) 
+			// Line#  46 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -668,14 +592,14 @@
 
 
 		frmInvCount.RWC_PromptControl1LP0_template = "<li data-uid='#= data.uid #'><a>";
-		frmInvCount.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Size:&nbsp;&nbsp;</span>";
-		frmInvCount.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 42%;text-align:left;'>#= data.INVENTSIZEID #&nbsp;&nbsp;</span>";
+		frmInvCount.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 12%;width: 30%;text-align:right;'>Size:&nbsp;&nbsp;</span>";
+		frmInvCount.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 42%;text-align:left;'>#= data.INVENTSIZEID #&nbsp;&nbsp;</span>";
 		frmInvCount.RWC_PromptControl1LP0_template += "<br/>";
-		frmInvCount.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Name:&nbsp;&nbsp;</span>";
-		frmInvCount.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 48%;text-align:left;'>#= data.NAME #&nbsp;&nbsp;</span>";
+		frmInvCount.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 12%;width: 30%;text-align:right;'>Name:&nbsp;&nbsp;</span>";
+		frmInvCount.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 48%;text-align:left;'>#= data.NAME #&nbsp;&nbsp;</span>";
 		frmInvCount.RWC_PromptControl1LP0_template += "<br/>";
-		frmInvCount.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Description:&nbsp;&nbsp;</span>";
-		frmInvCount.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 55%;text-align:left;'>#= data.DESCRIPTION #&nbsp;&nbsp;</span>";
+		frmInvCount.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 42%;text-align:right;'>Description:&nbsp;&nbsp;</span>";
+		frmInvCount.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 55%;text-align:left;'>#= data.DESCRIPTION #&nbsp;&nbsp;</span>";
 		frmInvCount.RWC_PromptControl1LP0_template += "<br /></a></li>";
 		frmInvCount.RWC_PromptControl1LP0.setLayout( kendo.template(frmInvCount.RWC_PromptControl1LP0_template, { useWithBlock: false } ) );
 
@@ -776,14 +700,14 @@
 
 
 		frmInvCount.RWC_PromptControl1LP1_template = "<li data-uid='#= data.uid #'><a>";
-		frmInvCount.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Color:&nbsp;&nbsp;</span>";
-		frmInvCount.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 42%;text-align:left;'>#= data.INVENTCOLORID #&nbsp;&nbsp;</span>";
+		frmInvCount.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 12%;width: 30%;text-align:right;'>Color:&nbsp;&nbsp;</span>";
+		frmInvCount.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 42%;text-align:left;'>#= data.INVENTCOLORID #&nbsp;&nbsp;</span>";
 		frmInvCount.RWC_PromptControl1LP1_template += "<br/>";
-		frmInvCount.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Name:&nbsp;&nbsp;</span>";
-		frmInvCount.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 48%;text-align:left;'>#= data.NAME #&nbsp;&nbsp;</span>";
+		frmInvCount.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 12%;width: 30%;text-align:right;'>Name:&nbsp;&nbsp;</span>";
+		frmInvCount.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 48%;text-align:left;'>#= data.NAME #&nbsp;&nbsp;</span>";
 		frmInvCount.RWC_PromptControl1LP1_template += "<br/>";
-		frmInvCount.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Description:&nbsp;&nbsp;</span>";
-		frmInvCount.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 55%;text-align:left;'>#= data.DESCRIPTION #&nbsp;&nbsp;</span>";
+		frmInvCount.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 42%;text-align:right;'>Description:&nbsp;&nbsp;</span>";
+		frmInvCount.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 55%;text-align:left;'>#= data.DESCRIPTION #&nbsp;&nbsp;</span>";
 		frmInvCount.RWC_PromptControl1LP1_template += "<br /></a></li>";
 		frmInvCount.RWC_PromptControl1LP1.setLayout( kendo.template(frmInvCount.RWC_PromptControl1LP1_template, { useWithBlock: false } ) );
 
@@ -877,11 +801,11 @@
 
 
 		frmInvCount.RWC_PromptControl1LP2_template = "<li data-uid='#= data.uid #'><a>";
-		frmInvCount.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 0%;width: 45%;text-align:right;'>Configuration:&nbsp;&nbsp;</span>";
-		frmInvCount.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 45%;width: 42%;text-align:left;'>#= data.CONFIGID #&nbsp;&nbsp;</span>";
+		frmInvCount.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 45%;text-align:right;'>Configuration:&nbsp;&nbsp;</span>";
+		frmInvCount.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 45%;width: 42%;text-align:left;'>#= data.CONFIGID #&nbsp;&nbsp;</span>";
 		frmInvCount.RWC_PromptControl1LP2_template += "<br/>";
-		frmInvCount.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 15%;width: 30%;text-align:right;'>Name:&nbsp;&nbsp;</span>";
-		frmInvCount.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 45%;width: 48%;text-align:left;'>#= data.NAME #&nbsp;&nbsp;</span>";
+		frmInvCount.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 15%;width: 30%;text-align:right;'>Name:&nbsp;&nbsp;</span>";
+		frmInvCount.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 45%;width: 48%;text-align:left;'>#= data.NAME #&nbsp;&nbsp;</span>";
 		frmInvCount.RWC_PromptControl1LP2_template += "<br /></a></li>";
 		frmInvCount.RWC_PromptControl1LP2.setLayout( kendo.template(frmInvCount.RWC_PromptControl1LP2_template, { useWithBlock: false } ) );
 
@@ -1134,6 +1058,9 @@
 			// Line#  16 : CancelDefault( )
 			// Line#  17 : ExitEvent( )
 			// Line#  18 : End If
+			shouldContinue = false;
+			cdt.MessageBox.show(cdt.ResourceManager.getString("Success"),cdt.ResourceManager.getString("Transaction Sent!"),cdt.MessageBoxButton.Ok,null);
+			frmInvCount.viewModel.promptControl.reset( );
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);

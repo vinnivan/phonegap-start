@@ -5,8 +5,66 @@
 <div id='frmSalesPickingRoute' data-role='view' data-title='Sales Picking Route' data-show='frmSalesPickingRoute.viewModel.initialize' data-model='frmSalesPickingRoute.viewModel' >
 <script>
 	var frmSalesPickingRoute = frmSalesPickingRoute || {};
-		frmSalesPickingRoute.RWC_Sales_Route_Details = new kendo.data.DataSource({ data: [{}]  });
-		frmSalesPickingRoute.RWC_Sales_Routes = new kendo.data.DataSource({ data: [{}]  });
+		frmSalesPickingRoute.RWC_Sales_Route_Details = new kendo.data.DataSource({ data: [
+		{LOCATION: "",
+		PICK_QUANTITY: "3",
+		INVENTORY_ORDER: "IO00017",
+		REQUESTED_QUANTITY: "98",
+		WAREHOUSE: "10",
+		QUANTITY_NOT_IN_SHIPMENT: "0",
+		HANDLING_STATUS: "Activated",
+		COLOR: "",
+		LOT_ID: "IL00151",
+		CONFIGURATION: "",
+		NUMBER: "SO00013",
+		SERIAL_NO: "",
+		BATCH_NUMBER: "",
+		REFERENCE: "Sales Order",
+		SHIPMENT: "IS00016",
+		PICKING_ROUTE: "IU00010",
+		SIZE: "",
+		SITE: "HQ",
+		ITEM_NUMBER: "I99-F",
+		_CURRENT: "1",
+		_COUNT: "2",
+		DELIVERY_DATE: "4/28/2012 12:00:00 AM"}
+		,
+		{LOCATION: "",
+		PICK_QUANTITY: "95",
+		INVENTORY_ORDER: "IO00017",
+		REQUESTED_QUANTITY: "98",
+		WAREHOUSE: "10",
+		QUANTITY_NOT_IN_SHIPMENT: "0",
+		HANDLING_STATUS: "Activated",
+		COLOR: "",
+		LOT_ID: "IL00151",
+		CONFIGURATION: "",
+		NUMBER: "SO00013",
+		SERIAL_NO: "",
+		BATCH_NUMBER: "",
+		REFERENCE: "Sales Order",
+		SHIPMENT: "IS00016",
+		PICKING_ROUTE: "IU00010",
+		SIZE: "",
+		SITE: "HQ",
+		ITEM_NUMBER: "I99-F",
+		DELIVERY_DATE: "4/28/2012 12:00:00 AM",
+		_COUNT: "2",
+		_CURRENT: "2"}
+		]  });
+		frmSalesPickingRoute.RWC_Sales_Routes = new kendo.data.DataSource({ data: [
+		{ROUTEID: "IU00010",
+		_CURRENT: "1",
+		_COUNT: "2",
+		LINES: "2",
+		TRANSTYPE: "SALES ORDER"}
+		,
+		{ROUTEID: "IU00012",
+		LINES: "1",
+		TRANSTYPE: "SALES ORDER",
+		_CURRENT: "2",
+		_COUNT: "2"}
+		]  });
 		frmSalesPickingRoute.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmSalesPickingRoute' );
 		frmSalesPickingRoute.RWC_PromptControl1_Route_ValidEvent = function(_value, _completeAction) {
 			
@@ -135,14 +193,14 @@
 
 
 		frmSalesPickingRoute.RWC_PromptControl1LP0_template = "<li data-uid='#= data.uid #'><a>";
-		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 30%;text-align:right;'>Route:&nbsp;&nbsp;</span>";
-		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 30%;width: 45%;text-align:left;'>#= data.ROUTEID #&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 30%;text-align:right;'>Route:&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 30%;width: 45%;text-align:left;'>#= data.ROUTEID #&nbsp;&nbsp;</span>";
 		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<br/>";
-		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 30%;text-align:right;'>Lines:&nbsp;&nbsp;</span>";
-		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 30%;width: 30%;text-align:left;'>#= data.LINES #&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 30%;text-align:right;'>Lines:&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 30%;width: 30%;text-align:left;'>#= data.LINES #&nbsp;&nbsp;</span>";
 		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<br/>";
-		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 30%;text-align:right;'>Type:&nbsp;&nbsp;</span>";
-		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 30%;width: 45%;text-align:left;'>#= data.TRANSTYPE #&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 30%;text-align:right;'>Type:&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 30%;width: 45%;text-align:left;'>#= data.TRANSTYPE #&nbsp;&nbsp;</span>";
 		frmSalesPickingRoute.RWC_PromptControl1LP0_template += "<br /></a></li>";
 		frmSalesPickingRoute.RWC_PromptControl1LP0.setLayout( kendo.template(frmSalesPickingRoute.RWC_PromptControl1LP0_template, { useWithBlock: false } ) );
 
@@ -229,43 +287,43 @@
 
 
 		frmSalesPickingRoute.RWC_PromptControl1LP1_template = "<li data-uid='#= data.uid #'><a>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 30%;width: 15%;text-align:right;'>Row:&nbsp;&nbsp;</span>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 12%;text-align:left;'>#= data._CURRENT #&nbsp;&nbsp;</span>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 61%;width: 9%;text-align:left;'>of&nbsp;&nbsp;</span>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 73%;width: 12%;text-align:left;'>#= data._COUNT #&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 30%;width: 15%;text-align:right;'>Row:&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 45%;width: 12%;text-align:left;'>#= data._CURRENT #&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 61%;width: 9%;text-align:left;'>of&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 73%;width: 12%;text-align:left;'>#= data._COUNT #&nbsp;&nbsp;</span>";
 		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 45%;text-align:right;'>Sales Order:&nbsp;&nbsp;</span>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.NUMBER #&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 45%;text-align:right;'>Sales Order:&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 45%;width: 30%;text-align:left;'>#= data.NUMBER #&nbsp;&nbsp;</span>";
 		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 15%;width: 30%;text-align:right;'>Order:&nbsp;&nbsp;</span>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 45%;text-align:left;'>#= data.INVENTORY_ORDER #&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 15%;width: 30%;text-align:right;'>Order:&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 45%;width: 45%;text-align:left;'>#= data.INVENTORY_ORDER #&nbsp;&nbsp;</span>";
 		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 3%;width: 42%;text-align:right;'>Item Number:&nbsp;&nbsp;</span>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.ITEM_NUMBER #&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 3%;width: 42%;text-align:right;'>Item Number:&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 45%;width: 30%;text-align:left;'>#= data.ITEM_NUMBER #&nbsp;&nbsp;</span>";
 		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 15%;width: 30%;text-align:right;'>Color:&nbsp;&nbsp;</span>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.COLOR #&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 15%;width: 30%;text-align:right;'>Color:&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 45%;width: 30%;text-align:left;'>#= data.COLOR #&nbsp;&nbsp;</span>";
 		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 45%;text-align:right;'>Configuration:&nbsp;&nbsp;</span>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.CONFIGURATION #&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 45%;text-align:right;'>Configuration:&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 45%;width: 30%;text-align:left;'>#= data.CONFIGURATION #&nbsp;&nbsp;</span>";
 		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 15%;width: 30%;text-align:right;'>Size:&nbsp;&nbsp;</span>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.SIZE #&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 15%;width: 30%;text-align:right;'>Size:&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 45%;width: 30%;text-align:left;'>#= data.SIZE #&nbsp;&nbsp;</span>";
 		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 45%;text-align:right;'>Requested Qty:&nbsp;&nbsp;</span>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.REQUESTED_QUANTITY #&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 45%;text-align:right;'>Requested Qty:&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 45%;width: 30%;text-align:left;'>#= data.REQUESTED_QUANTITY #&nbsp;&nbsp;</span>";
 		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 15%;width: 30%;text-align:right;'>Status:&nbsp;&nbsp;</span>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.HANDLING_STATUS #&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 15%;width: 30%;text-align:right;'>Status:&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 45%;width: 30%;text-align:left;'>#= data.HANDLING_STATUS #&nbsp;&nbsp;</span>";
 		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 15%;width: 30%;text-align:right;'>Site:&nbsp;&nbsp;</span>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.SITE #&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 15%;width: 30%;text-align:right;'>Site:&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 45%;width: 30%;text-align:left;'>#= data.SITE #&nbsp;&nbsp;</span>";
 		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 9%;width: 36%;text-align:right;'>Warehouse:&nbsp;&nbsp;</span>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.WAREHOUSE #&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 9%;width: 36%;text-align:right;'>Warehouse:&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 45%;width: 30%;text-align:left;'>#= data.WAREHOUSE #&nbsp;&nbsp;</span>";
 		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br/>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 45%;text-align:right;'>Location:&nbsp;&nbsp;</span>";
-		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 45%;width: 30%;text-align:left;'>#= data.LOCATION #&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 45%;text-align:right;'>Location:&nbsp;&nbsp;</span>";
+		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 45%;width: 30%;text-align:left;'>#= data.LOCATION #&nbsp;&nbsp;</span>";
 		frmSalesPickingRoute.RWC_PromptControl1LP1_template += "<br /></a></li>";
 		frmSalesPickingRoute.RWC_PromptControl1LP1.setLayout( kendo.template(frmSalesPickingRoute.RWC_PromptControl1LP1_template, { useWithBlock: false } ) );
 
@@ -356,6 +414,9 @@
 			// Line#  12 : CancelDefault( )
 			// Line#  13 : ExitEvent( )
 			// Line#  14 : End If
+			shouldContinue = false;
+			cdt.MessageBox.show(cdt.ResourceManager.getString("Success"),cdt.ResourceManager.getString("Transaction Sent!"),cdt.MessageBoxButton.Ok,null);
+			frmSalesPickingRoute.viewModel.promptControl.reset( );
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);

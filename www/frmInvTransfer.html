@@ -204,7 +204,7 @@
 			// Line#  53 : End If
 			// Line#  54 : If Var.BATCH_NO_ACTIVE = (Alpha) Y
 			// Line#  55 : Var.BATCH_EXIST = True
-			// Line#  56 : ShowPrompt ( RWC_PromptControl1 , Batch_Number ) 
+			frmInvTransfer.RWC_PromptControl1.showPrompt("Batch_Number");
 			// Line#  57 : ExitEvent( )
 			// Line#  58 : Else
 			// Line#  59 : Var.BATCH_NUMBER = 
@@ -217,6 +217,7 @@
 			// Line#  66 : Var.SERIAL_NO = 
 			// Line#  67 : End If
 			// Line#  68 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
+			shouldContinue = false;
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -612,14 +613,14 @@
 
 
 		frmInvTransfer.RWC_PromptControl1LP0_template = "<li data-uid='#= data.uid #'><a>";
-		frmInvTransfer.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Size Id:&nbsp;&nbsp;</span>";
-		frmInvTransfer.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 42%;text-align:left;'>#= data.INVENTSIZEID #&nbsp;&nbsp;</span>";
+		frmInvTransfer.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 12%;width: 30%;text-align:right;'>Size Id:&nbsp;&nbsp;</span>";
+		frmInvTransfer.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 42%;text-align:left;'>#= data.INVENTSIZEID #&nbsp;&nbsp;</span>";
 		frmInvTransfer.RWC_PromptControl1LP0_template += "<br/>";
-		frmInvTransfer.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Name:&nbsp;&nbsp;</span>";
-		frmInvTransfer.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 48%;text-align:left;'>#= data.NAME #&nbsp;&nbsp;</span>";
+		frmInvTransfer.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 12%;width: 30%;text-align:right;'>Name:&nbsp;&nbsp;</span>";
+		frmInvTransfer.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 48%;text-align:left;'>#= data.NAME #&nbsp;&nbsp;</span>";
 		frmInvTransfer.RWC_PromptControl1LP0_template += "<br/>";
-		frmInvTransfer.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Description:&nbsp;&nbsp;</span>";
-		frmInvTransfer.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 42%;width: 55%;text-align:left;'>#= data.DESCRIPTION #&nbsp;&nbsp;</span>";
+		frmInvTransfer.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 42%;text-align:right;'>Description:&nbsp;&nbsp;</span>";
+		frmInvTransfer.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 55%;text-align:left;'>#= data.DESCRIPTION #&nbsp;&nbsp;</span>";
 		frmInvTransfer.RWC_PromptControl1LP0_template += "<br /></a></li>";
 		frmInvTransfer.RWC_PromptControl1LP0.setLayout( kendo.template(frmInvTransfer.RWC_PromptControl1LP0_template, { useWithBlock: false } ) );
 
@@ -720,14 +721,14 @@
 
 
 		frmInvTransfer.RWC_PromptControl1LP1_template = "<li data-uid='#= data.uid #'><a>";
-		frmInvTransfer.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Color Id:&nbsp;&nbsp;</span>";
-		frmInvTransfer.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 42%;text-align:left;'>#= data.INVENTCOLORID #&nbsp;&nbsp;</span>";
+		frmInvTransfer.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 12%;width: 30%;text-align:right;'>Color Id:&nbsp;&nbsp;</span>";
+		frmInvTransfer.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 42%;text-align:left;'>#= data.INVENTCOLORID #&nbsp;&nbsp;</span>";
 		frmInvTransfer.RWC_PromptControl1LP1_template += "<br/>";
-		frmInvTransfer.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 12%;width: 30%;text-align:right;'>Name:&nbsp;&nbsp;</span>";
-		frmInvTransfer.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 48%;text-align:left;'>#= data.NAME #&nbsp;&nbsp;</span>";
+		frmInvTransfer.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 12%;width: 30%;text-align:right;'>Name:&nbsp;&nbsp;</span>";
+		frmInvTransfer.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 48%;text-align:left;'>#= data.NAME #&nbsp;&nbsp;</span>";
 		frmInvTransfer.RWC_PromptControl1LP1_template += "<br/>";
-		frmInvTransfer.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Description:&nbsp;&nbsp;</span>";
-		frmInvTransfer.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 55%;text-align:left;'>#= data.DESCRIPTION #&nbsp;&nbsp;</span>";
+		frmInvTransfer.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 42%;text-align:right;'>Description:&nbsp;&nbsp;</span>";
+		frmInvTransfer.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 55%;text-align:left;'>#= data.DESCRIPTION #&nbsp;&nbsp;</span>";
 		frmInvTransfer.RWC_PromptControl1LP1_template += "<br /></a></li>";
 		frmInvTransfer.RWC_PromptControl1LP1.setLayout( kendo.template(frmInvTransfer.RWC_PromptControl1LP1_template, { useWithBlock: false } ) );
 
@@ -817,11 +818,11 @@
 
 
 		frmInvTransfer.RWC_PromptControl1LP2_template = "<li data-uid='#= data.uid #'><a>";
-		frmInvTransfer.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 0%;width: 45%;text-align:right;'>Configuration:&nbsp;&nbsp;</span>";
-		frmInvTransfer.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 45%;width: 42%;text-align:left;'>#= data.CONFIGID #&nbsp;&nbsp;</span>";
+		frmInvTransfer.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 45%;text-align:right;'>Configuration:&nbsp;&nbsp;</span>";
+		frmInvTransfer.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 45%;width: 42%;text-align:left;'>#= data.CONFIGID #&nbsp;&nbsp;</span>";
 		frmInvTransfer.RWC_PromptControl1LP2_template += "<br/>";
-		frmInvTransfer.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 15%;width: 30%;text-align:right;'>Name:&nbsp;&nbsp;</span>";
-		frmInvTransfer.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;left: 45%;width: 48%;text-align:left;'>#= data.NAME #&nbsp;&nbsp;</span>";
+		frmInvTransfer.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 15%;width: 30%;text-align:right;'>Name:&nbsp;&nbsp;</span>";
+		frmInvTransfer.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 45%;width: 48%;text-align:left;'>#= data.NAME #&nbsp;&nbsp;</span>";
 		frmInvTransfer.RWC_PromptControl1LP2_template += "<br /></a></li>";
 		frmInvTransfer.RWC_PromptControl1LP2.setLayout( kendo.template(frmInvTransfer.RWC_PromptControl1LP2_template, { useWithBlock: false } ) );
 
@@ -839,7 +840,8 @@
 			// Line#  5 : Else
 			// Line#  6 : Var.SERIAL_NO = 
 			// Line#  7 : End If
-			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , QTY ) 
+			frmInvTransfer.RWC_PromptControl1.showPrompt("QTY");
+			shouldContinue = false;
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1018,9 +1020,10 @@
 			// Line#  27 : ShowPrompt ( RWC_PromptControl1 , To_Location ) 
 			// Line#  28 : ExitEvent( )
 			// Line#  29 : Else
-			// Line#  30 : ShowPrompt ( RWC_PromptControl1 , To_Site ) 
+			frmInvTransfer.RWC_PromptControl1.showPrompt("To_Site");
 			// Line#  31 : ExitEvent( )
 			// Line#  32 : End If
+			shouldContinue = false;
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1273,28 +1276,29 @@
 			
 			// Line#  1 : If Var.CONFIRM = Y
 			// Line#  2 : SendTransaction ( t_Transfer_Journal ) 
-			// Line#  3 : StatusWindow ( @Success , @Transaction Sent! , 2 ) 
-			// Line#  4 : ReturnToPrompt ( RWC_PromptControl1 , PART , True , True ) 
-			// Line#  5 : Else If Var.CONFIRM = (Alpha) N
-			// Line#  6 : StatusWindow ( @Cancelled , @Transaction cancelled !! , 2 ) 
-			// Line#  7 : ResetForm( )
-			// Line#  8 : Var.SITE = Gvr.SITE
-			// Line#  9 : Var.WAREHOUSE = Gvr.WAREHOUSE
-			// Line#  10 : Var.FROM_SITE = Var.SITE
-			// Line#  11 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
-			// Line#  12 : Var.TO_SITE = Var.SITE
-			// Line#  13 : Var.TO_WAREHOUSE = Var.WAREHOUSE
-			// Line#  14 : Var.TO_SITE_AGAIN = False
-			// Line#  15 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
-			// Line#  16 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
-			// Line#  17 : UpdateData ( Get ) 
-			// Line#  18 : ShowPrompt ( RWC_PromptControl1 , PART ) 
-			// Line#  19 : Else
-			// Line#  20 : StatusWindow ( Error , Answer must be Y or N. , 2 ) 
-			// Line#  21 : PromptIsValid ( RWC_PromptControl1 , False ) 
-			// Line#  22 : CancelDefault( )
-			// Line#  23 : ExitEvent( )
-			// Line#  24 : End If
+			// Line#  3 : ReturnToPrompt ( RWC_PromptControl1 , PART , True , True ) 
+			// Line#  4 : Else If Var.CONFIRM = (Alpha) N
+			// Line#  5 : StatusWindow ( @Cancelled , @Transaction cancelled !! , 2 ) 
+			// Line#  6 : ResetForm( )
+			// Line#  7 : Var.SITE = Gvr.SITE
+			// Line#  8 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  9 : Var.FROM_SITE = Var.SITE
+			// Line#  10 : Var.FROM_WAREHOUSE = Var.WAREHOUSE
+			// Line#  11 : Var.TO_SITE = Var.SITE
+			// Line#  12 : Var.TO_WAREHOUSE = Var.WAREHOUSE
+			// Line#  13 : Var.TO_SITE_AGAIN = False
+			// Line#  14 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Warehouse , Var.FROM_WAREHOUSE , True ) 
+			// Line#  15 : SetHistoryTextEx ( RWC_PromptControl1 , From_Site , @From Site , Var.SITE , False ) 
+			// Line#  16 : UpdateData ( Get ) 
+			// Line#  17 : ShowPrompt ( RWC_PromptControl1 , PART ) 
+			// Line#  18 : Else
+			// Line#  19 : StatusWindow ( Error , Answer must be Y or N. , 2 ) 
+			// Line#  20 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			shouldContinue = false;
+			// Line#  22 : ExitEvent( )
+			// Line#  23 : End If
+			cdt.MessageBox.show(cdt.ResourceManager.getString("Success"),cdt.ResourceManager.getString("Transaction Sent!"),cdt.MessageBoxButton.Ok,null);
+			frmInvTransfer.viewModel.promptControl.reset( );
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
@@ -1462,7 +1466,7 @@
 			// Line#  13 : CancelDefault( )
 			// Line#  14 : ExitEvent( )
 			// Line#  15 : End If
-			// Line#  16 : ShowPrompt ( RWC_PromptControl1 , Confirm ) 
+			frmInvTransfer.RWC_PromptControl1.showPrompt("Confirm");
 			// Line#  17 : ExitEvent( )
 			// Line#  18 : End If
 			// Line#  19 : SetHistoryTextEx ( RWC_PromptControl1 , QTY , @To Warehouse , Var.WAREHOUSE , True ) 
@@ -1470,6 +1474,7 @@
 			// Line#  21 : SetHistoryTextEx ( RWC_PromptControl1 , QTY , @Quantity , Var.QTY , False ) 
 			// Line#  22 : ReturnToPrompt ( RWC_PromptControl1 , To_Location , False , True ) 
 			// Line#  23 : Var.LOCATION = 
+			shouldContinue = false;
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);

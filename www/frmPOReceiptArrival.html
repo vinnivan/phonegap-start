@@ -5,8 +5,113 @@
 <div id='frmPOReceiptArrival' data-role='view' data-title='Purchase Order Arrival' data-show='frmPOReceiptArrival.viewModel.initialize' data-model='frmPOReceiptArrival.viewModel' >
 <script>
 	var frmPOReceiptArrival = frmPOReceiptArrival || {};
-		frmPOReceiptArrival.RWC_Purchase_Details = new kendo.data.DataSource({ data: [{}]  });
-		frmPOReceiptArrival.RWC_Arrival_Overview = new kendo.data.DataSource({ data: [{}]  });
+		frmPOReceiptArrival.RWC_Purchase_Details = new kendo.data.DataSource({ data: [
+		{VOLUME: "0",
+		WEIGHT: "0",
+		QUANTITY: "165",
+		IN_PROGRESS_VOLUME: "0",
+		IN_PROGRESS_WEIGHT: "0",
+		WAREHOUSE: "10",
+		IN_PROGRESS_NO_OF_PALLETS: "",
+		REFERENCE: "Purchase Order",
+		UNIT_OF_MEASUREMENT: "Pcs.",
+		STATUS_DATE: "3/29/2012 12:00:00 AM",
+		PALLETS: "",
+		ITEM_NAME: "Fixing bracket, silver 200 cm",
+		DESCRIPTION: "",
+		QUANTITY_IN_PROGRESS: "",
+		ITEM_NUMBER: "I99",
+		SITE: "HQ",
+		PURCHASE_ORDER_NUMBER: "PO00009",
+		PURCHASE_ORDER_LINE_NUMBER: "IL00116",
+		RETURNED_ITEM_NUMBER: ""}
+		]  });
+		frmPOReceiptArrival.RWC_Arrival_Overview = new kendo.data.DataSource({ data: [
+		{VOLUME: "0",
+		WEIGHT: "0",
+		QUANTITY: "165",
+		MODE_OF_DELIVERY: "",
+		LINES: "1",
+		WAREHOUSE: "10",
+		VENDOR_REFERENCE: "",
+		REFERENCE: "Purchase Order",
+		NAME: "99-Vendor of exercise 3.2",
+		NUMBER: "PO00009",
+		PALLETS: "0",
+		ACCOUNT_NUMBER: "30021",
+		SITE: "HQ",
+		_CURRENT: "1",
+		_COUNT: "5",
+		STATUS_DATE: "3/29/2012 12:00:00 AM"}
+		,
+		{VOLUME: "0",
+		WEIGHT: "0",
+		QUANTITY: "17",
+		MODE_OF_DELIVERY: "",
+		LINES: "1",
+		WAREHOUSE: "10",
+		VENDOR_REFERENCE: "",
+		REFERENCE: "Purchase Order",
+		NAME: "99-Vendor of exercise 3.2",
+		NUMBER: "PO00012",
+		PALLETS: "0",
+		ACCOUNT_NUMBER: "30021",
+		SITE: "HQ",
+		STATUS_DATE: "3/29/2012 12:00:00 AM",
+		_CURRENT: "2",
+		_COUNT: "5"}
+		,
+		{VOLUME: "0",
+		WEIGHT: "0",
+		QUANTITY: "99",
+		MODE_OF_DELIVERY: "",
+		LINES: "1",
+		WAREHOUSE: "10",
+		VENDOR_REFERENCE: "",
+		REFERENCE: "Purchase Order",
+		NAME: "99-Vendor of exercise 3.2",
+		NUMBER: "PO00010",
+		PALLETS: "0",
+		ACCOUNT_NUMBER: "30021",
+		SITE: "HQ",
+		STATUS_DATE: "12/24/2012 12:00:00 AM",
+		_CURRENT: "3",
+		_COUNT: "5"}
+		,
+		{VOLUME: "0",
+		WEIGHT: "0",
+		QUANTITY: "27",
+		MODE_OF_DELIVERY: "",
+		LINES: "6",
+		WAREHOUSE: "10",
+		VENDOR_REFERENCE: "",
+		REFERENCE: "Purchase Order",
+		NAME: "XCR Trading plc",
+		NUMBER: "PO00021",
+		PALLETS: "0",
+		ACCOUNT_NUMBER: "30001",
+		SITE: "HQ",
+		STATUS_DATE: "2/1/2013 12:00:00 AM",
+		_CURRENT: "4",
+		_COUNT: "5"}
+		,
+		{VOLUME: "0",
+		WEIGHT: "0.25",
+		QUANTITY: "5",
+		MODE_OF_DELIVERY: "",
+		LINES: "1",
+		WAREHOUSE: "10",
+		VENDOR_REFERENCE: "",
+		REFERENCE: "Purchase Order",
+		NAME: "Template for domestic one-time vendors",
+		NUMBER: "PO00022",
+		PALLETS: "0",
+		ACCOUNT_NUMBER: "30000",
+		SITE: "HQ",
+		STATUS_DATE: "2/25/2013 12:00:00 AM",
+		_CURRENT: "5",
+		_COUNT: "5"}
+		]  });
 		frmPOReceiptArrival.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmPOReceiptArrival' );
 		frmPOReceiptArrival.RWC_PromptControl1_PO_Number_ValidEvent = function(_value, _completeAction) {
 			
@@ -145,46 +250,46 @@
 
 
 		frmPOReceiptArrival.RWC_PromptControl1LP0_template = "<li data-uid='#= data.uid #'><a>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 26%;width: 14%;text-align:right;'>Row:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 40%;width: 11%;text-align:left;'>#= data._CURRENT #&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 54%;width: 9%;text-align:left;'>of&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 66%;width: 11%;text-align:left;'>#= data._COUNT #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 26%;width: 14%;text-align:right;'>Row:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 40%;width: 11%;text-align:left;'>#= data._CURRENT #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 54%;width: 9%;text-align:left;'>of&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 66%;width: 11%;text-align:left;'>#= data._COUNT #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 40%;text-align:right;'>Reference:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 40%;width: 54%;text-align:left;'>Purchase Order&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 40%;text-align:right;'>Reference:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 40%;width: 54%;text-align:left;'>Purchase Order&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 40%;text-align:right;'>Status Date:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 40%;width: 34%;text-align:left;'>#= data.STATUS_DATE #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 40%;text-align:right;'>Status Date:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 40%;width: 34%;text-align:left;'>#= data.STATUS_DATE #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 40%;text-align:right;'>Number:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 40%;width: 57%;text-align:left;'>#= data.NUMBER #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 40%;text-align:right;'>Number:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 40%;width: 57%;text-align:left;'>#= data.NUMBER #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 40%;text-align:right;'>Lines:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 40%;width: 29%;text-align:left;'>#= data.LINES #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 40%;text-align:right;'>Lines:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 40%;width: 29%;text-align:left;'>#= data.LINES #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 40%;text-align:right;'>Pallets:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 40%;width: 29%;text-align:left;'>#= data.PALLETS #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 40%;text-align:right;'>Pallets:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 40%;width: 29%;text-align:left;'>#= data.PALLETS #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 40%;text-align:right;'>Quantity:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 40%;width: 29%;text-align:left;'>#= data.QUANTITY #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 40%;text-align:right;'>Quantity:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 40%;width: 29%;text-align:left;'>#= data.QUANTITY #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 40%;text-align:right;'>Volume:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 40%;width: 29%;text-align:left;'>#= data.VOLUME #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 40%;text-align:right;'>Volume:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 40%;width: 29%;text-align:left;'>#= data.VOLUME #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 40%;text-align:right;'>Weight:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 40%;width: 29%;text-align:left;'>#= data.WEIGHT #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 40%;text-align:right;'>Weight:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 40%;width: 29%;text-align:left;'>#= data.WEIGHT #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 40%;text-align:right;'>Site:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 40%;width: 29%;text-align:left;'>#= data.SITE #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 40%;text-align:right;'>Site:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 40%;width: 29%;text-align:left;'>#= data.SITE #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 40%;text-align:right;'>Warehouse:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 40%;width: 29%;text-align:left;'>#= data.WAREHOUSE #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 40%;text-align:right;'>Warehouse:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 40%;width: 29%;text-align:left;'>#= data.WAREHOUSE #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 40%;text-align:right;'>Name:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 40%;width: 57%;text-align:left;'>#= data.NAME #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 40%;text-align:right;'>Name:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 40%;width: 57%;text-align:left;'>#= data.NAME #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 0%;width: 40%;text-align:right;'>Mode Of Del:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;left: 40%;width: 29%;text-align:left;'>#= data.MODE_OF_DELIVERY #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 40%;text-align:right;'>Mode Of Del:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 40%;width: 29%;text-align:left;'>#= data.MODE_OF_DELIVERY #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP0_template += "<br /></a></li>";
 		frmPOReceiptArrival.RWC_PromptControl1LP0.setLayout( kendo.template(frmPOReceiptArrival.RWC_PromptControl1LP0_template, { useWithBlock: false } ) );
 
@@ -240,46 +345,42 @@
 
 
 		frmPOReceiptArrival.RWC_PromptControl1LP1_template = "<li data-uid='#= data.uid #'><a>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 27%;width: 15%;text-align:right;'>Row:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 12%;text-align:left;'>#= data._CURRENT #&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 58%;width: 9%;text-align:right;'>of&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 70%;width: 12%;text-align:left;'>#= data._COUNT #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Number:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 45%;text-align:left;'>#= data.PURCHASE_ORDER_NUMBER #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 42%;text-align:right;'>Number:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 45%;text-align:left;'>#= data.PURCHASE_ORDER_NUMBER #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Status Date:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.STATUS_DATE #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 42%;text-align:right;'>Status Date:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 30%;text-align:left;'>#= data.STATUS_DATE #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Status:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.SITE #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 42%;text-align:right;'>Status:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 30%;text-align:left;'>#= data.SITE #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Warehouse:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.WAREHOUSE #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 42%;text-align:right;'>Warehouse:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 30%;text-align:left;'>#= data.WAREHOUSE #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Item No:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 45%;text-align:left;'>#= data.ITEM_NUMBER #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 42%;text-align:right;'>Item No:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 45%;text-align:left;'>#= data.ITEM_NUMBER #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Item Name:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 45%;text-align:left;'>#= data.ITEM_NAME #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 42%;text-align:right;'>Item Name:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 45%;text-align:left;'>#= data.ITEM_NAME #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Pallets:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.PALLETS #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 42%;text-align:right;'>Pallets:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 30%;text-align:left;'>#= data.PALLETS #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Unit Of MS:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.UNIT_OF_MEASUREMENT #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 42%;text-align:right;'>Unit Of MS:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 30%;text-align:left;'>#= data.UNIT_OF_MEASUREMENT #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Quantity:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.QUANTITY #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 42%;text-align:right;'>Quantity:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 30%;text-align:left;'>#= data.QUANTITY #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Progress QTY:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.QUANTITY_IN_PROGRESS #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 42%;text-align:right;'>Progress QTY:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 30%;text-align:left;'>#= data.QUANTITY_IN_PROGRESS #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Volume:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.VOLUME #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 42%;text-align:right;'>Volume:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 30%;text-align:left;'>#= data.VOLUME #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<br/>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 0%;width: 42%;text-align:right;'>Weight:&nbsp;&nbsp;</span>";
-		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;left: 42%;width: 30%;text-align:left;'>#= data.WEIGHT #&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 42%;text-align:right;'>Weight:&nbsp;&nbsp;</span>";
+		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 42%;width: 30%;text-align:left;'>#= data.WEIGHT #&nbsp;&nbsp;</span>";
 		frmPOReceiptArrival.RWC_PromptControl1LP1_template += "<br /></a></li>";
 		frmPOReceiptArrival.RWC_PromptControl1LP1.setLayout( kendo.template(frmPOReceiptArrival.RWC_PromptControl1LP1_template, { useWithBlock: false } ) );
 
@@ -310,6 +411,18 @@
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
 		};
+			frmPOReceiptArrival.RWC_PromptControl1_Quantity_OnClick = function(_value, _completeAction) {
+			
+			var shouldContinue = true;
+		try{
+			
+			
+			// Line#  1 : ListPromptSaveDataSet ( RWC_PromptControl1 , PO_Arrival_Overview ) 
+			// Line#  2 : ListPromptSaveDataSet ( RWC_PromptControl1 , PO_Arrival_Details ) 
+			
+		}catch(ex){ alert(ex); }
+			_completeAction(shouldContinue);
+		};
 			
 		frmPOReceiptArrival.Quantity = new cdt.prompt("Quantity", // Name
 				"Quantity" , // Caption Resource ID
@@ -317,9 +430,9 @@
 				true, // ResetEnabled
 				true, // PreviousEnabled
 				true, // AbortEnabled
-				false, // ShowButton
-				"", // Button Caption
-				null, // ButtonClick Delegate
+				true, // ShowButton
+				"Export", // Button Caption
+				frmPOReceiptArrival.Quantity_Click , // ButtonClick Delegate
 				false, // ShowButton2
 				"", // Button2 Caption
 				null, // ButtonClick2 Delegate
@@ -362,6 +475,9 @@
 			// Line#  11 : CancelDefault( )
 			// Line#  12 : ExitEvent( )
 			// Line#  13 : End If
+			shouldContinue = false;
+			cdt.MessageBox.show(cdt.ResourceManager.getString("Success"),cdt.ResourceManager.getString("Transaction Sent!"),cdt.MessageBoxButton.Ok,null);
+			frmPOReceiptArrival.viewModel.promptControl.reset( );
 			
 		}catch(ex){ alert(ex); }
 			_completeAction(shouldContinue);
