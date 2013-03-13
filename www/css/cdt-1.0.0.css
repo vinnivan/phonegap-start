@@ -132,14 +132,30 @@
         font-size: .7em;
         line-height: 1em;
         margin: -8px 0 0 0 40px;
-        color: #bababa;
     }
 
 
-    #mainMenu .item-title, #mainMenu .item-info
+    .km-ios .km-list>li .item-info
     {
-        color: #000;
+        color: #000000;
     }
+
+    .km-android .km-list>li .item-info
+    {
+        color: #808080;
+    }
+
+
+    .km-android .km-list>li .item-title
+    {
+        color: #fff;
+    }
+
+    .km-ios .km-list>li .item-title
+    {
+        color: #000000;
+    }
+
 
 
     #mainMenu
@@ -148,10 +164,16 @@
     }
 
 
-    #mainMenu .head
+    .km-android #mainMenu .head
+    {
+        color: #fff;
+    }
+
+    .km-ios #mainMenu .head
     {
         color: #000000;
     }
+
 
     #mainMenuContainer 
     {

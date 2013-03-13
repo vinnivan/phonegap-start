@@ -1168,6 +1168,9 @@ cdt.promptControl = function (_resetCaptionId, _previousCaptionId, _abortCaption
 
         cdt.Utilities.arrayForEach(promptList, function (p) { p.reset() });
 
+        historyScroller.reset();
+
+
         showFirstPrompt(_useFocus);
     };
 
